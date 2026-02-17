@@ -1,0 +1,48 @@
+name = "rynk-ideas"
+compatibility_date = "2024-12-30"
+compatibility_flags = ["nodejs_compat"]
+main = ".open-next/worker.js"
+assets = { directory = ".open-next/assets", binding = "ASSETS" }
+
+# ═══════════════════════════════════════════════════════════════════
+# RYNK IDEAS - Cloudflare Bindings
+# ═══════════════════════════════════════════════════════════════════
+
+# D1 Database (shared with rynk-web for auth + cross-product context)
+[[d1_databases]]
+binding = "DB"
+database_name = "simplechat-db"
+database_id = "eace923b-b0d6-4a99-a82e-6a4d144e4ca5"
+
+# R2 Bucket for media (images, audio, video dumps)
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "rynk-ideas-assets"
+
+# R2 bucket for Next.js incremental cache
+[[r2_buckets]]
+binding = "NEXT_INC_CACHE_R2_BUCKET"
+bucket_name = "rynk-ideas-cache"
+
+# Vectorize Index for embeddings (segments + thread summaries)
+[[vectorize]]
+binding = "VECTORIZE_INDEX"
+index_name = "rynk-ideas-index"
+remote = true
+
+# Cloudflare AI Binding (embeddings + LLM)
+[ai]
+binding = "AI"
+remote = true
+
+# Self-reference for middleware
+[[services]]
+binding = "WORKER_SELF_REFERENCE"
+service = "rynk-ideas"
+
+[vars]
+AUTH_TRUST_HOST = "true"
+NEXTJS_ENV = "development"
+
+[limits]
+cpu_ms = 100_000
