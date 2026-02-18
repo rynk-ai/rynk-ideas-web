@@ -5,7 +5,6 @@
 ## Features
 
 - **Infinite Memory**: Search across all your past conversations.
-- **Deep Research**: Autonomous multi-source research with citations.
 - **Project Workspaces**: Group chats and files for context-aware assistance.
 - **Document Analysis**: Chat with PDFs, Code, and Images.
 
@@ -19,9 +18,9 @@
 
 <div align="center">
 
-| [Cloudflare for Startups](https://workers.cloudflare.com/) | [Exa AI](https://exa.ai) | [Perplexity](https://perplexity.ai) | [Groq](https://groq.com) |
-| :---: | :---: | :---: | :---: |
-| Infrastructure | Search | Knowledge | Fast Inference |
+| [Cloudflare for Startups](https://workers.cloudflare.com/) | [Groq](https://groq.com) |
+| :---: | :---: |
+| Infrastructure | Fast Inference |
 
 </div>
 

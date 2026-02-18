@@ -10,12 +10,9 @@ Rynk Ideas is built for **"Deep Work"**. Unlike generic chatbots, it maintains i
 - Use `@` to cite ANY past conversation.
 - "Project Brain" enables the AI to learn from all files and chats in a workspace simultaneously.
 
-### 2. Deep Research
-- **Standard Mode**: Quick answers.
-- **Deep Research Mode**: The AI autonomously:
-    - Queries multiple external sources (Search, Academic, News).
-    - Synthesizes findings.
-    - Provides citation-backed answers.
+### 2. Deep Context vs Research
+- **Context Awareness**: The AI searches your own projects, files, and past conversations to provide answer.
+- **External Knowledge**: Uses LLM knowledge (like Llama 3 or GPT-4) for general queries.
 
 ### 3. Ideation Workflow
 1.  **Project Setup**: Create a project (e.g., "New SaaS App"). Add context/instruction (e.g., "Stack: Next.js, Stripe").
