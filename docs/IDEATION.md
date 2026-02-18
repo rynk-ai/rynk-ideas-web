@@ -1,26 +1,52 @@
-# Rynk Ideas - Ideation & workflows
+# Rynk Ideas — Product Ideation
 
-## Philosophy
-Rynk Ideas is built for **"Deep Work"**. Unlike generic chatbots, it maintains infinite context and allows for structured, project-based workflows.
+> *"AI without the noise"* extended to **ideas**. Dump anything. AI makes sense of it. You act on it.
 
-## Key Concepts
+## The Core Concept
 
-### 1. Infinite Memory
-- Every conversation is indexed.
-- Use `@` to cite ANY past conversation.
-- "Project Brain" enables the AI to learn from all files and chats in a workspace simultaneously.
+Rynk Ideas is a **thought capture → AI synthesis → actionable planning** pipeline. Users dump raw thoughts, images, links, videos, voice notes — anything — and the AI organizes, connects, and grounds them into something real.
 
-### 2. Deep Context vs Research
-- **Context Awareness**: The AI searches your own projects, files, and past conversations to provide answer.
-- **External Knowledge**: Uses LLM knowledge (like Llama 3 or GPT-4) for general queries.
+```mermaid
+graph LR
+    A[💭 Dump] --> B[🧠 AI Synthesis]
+    B --> C[📊 Dashboard]
+    C --> D[🔬 Deep Dive]
+    D --> E[📋 Action & Track]
+    E -->|feedback loop| B
+```
 
-### 3. Ideation Workflow
-1.  **Project Setup**: Create a project (e.g., "New SaaS App"). Add context/instruction (e.g., "Stack: Next.js, Stripe").
-2.  **Brainstorming**: Start a chat "Feature Brainstorming". Iterate on ideas.
-3.  **Branching**: Use **Message Versioning** to explore diverging paths (e.g., "What if we used SQL?" vs "What if we used NoSQL?").
-4.  **Sub-Chats**: Deep dive on specific points (e.g., select "Auth flow" -> "Start sub-chat") without cluttering the main ideation thread.
+## Feature Pillars
 
-## Usage Guide
-- **`⌘K`**: Global search & navigation.
-- **`@`**: Context picker (Files, Folders, Chats).
-- **Edit & Branch**: Click edit on any message to fork the conversation.
+### 1. 🗑️ The Dump (Capture Layer)
+The lowest-friction way to capture a thought from *anywhere*.
+- **Web**: Text box, drag-and-drop.
+- **Types**: Raw text, stream of consciousness, images, links.
+- **Key UX**: No categories, no tags, no forms. Just dump.
+
+### 2. 🧠 AI Synthesis (The Brain)
+- **Auto-clustering**: Groups related dumps into "Idea Threads".
+- **Reality checks**: Flags gaps or unrealistic assumptions.
+- **Enrichment**: Auto-attaches relevant context.
+
+### 3. 📊 The Dashboard (Bird's Eye View)
+A living canvas that reflects the user's creative landscape.
+- **Idea Map**: Visual graph/cluster view.
+- **Board View**: Kanban-style (To Explore, Thinking About, Deciding, etc.).
+- **Timeline**: Pattern recognition on your creativity.
+
+### 4. 🔬 Deep Dive (Research & Planning)
+User picks an idea → AI goes deep.
+- **AI Research Report**: Thorough research on the topic.
+- **Starter Kit**: Tech stack, business model canvas, etc.
+- **Action Plan**: Concrete phases with timelines.
+
+---
+
+## UI Philosophy
+
+> The interface should feel like a **private creative workspace**, not an enterprise tool.
+
+1. **Dark, minimal, Rynk DNA**.
+2. **Spatial over linear**.
+3. **AI is ambient, not intrusive**.
+4. **Capture is instant**.

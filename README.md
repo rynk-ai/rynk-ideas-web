@@ -1,17 +1,22 @@
 # Rynk Ideas Web
 
-> **Rynk Ideas** is the open-source web interface for Rynk AI, designed for deep research, ideation, and project management.
+> **Rynk Ideas** is an AI-powered thought capture and synthesis tool. Dump anything, and the AI organizes it into actionable plans, finding connections you missed.
 
-## Features
+> *"AI without the noise"* extended to **ideas**.
 
-- **Infinite Memory**: Search across all your past conversations.
-- **Project Workspaces**: Group chats and files for context-aware assistance.
-- **Document Analysis**: Chat with PDFs, Code, and Images.
+## The Concept
+
+Rynk Ideas is a **thought capture → AI synthesis → actionable planning** pipeline. It is distinct from a standard chatbot.
+
+1.  **The Dump**: Capture raw thoughts, images, and links instantly.
+2.  **The Brain**: AI continuously clusters dumps into "Idea Threads".
+3.  **The Board**: A living dashboard of your creative landscape (Kanban/Graph view).
+4.  **Deep Dive**: Turn a vague idea into a concrete action plan with research.
 
 ## Documentation
 
-- 📖 **[Architecture Guide](./docs/ARCHITECTURE.md)**
-- 💡 **[Ideation & Workflows](./docs/IDEATION.md)**
+- 💡 **[Ideation & Concepts](./docs/IDEATION.md)**
+- 📖 **[Technical Architecture](./docs/ARCHITECTURE.md)**
 - 🚀 **[Self-Hosting Guide](./docs/SELF_HOSTING.md)**
 
 ## Powered By
@@ -27,10 +32,10 @@
 ## Stack
 
 - **Framework**: Next.js (App Router)
-- **Edge Runtime**: Cloudflare Workers
-- **Database**: Cloudflare D1
-- **Vector DB**: Cloudflare Vectorize
-- **Storage**: Cloudflare R2
+- **Runtime**: Cloudflare Workers
+- **Database**: Cloudflare D1 (SQLite)
+- **Vector Engine**: Cloudflare Vectorize
+- **File Storage**: Cloudflare R2
 
 ## Getting Started
 
