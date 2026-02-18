@@ -18,6 +18,35 @@ export async function POST(req: NextRequest) {
         }
 
         const db = getCloudflareContext().env.DB;
+        const userId = session.user.id;
+
+        // --- Usage Limit Enforcement ---
+        // 1. Get user's subscription tier
+        const user = await db.prepare("SELECT subscriptionTier FROM users WHERE id = ?").bind(userId).first();
+        const tier = (user?.subscriptionTier as string) || "free";
+
+        // 2. If free tier, check usage
+        if (tier === "free") {
+            const now = new Date();
+            const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+
+            const usageResult = await db.prepare(`
+                SELECT COUNT(*) as count
+                FROM dumps
+                WHERE userId = ? AND createdAt >= ?
+            `).bind(userId, startOfMonth).first();
+
+            const dumpCount = (usageResult?.count as number) || 0;
+
+            if (dumpCount >= 50) {
+                return NextResponse.json(
+                    { error: "Monthly limit reached. Please upgrade to Pro for unlimited dumps." },
+                    { status: 403 }
+                );
+            }
+        }
+        // -------------------------------
+
         const id = generateId();
 
         await db
@@ -25,7 +54,7 @@ export async function POST(req: NextRequest) {
                 `INSERT INTO dumps (id, userId, content, contentType, mediaUrls, createdAt, updatedAt)
          VALUES (?, ?, ?, ?, ?, datetime('now'), datetime('now'))`
             )
-            .bind(id, session.user.id, content.trim(), contentType, mediaUrls ? JSON.stringify(mediaUrls) : null)
+            .bind(id, userId, content.trim(), contentType, mediaUrls ? JSON.stringify(mediaUrls) : null)
             .run();
 
         return NextResponse.json({ id, success: true });

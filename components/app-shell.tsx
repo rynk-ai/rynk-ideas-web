@@ -59,8 +59,8 @@ export function AppShell({ children }: AppShellProps) {
 
     return (
         <div className="min-h-screen flex bg-background">
-            {/* Sidebar */}
-            <aside className="flex-none w-[52px] border-r border-border/30 flex flex-col items-center py-4 gap-1">
+            {/* Sidebar (Desktop) */}
+            <aside className="hidden md:flex flex-none w-[52px] border-r border-border/30 flex-col items-center py-4 gap-1">
                 {/* Brand */}
                 <a href="/" className="mb-4 group" title="rynk ideas">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-muted-foreground/50 group-hover:text-foreground transition-colors">
@@ -151,7 +151,27 @@ export function AppShell({ children }: AppShellProps) {
                             </div>
 
                             {/* Actions */}
-                            <div className="p-1.5">
+                            <div className="p-1.5 space-y-1">
+                                <button
+                                    onClick={() => {
+                                        setSettingsOpen(false);
+                                        window.location.href = "/settings/subscription";
+                                    }}
+                                    className={cn(
+                                        "flex items-center gap-2 w-full px-3 py-2 rounded-lg",
+                                        "text-sm text-muted-foreground/80",
+                                        "hover:bg-card/80 hover:text-foreground",
+                                        "transition-colors"
+                                    )}
+                                >
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                                        <line x1="2" y1="10" x2="22" y2="10" />
+                                        <line x1="7" y1="15" x2="7.01" y2="15" />
+                                        <line x1="11" y1="15" x2="13" y2="15" />
+                                    </svg>
+                                    Subscription
+                                </button>
                                 <button
                                     onClick={() => signOut({ callbackUrl: "/login" })}
                                     className={cn(
@@ -175,9 +195,119 @@ export function AppShell({ children }: AppShellProps) {
             </aside>
 
             {/* Main content */}
-            <main className="flex-1 min-w-0 overflow-auto">
+            <main className="flex-1 min-w-0 overflow-auto pb-20 md:pb-0">
                 {children}
             </main>
+            {/* Mobile Bottom Nav */}
+            <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-card/80 backdrop-blur-xl border-t border-border/50 pb-safe">
+                <div className="flex items-center justify-around h-16 px-2">
+                    <button
+                        onClick={() => window.location.href = "/"}
+                        className={cn(
+                            "flex flex-col items-center justify-center w-16 gap-1",
+                            "text-muted-foreground/40 transition-colors",
+                            pathname === "/" && "text-foreground"
+                        )}
+                    >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <rect x="3" y="3" width="7" height="7" rx="1" />
+                            <rect x="14" y="3" width="7" height="7" rx="1" />
+                            <rect x="3" y="14" width="7" height="7" rx="1" />
+                            <rect x="14" y="14" width="7" height="7" rx="1" />
+                        </svg>
+                        <span className="text-[9px] font-medium tracking-wide">BOARD</span>
+                    </button>
+
+                    <button
+                        onClick={() => setDumpOpen(true)}
+                        className="flex flex-col items-center justify-center w-16 gap-1 text-muted-foreground/40 hover:text-foreground transition-colors"
+                    >
+                        <div className="p-2 rounded-full bg-foreground text-background shadow-lg transform -translate-y-4 border-4 border-background">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M12 5v14M5 12h14" />
+                            </svg>
+                        </div>
+                    </button>
+
+                    <div className="relative">
+                        <button
+                            onClick={() => setSettingsOpen(!settingsOpen)}
+                            className={cn(
+                                "flex flex-col items-center justify-center w-16 gap-1",
+                                "text-muted-foreground/40 transition-colors",
+                                settingsOpen && "text-foreground"
+                            )}
+                        >
+                            {user?.image ? (
+                                <img src={user.image} alt="" className="w-5 h-5 rounded-full" />
+                            ) : (
+                                <div className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">
+                                    {initials}
+                                </div>
+                            )}
+                            <span className="text-[9px] font-medium tracking-wide">YOU</span>
+                        </button>
+
+                        {settingsOpen && (
+                            <div className={cn(
+                                "absolute right-0 bottom-full mb-4",
+                                "w-64 rounded-2xl shadow-2xl",
+                                "bg-card border border-border/50",
+                                "animate-fade-slide-up",
+                                "z-50 overflow-hidden"
+                            )}>
+                                <div className="p-4 bg-muted/30 border-b border-border/30">
+                                    <div className="flex items-center gap-3">
+                                        {user?.image ? (
+                                            <img src={user.image} alt="" className="w-10 h-10 rounded-full" />
+                                        ) : (
+                                            <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-bold">
+                                                {initials}
+                                            </div>
+                                        )}
+                                        <div className="min-w-0">
+                                            <div className="text-sm font-medium text-foreground truncate">
+                                                {user?.name || "User"}
+                                            </div>
+                                            <div className="text-xs text-muted-foreground/50 truncate">
+                                                {user?.email}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="p-2 space-y-1">
+                                    <button
+                                        onClick={() => {
+                                            setSettingsOpen(false);
+                                            window.location.href = "/settings/subscription";
+                                        }}
+                                        className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm text-foreground hover:bg-muted/50 transition-colors"
+                                    >
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <rect x="2" y="4" width="20" height="16" rx="2" />
+                                            <line x1="2" y1="10" x2="22" y2="10" />
+                                            <line x1="7" y1="15" x2="7.01" y2="15" />
+                                            <line x1="11" y1="15" x2="13" y2="15" />
+                                        </svg>
+                                        Subscription
+                                    </button>
+                                    <button
+                                        onClick={() => signOut({ callbackUrl: "/login" })}
+                                        className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm text-red-400 hover:bg-red-400/10 transition-colors"
+                                    >
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                                            <polyline points="16 17 21 12 16 7" />
+                                            <line x1="21" x2="9" y1="12" y2="12" />
+                                        </svg>
+                                        Sign out
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </nav>
 
             {/* Dump Modal */}
             <DumpModal

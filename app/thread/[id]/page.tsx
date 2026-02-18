@@ -95,7 +95,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
     }
 
     return (
-        <div className="p-6 pb-16">
+        <div className="p-4 md:p-6 pb-24 md:pb-16">
             <div className="max-w-2xl mx-auto">
                 {/* Back link */}
                 <a

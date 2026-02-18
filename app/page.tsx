@@ -74,7 +74,7 @@ export default function BoardPage() {
     }
 
     return (
-        <div className="p-6">
+        <div className="p-4 md:p-6">
             {/* Header */}
             <div className="max-w-6xl mx-auto mb-8">
                 <h1 className="text-lg font-semibold tracking-tight">
@@ -85,11 +85,11 @@ export default function BoardPage() {
 
             {/* Kanban */}
             <div className="max-w-6xl mx-auto">
-                <div className="flex gap-5 overflow-x-auto pb-4">
+                <div className="flex gap-4 md:gap-5 overflow-x-auto pb-24 md:pb-4 -mx-4 px-4 md:mx-0 md:px-0 snap-x snap-mandatory md:snap-none no-scrollbar">
                     {grouped.map((column) => (
                         <div
                             key={column.key}
-                            className="flex-none w-[260px]"
+                            className="flex-none w-[85vw] md:w-[260px] snap-center md:snap-align-none"
                         >
                             {/* Column header */}
                             <div className="flex items-center gap-2 mb-4 px-1">
