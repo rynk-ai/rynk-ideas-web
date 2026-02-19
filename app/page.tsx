@@ -1,15 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-
-interface Thread {
-    id: string;
-    title: string;
-    summary: string | null;
-    state: string;
-    groundingNote: string | null;
-}
+import { useThreads } from "@/hooks/use-rynk-data";
+import { OnboardingContent } from "@/components/onboarding-content";
 
 const COLUMNS = [
     { key: "seed", label: "TO EXPLORE" },
@@ -21,23 +14,7 @@ const COLUMNS = [
 ];
 
 export default function BoardPage() {
-    const [threads, setThreads] = useState<Thread[]>([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        async function fetchThreads() {
-            try {
-                const res = await fetch("/api/threads");
-                const data = await res.json();
-                setThreads(data.threads || []);
-            } catch (error) {
-                console.error("Failed to fetch threads:", error);
-            } finally {
-                setLoading(false);
-            }
-        }
-        fetchThreads();
-    }, []);
+    const { threads, loading } = useThreads();
 
     const grouped = COLUMNS.map((col) => ({
         ...col,
@@ -57,17 +34,14 @@ export default function BoardPage() {
     if (threads.length === 0) {
         return (
             <div className="flex items-center justify-center h-full min-h-[60vh]">
-                <div className="text-center max-w-md">
-                    <h2 className="text-lg font-semibold mb-2 text-foreground/80">
-                        No ideas yet
-                    </h2>
-                    <p className="text-sm text-muted-foreground/50 leading-relaxed mb-6">
-                        Hit the pen icon in the sidebar or press{" "}
-                        <kbd className="px-1.5 py-0.5 rounded bg-card border border-border/50 text-[11px] font-mono">
-                            ⌘ K
-                        </kbd>{" "}
-                        to dump your first thought.
-                    </p>
+                <div className="max-w-md w-full">
+                    <OnboardingContent
+                        className="bg-card/40 border border-border/30 rounded-2xl p-8 shadow-sm"
+                        onComplete={() => {
+                            // Trigger dump modal via keyboard shortcut simulation
+                            window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
+                        }}
+                    />
                 </div>
             </div>
         );
@@ -104,13 +78,12 @@ export default function BoardPage() {
                             {/* Cards */}
                             <div className="space-y-2.5">
                                 {column.threads.map((thread) => (
-                                    <a
+                                    <div
                                         key={thread.id}
-                                        href={`/thread/${thread.id}`}
                                         className="group block"
                                     >
-                                        <div className={cn(
-                                            "rounded-lg p-4",
+                                        <a href={`/thread/${thread.id}`} className={cn(
+                                            "block rounded-lg p-4",
                                             "bg-card/60 border border-border/30",
                                             "hover:border-border/60 hover:bg-card/80",
                                             "transition-all duration-150"
@@ -123,8 +96,8 @@ export default function BoardPage() {
                                                     {thread.summary}
                                                 </p>
                                             )}
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 ))}
                             </div>
                         </div>

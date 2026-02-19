@@ -7,6 +7,7 @@ import { embedSegment, storeEmbedding } from "@/lib/services/embedder";
 import { clusterSegment } from "@/lib/services/clusterer";
 import { synthesizeThread, type TemporalContext } from "@/lib/services/synthesizer";
 import { discoverEdges } from "@/lib/services/edge-discoverer";
+import { getIpHash } from "@/lib/ip-limit";
 
 /**
  * POST /api/pipeline/process
@@ -20,8 +21,11 @@ import { discoverEdges } from "@/lib/services/edge-discoverer";
 export async function POST(req: NextRequest) {
     try {
         const session = await auth();
-        if (!session?.user?.id) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        let userId = session?.user?.id;
+
+        if (!userId) {
+            const ipHash = await getIpHash();
+            userId = `guest:${ipHash}`;
         }
 
         const { dumpId } = await req.json();
@@ -34,7 +38,6 @@ export async function POST(req: NextRequest) {
         const db = env.DB;
         const ai = env.AI;
         const vectorize = env.VECTORIZE_INDEX;
-        const userId = session.user.id;
 
         // 1. Fetch the dump
         const dump = await db

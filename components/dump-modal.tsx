@@ -2,6 +2,9 @@
 
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { useSaveDump, useProcessDump } from "@/hooks/use-rynk-data";
+import { useSession } from "next-auth/react";
+import { toast } from "sonner";
 
 interface DumpModalProps {
     open: boolean;
@@ -19,10 +22,13 @@ const PROCESSING_MESSAGES = [
 ];
 
 export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
+    const { data: session } = useSession();
     const [content, setContent] = useState("");
     const [phase, setPhase] = useState<Phase>("writing");
     const [processingMsg, setProcessingMsg] = useState(PROCESSING_MESSAGES[0]);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const { saveDump } = useSaveDump();
+    const { processDump } = useProcessDump();
 
     // Focus textarea when modal opens
     useEffect(() => {
@@ -70,34 +76,31 @@ export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
 
         setPhase("saving");
         try {
-            const res = await fetch("/api/dumps", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    content: content.trim(),
-                    contentType: "text",
-                }),
-            });
-
-            if (!res.ok) throw new Error("Failed to save");
-            const data = await res.json();
+            const result = await saveDump(content.trim());
 
             setPhase("processing");
-            const pipelineRes = await fetch("/api/pipeline/process", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ dumpId: data.id }),
-            });
-
-            if (!pipelineRes.ok) throw new Error("Pipeline failed");
+            await processDump(result.id);
 
             setPhase("done");
             setTimeout(() => {
                 onComplete();
             }, 500);
-        } catch (error) {
+        } catch (error: any) {
             console.error("Failed:", error);
             setPhase("writing");
+
+            if (error.message === "LIMIT_REACHED") {
+                toast.info("Free limit reached", {
+                    description: "You've used your guest credits. Sign in to continue dumping thoughts.",
+                    action: {
+                        label: "Sign In",
+                        onClick: () => window.location.href = "/api/auth/signin"
+                    },
+                    duration: 8000,
+                });
+            } else {
+                toast.error("Failed to save thought. Please try again.");
+            }
         }
     }
 

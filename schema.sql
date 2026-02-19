@@ -168,6 +168,7 @@ CREATE TABLE IF NOT EXISTS shared_conversations (
 CREATE TABLE IF NOT EXISTS dumps (
   id TEXT PRIMARY KEY,
   userId TEXT NOT NULL,
+  ipHash TEXT, -- For guest dumps
   content TEXT NOT NULL,
   contentType TEXT NOT NULL DEFAULT 'text', -- 'text', 'mixed'
   mediaUrls TEXT, -- JSON array of R2 keys
@@ -196,6 +197,7 @@ CREATE TABLE IF NOT EXISTS segments (
 CREATE TABLE IF NOT EXISTS idea_threads (
   id TEXT PRIMARY KEY,
   userId TEXT NOT NULL,
+  ipHash TEXT, -- For guest threads
   title TEXT NOT NULL,
   summary TEXT,
   state TEXT NOT NULL DEFAULT 'seed',
@@ -222,16 +224,28 @@ CREATE TABLE IF NOT EXISTS thread_edges (
   FOREIGN KEY (toThreadId) REFERENCES idea_threads(id) ON DELETE CASCADE
 );
 
--- ================================================================
 -- Indexes
 -- ================================================================
 
 CREATE INDEX IF NOT EXISTS idx_dumps_userId ON dumps(userId);
+CREATE INDEX IF NOT EXISTS idx_dumps_ipHash ON dumps(ipHash);
 CREATE INDEX IF NOT EXISTS idx_dumps_createdAt ON dumps(createdAt);
 CREATE INDEX IF NOT EXISTS idx_segments_dumpId ON segments(dumpId);
 CREATE INDEX IF NOT EXISTS idx_segments_threadId ON segments(threadId);
 CREATE INDEX IF NOT EXISTS idx_segments_userId ON segments(userId);
 CREATE INDEX IF NOT EXISTS idx_threads_userId ON idea_threads(userId);
+CREATE INDEX IF NOT EXISTS idx_threads_ipHash ON idea_threads(ipHash);
 CREATE INDEX IF NOT EXISTS idx_threads_state ON idea_threads(state);
 CREATE INDEX IF NOT EXISTS idx_thread_edges_from ON thread_edges(fromThreadId);
 CREATE INDEX IF NOT EXISTS idx_thread_edges_to ON thread_edges(toThreadId);
+
+-- ================================================================
+-- Guest Sessions (IP-based limits)
+-- ================================================================
+
+CREATE TABLE IF NOT EXISTS guest_sessions (
+  ipHash TEXT PRIMARY KEY,
+  creditsRemaining INTEGER DEFAULT 5,
+  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+  lastActive DATETIME DEFAULT CURRENT_TIMESTAMP
+);
