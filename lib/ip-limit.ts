@@ -30,16 +30,17 @@ export async function checkGuestLimit(ipHash: string): Promise<{ allowed: boolea
     }
 
     // Check existing session
-    const session = await db.prepare("SELECT * FROM guest_sessions WHERE ipHash = ?").bind(ipHash).first();
+    const session = await db.prepare("SELECT * FROM guest_sessions WHERE ip_hash = ?").bind(ipHash).first();
 
     if (!session) {
         // Create new session
-        await db.prepare("INSERT INTO guest_sessions (ipHash, creditsRemaining) VALUES (?, 5)").bind(ipHash).run();
+        const id = crypto.randomUUID(); // ensure you have a guest_id
+        await db.prepare("INSERT INTO guest_sessions (guest_id, ip_hash, credits_remaining) VALUES (?, ?, 5)").bind(`guest-session-${id}`, ipHash).run();
         return { allowed: true, remaining: 5 };
     }
 
-    if (session.creditsRemaining > 0) {
-        return { allowed: true, remaining: session.creditsRemaining };
+    if (session.credits_remaining > 0) {
+        return { allowed: true, remaining: session.credits_remaining };
     }
 
     return { allowed: false, remaining: 0 };
@@ -56,5 +57,5 @@ export async function decrementGuestCredit(ipHash: string) {
 
     if (!db) return;
 
-    await db.prepare("UPDATE guest_sessions SET creditsRemaining = creditsRemaining - 1, lastActive = CURRENT_TIMESTAMP WHERE ipHash = ? AND creditsRemaining > 0").bind(ipHash).run();
+    await db.prepare("UPDATE guest_sessions SET credits_remaining = credits_remaining - 1, last_active = CURRENT_TIMESTAMP WHERE ip_hash = ? AND credits_remaining > 0").bind(ipHash).run();
 }
