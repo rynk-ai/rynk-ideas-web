@@ -19,6 +19,7 @@ export function AppShell({ children }: AppShellProps) {
     const [dumpOpen, setDumpOpen] = useState(false);
     const [settingsOpen, setSettingsOpen] = useState(false);
     const settingsRef = useRef<HTMLDivElement>(null);
+    const mobileSettingsRef = useRef<HTMLDivElement>(null);
 
     const handleDumpComplete = useCallback(() => {
         setDumpOpen(false);
@@ -45,7 +46,11 @@ export function AppShell({ children }: AppShellProps) {
     useEffect(() => {
         if (!settingsOpen) return;
         function handleClick(e: MouseEvent) {
-            if (settingsRef.current && !settingsRef.current.contains(e.target as Node)) {
+            const target = e.target as Node;
+            const clickedDesktop = settingsRef.current?.contains(target);
+            const clickedMobile = mobileSettingsRef.current?.contains(target);
+
+            if (!clickedDesktop && !clickedMobile) {
                 setSettingsOpen(false);
             }
         }
@@ -63,7 +68,7 @@ export function AppShell({ children }: AppShellProps) {
             <aside className="hidden md:flex flex-none w-[52px] border-r border-border/30 flex-col items-center py-4 gap-1">
                 {/* Brand */}
                 <a href="/" className="mb-4 group" title="rynk ideas">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-muted-foreground/50 group-hover:text-foreground transition-colors">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-muted-foreground/70 group-hover:text-foreground transition-colors">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor" opacity="0.1" />
                         <circle cx="12" cy="12" r="3" fill="currentColor" />
                     </svg>
@@ -156,7 +161,7 @@ export function AppShell({ children }: AppShellProps) {
                                             <div className="text-sm font-medium text-foreground/90 truncate">
                                                 {user?.name || "User"}
                                             </div>
-                                            <div className="text-[11px] text-muted-foreground/40 truncate">
+                                            <div className="text-[11px] text-muted-foreground/70 truncate">
                                                 {user?.email || ""}
                                             </div>
                                         </div>
@@ -172,7 +177,7 @@ export function AppShell({ children }: AppShellProps) {
                                         }}
                                         className={cn(
                                             "flex items-center gap-2 w-full px-3 py-2 rounded-lg",
-                                            "text-sm text-muted-foreground/80",
+                                            "text-sm text-muted-foreground",
                                             "hover:bg-card/80 hover:text-foreground",
                                             "transition-colors"
                                         )}
@@ -189,7 +194,7 @@ export function AppShell({ children }: AppShellProps) {
                                         onClick={() => signOut({ callbackUrl: "/login" })}
                                         className={cn(
                                             "flex items-center gap-2 w-full px-3 py-2 rounded-lg",
-                                            "text-sm text-muted-foreground/60",
+                                            "text-sm text-muted-foreground/80",
                                             "hover:bg-card/80 hover:text-foreground",
                                             "transition-colors"
                                         )}
@@ -219,7 +224,7 @@ export function AppShell({ children }: AppShellProps) {
                         onClick={() => window.location.href = "/"}
                         className={cn(
                             "flex flex-col items-center justify-center w-16 gap-1",
-                            "text-muted-foreground/40 transition-colors",
+                            "text-muted-foreground/70 transition-colors",
                             pathname === "/" && "text-foreground"
                         )}
                     >
@@ -234,7 +239,7 @@ export function AppShell({ children }: AppShellProps) {
 
                     <button
                         onClick={() => setDumpOpen(true)}
-                        className="flex flex-col items-center justify-center w-16 gap-1 text-muted-foreground/40 hover:text-foreground transition-colors"
+                        className="flex flex-col items-center justify-center w-16 gap-1 text-muted-foreground/70 hover:text-foreground transition-colors"
                     >
                         <div className="p-2 rounded-full bg-foreground text-background shadow-lg transform -translate-y-4 border-4 border-background">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -246,7 +251,7 @@ export function AppShell({ children }: AppShellProps) {
                     {!user ? (
                         <button
                             onClick={() => window.location.href = "/api/auth/signin"}
-                            className="flex flex-col items-center justify-center w-16 gap-1 text-muted-foreground/40 hover:text-foreground transition-colors"
+                            className="flex flex-col items-center justify-center w-16 gap-1 text-muted-foreground/70 hover:text-foreground transition-colors"
                         >
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
@@ -256,12 +261,12 @@ export function AppShell({ children }: AppShellProps) {
                             <span className="text-[9px] font-medium tracking-wide">SIGN IN</span>
                         </button>
                     ) : (
-                        <div className="relative">
+                        <div className="relative" ref={mobileSettingsRef}>
                             <button
                                 onClick={() => setSettingsOpen(!settingsOpen)}
                                 className={cn(
                                     "flex flex-col items-center justify-center w-16 gap-1",
-                                    "text-muted-foreground/40 transition-colors",
+                                    "text-muted-foreground/70 transition-colors",
                                     settingsOpen && "text-foreground"
                                 )}
                             >
@@ -296,7 +301,7 @@ export function AppShell({ children }: AppShellProps) {
                                                 <div className="text-sm font-medium text-foreground truncate">
                                                     {user?.name || "User"}
                                                 </div>
-                                                <div className="text-xs text-muted-foreground/50 truncate">
+                                                <div className="text-xs text-muted-foreground/80 truncate">
                                                     {user?.email}
                                                 </div>
                                             </div>

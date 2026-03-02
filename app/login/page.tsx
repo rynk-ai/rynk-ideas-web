@@ -82,7 +82,7 @@ function LoginForm() {
             </div>
 
             {/* Footer */}
-            <p className="text-xs text-muted-foreground/50 text-center">
+            <p className="text-xs text-muted-foreground text-center">
                 Same account as rynk chat.
             </p>
         </div>

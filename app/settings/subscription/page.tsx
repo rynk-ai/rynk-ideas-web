@@ -135,7 +135,7 @@ function SubscriptionContent() {
                         <CardDescription>For serious thinkers</CardDescription>
                     </CardHeader>
                     <CardContent className="grid gap-4">
-                        <div className="text-3xl font-bold">$10<span className="text-sm font-normal text-muted-foreground">/mo</span></div>
+                        <div className="text-3xl font-bold">$5.99<span className="text-sm font-normal text-muted-foreground">/mo</span></div>
                         <ul className="grid gap-2 text-sm">
                             <li className="flex items-center gap-2">
                                 <Check className="h-4 w-4 text-primary" />

@@ -76,7 +76,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
     if (loading) {
         return (
             <div className="flex items-center justify-center h-full min-h-[60vh]">
-                <div className="text-sm text-muted-foreground/40 animate-pulse">
+                <div className="text-sm text-muted-foreground/70 animate-pulse">
                     Loading…
                 </div>
             </div>
@@ -87,7 +87,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
         return (
             <div className="flex items-center justify-center h-full min-h-[60vh]">
                 <div className="text-center">
-                    <p className="text-muted-foreground/50 text-sm mb-4">Thread not found</p>
+                    <p className="text-muted-foreground text-sm mb-4">Thread not found</p>
                     <a href="/" className="text-sm text-primary hover:underline">← Back</a>
                 </div>
             </div>
@@ -100,7 +100,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
                 {/* Back link */}
                 <a
                     href="/"
-                    className="inline-flex items-center gap-1 text-sm text-muted-foreground/40 hover:text-muted-foreground transition-colors mb-8"
+                    className="inline-flex items-center gap-1 text-sm text-muted-foreground/70 hover:text-foreground transition-colors mb-8"
                 >
                     ← Board
                 </a>
@@ -112,7 +112,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
                     </h1>
 
                     <div className="flex items-center gap-3 text-sm">
-                        <span className="text-muted-foreground/40 font-mono text-xs">
+                        <span className="text-muted-foreground/70 font-mono text-xs">
                             {STATE_LABELS[thread.state] || thread.state}
                         </span>
                     </div>
@@ -133,7 +133,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
                 {/* Summary */}
                 {thread.summary && (
                     <div className="mb-10">
-                        <p className="text-sm text-muted-foreground/80 leading-[1.8]">
+                        <p className="text-sm text-muted-foreground leading-[1.8]">
                             {thread.summary}
                         </p>
                     </div>
@@ -142,7 +142,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
                 {/* State Reason */}
                 {thread.stateReason && (
                     <div className="mb-10 pl-4 border-l-2 border-border/30">
-                        <p className="text-sm text-muted-foreground/70 leading-[1.8]">
+                        <p className="text-sm text-muted-foreground leading-[1.8]">
                             {thread.stateReason}
                         </p>
                     </div>
@@ -150,18 +150,18 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
 
                 {/* Timeline — newest first */}
                 <div className="mb-10">
-                    <h2 className="text-[11px] font-mono font-medium tracking-widest text-muted-foreground/30 uppercase mb-6">
+                    <h2 className="text-[11px] font-mono font-medium tracking-widest text-muted-foreground/70 uppercase mb-6">
                         Timeline
                     </h2>
 
                     {segments.length === 0 ? (
-                        <p className="text-sm text-muted-foreground/30">No entries yet.</p>
+                        <p className="text-sm text-muted-foreground/70">No entries yet.</p>
                     ) : (
                         <div className="space-y-6">
                             {[...segments].reverse().map((segment, i) => (
                                 <div key={segment.id} className="relative">
                                     {/* Date */}
-                                    <div className="text-[11px] font-mono text-muted-foreground/25 mb-2">
+                                    <div className="text-[11px] font-mono text-muted-foreground/60 mb-2">
                                         {friendlyDate(segment.createdAt)}
                                     </div>
 
@@ -180,7 +180,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
                 {/* Connections — subtle text links */}
                 {edges.length > 0 && (
                     <div className="mb-10">
-                        <h2 className="text-[11px] font-mono font-medium tracking-widest text-muted-foreground/30 uppercase mb-4">
+                        <h2 className="text-[11px] font-mono font-medium tracking-widest text-muted-foreground/70 uppercase mb-4">
                             Related
                         </h2>
                         <div className="space-y-1.5">
@@ -188,7 +188,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
                                 <a
                                     key={edge.id}
                                     href={`/thread/${edge.connectedThreadId}`}
-                                    className="block text-sm text-muted-foreground/50 hover:text-foreground transition-colors"
+                                    className="block text-sm text-muted-foreground/80 hover:text-foreground transition-colors"
                                 >
                                     → {edge.connectedTitle}
                                 </a>
@@ -199,7 +199,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
 
                 {/* Attribution */}
                 <div className="text-right">
-                    <span className="text-[10px] text-muted-foreground/15 font-mono">
+                    <span className="text-[10px] text-muted-foreground/40 font-mono">
                         rynk AI
                     </span>
                 </div>

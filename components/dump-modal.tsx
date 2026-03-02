@@ -137,7 +137,7 @@ export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
                     {phase === "writing" && (
                         <button
                             onClick={onClose}
-                            className="absolute right-3 top-3 p-2 rounded-lg text-muted-foreground/30 hover:text-foreground transition-colors z-10"
+                            className="absolute right-3 top-3 p-2 rounded-lg text-muted-foreground/70 hover:text-foreground transition-colors z-10"
                             title="Close"
                         >
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -158,7 +158,7 @@ export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
                                 className={cn(
                                     "w-full min-h-[200px] max-h-[50vh]",
                                     "bg-transparent text-foreground text-base leading-relaxed",
-                                    "placeholder:text-muted-foreground/25",
+                                    "placeholder:text-muted-foreground/60",
                                     "focus:outline-none resize-none",
                                     "font-sans"
                                 )}
@@ -167,16 +167,16 @@ export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
                             {/* Footer */}
                             <div className="flex items-center justify-between mt-4 pt-3 border-t border-border/30">
                                 <div className="flex items-center gap-1">
-                                    <button className="p-2 rounded-lg text-muted-foreground/30 hover:text-muted-foreground/60 transition-colors" title="Attach">
+                                    <button className="p-2 rounded-lg text-muted-foreground/70 hover:text-muted-foreground transition-colors" title="Attach">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48" /></svg>
                                     </button>
-                                    <button className="p-2 rounded-lg text-muted-foreground/30 hover:text-muted-foreground/60 transition-colors" title="Voice">
+                                    <button className="p-2 rounded-lg text-muted-foreground/70 hover:text-muted-foreground transition-colors" title="Voice">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1="12" x2="12" y1="19" y2="22" /></svg>
                                     </button>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     {content.trim().length > 0 && (
-                                        <span className="hidden md:inline text-[11px] text-muted-foreground/25 font-mono">
+                                        <span className="hidden md:inline text-[11px] text-muted-foreground/50 font-mono">
                                             ⌘ Enter
                                         </span>
                                     )}
