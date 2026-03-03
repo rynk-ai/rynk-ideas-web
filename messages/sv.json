@@ -1,0 +1,166 @@
+{
+    "common": {
+        "loading": "Laddar…",
+        "back": "← Tavla",
+        "close": "Stäng",
+        "user": "Användare"
+    },
+    "appShell": {
+        "newDump": "Ny Dump",
+        "signIn": "Logga in",
+        "signOut": "Logga ut",
+        "subscription": "Prenumeration",
+        "settings": "Inställningar",
+        "quickDump": "Snabbdump"
+    },
+    "board": {
+        "states": {
+            "seed": "Utforskar",
+            "active": "Aktiv",
+            "deciding": "Beslutar",
+            "stuck": "Fast",
+            "parked": "Pausad",
+            "done": "Löst"
+        }
+    },
+    "dumpModal": {
+        "placeholder": "Vad tänker du på?",
+        "submit": "Dumpa",
+        "attach": "Bifoga",
+        "voice": "Röst",
+        "saving": "Sparar…",
+        "done": "Klart",
+        "processing": {
+            "segmenting": "Segmenterar dina tankar…",
+            "patterns": "Hittar mönster…",
+            "connecting": "Ansluter till befintliga idéer…",
+            "synthesizing": "Syntetiserar trådar…"
+        },
+        "toast": {
+            "workingOn": "Bra jobbat med {titles}",
+            "captured": "Tanke sparad säkert.",
+            "limitReached": "Gratislimit nådd",
+            "limitDescription": "Du har använt dina gästkrediter. Logga in för att fortsätta.",
+            "failed": "Kunde inte spara. Försök igen."
+        }
+    },
+    "onboarding": {
+        "steps": {
+            "welcome": {
+                "title": "Välkommen till Rynk Ideas",
+                "description": "AI utan brus. Dumpa dina tankar och låt AI organisera dem till handlingsplaner."
+            },
+            "dump": {
+                "title": "Dumpa vad som helst",
+                "description": "Tryck på pennikonen eller ⌘K var som helst för att fånga en tanke. Oroa dig inte för strukturen."
+            },
+            "ai": {
+                "title": "Låt AI jobba",
+                "description": "Vi grupperar dina tankar i trådar, hittar kopplingar och hjälper dig att förverkliga dem."
+            }
+        },
+        "getStarted": "Kom igång",
+        "next": "Nästa"
+    },
+    "thread": {
+        "notFound": "Tråd hittades inte",
+        "stateLabels": {
+            "seed": "Ny idé att utforska",
+            "active": "Tänker aktivt",
+            "deciding": "Beslut behövs",
+            "stuck": "Känner mig fast",
+            "parked": "Pausad tills vidare",
+            "done": "Löst"
+        },
+        "state": "Status",
+        "groundingNote": "Förankringsnot",
+        "whyThisState": "Varför denna status?",
+        "timeline": "Tidslinje",
+        "newestFirst": "Nyast först",
+        "oldestFirst": "Äldst först",
+        "noEntries": "Inga poster ännu.",
+        "related": "Relaterat",
+        "addNotePlaceholder": "Lägg till en ny anteckning i denna tråd...",
+        "add": "Lägg till",
+        "adding": "Lägger till...",
+        "toast": {
+            "noteAdded": "Anteckning tillagd och syntetiserad.",
+            "noteAddedSimple": "Anteckning tillagd.",
+            "noteFailed": "Kunde inte lägga till anteckning."
+        },
+        "dates": {
+            "today": "idag",
+            "yesterday": "igår",
+            "daysAgo": "{days}d sedan"
+        }
+    },
+    "login": {
+        "tagline": "Din AI-tänkepartner. Dumpa dina tankar, få klarhet.",
+        "continueWithGoogle": "Fortsätt med Google",
+        "footer": "Samma konto som rynk chat.",
+        "errors": {
+            "accountLinked": "Denna e-post är redan kopplad till ett annat konto.",
+            "generic": "Något gick fel. Försök igen."
+        }
+    },
+    "subscription": {
+        "title": "Prenumeration",
+        "description": "Hantera din plan och användningsgränser.",
+        "currentUsage": "Nuvarande användning",
+        "unlimitedAccess": "Du har obegränsad åtkomst.",
+        "usageOf": "Du har använt {usage} av dina {limit} månatliga dumpar.",
+        "dumps": "{usage} / {limit} dumpar",
+        "free": {
+            "name": "Gratis",
+            "description": "Perfekt för att komma igång",
+            "price": "$0",
+            "perMonth": "/mån",
+            "features": {
+                "dumps": "50 Dumpar / månad",
+                "ai": "Grundläggande AI-organisation"
+            }
+        },
+        "standard": {
+            "name": "Standard",
+            "description": "För seriösa tänkare",
+            "price": "$5,99",
+            "perMonth": "/mån",
+            "current": "Nuvarande",
+            "features": {
+                "dumps": "Obegränsade dumpar",
+                "ai": "Avancerade AI-modeller",
+                "support": "Prioriterad support"
+            }
+        },
+        "currentPlan": "Nuvarande plan",
+        "downgrade": "Nedgradera",
+        "manageSubscription": "Hantera prenumeration",
+        "upgradeToStandard": "Uppgradera till Standard",
+        "checkoutFailed": "Betalning misslyckades",
+        "error": "Ett fel uppstod"
+    },
+    "language": {
+        "label": "Språk",
+        "en": "English",
+        "es": "Español",
+        "fr": "Français",
+        "de": "Deutsch",
+        "pt": "Português",
+        "it": "Italiano",
+        "nl": "Nederlands",
+        "ru": "Русский",
+        "zh": "中文",
+        "ja": "日本語",
+        "ko": "한국어",
+        "ar": "العربية",
+        "he": "עברית",
+        "hi": "हिन्दी",
+        "bn": "বাংলা",
+        "tr": "Türkçe",
+        "vi": "Tiếng Việt",
+        "th": "ไทย",
+        "id": "Bahasa Indonesia",
+        "pl": "Polski",
+        "sv": "Svenska"
+    }
+}

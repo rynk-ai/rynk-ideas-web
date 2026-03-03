@@ -1,0 +1,166 @@
+{
+  "common": {
+    "loading": "Loading…",
+    "back": "← Board",
+    "close": "Close",
+    "user": "User"
+  },
+  "appShell": {
+    "newDump": "New Dump",
+    "signIn": "Sign In",
+    "signOut": "Sign out",
+    "subscription": "Subscription",
+    "settings": "Settings",
+    "quickDump": "Quick Dump"
+  },
+  "board": {
+    "states": {
+      "seed": "Exploring",
+      "active": "Active",
+      "deciding": "Deciding",
+      "stuck": "Stuck",
+      "parked": "Parked",
+      "done": "Resolved"
+    }
+  },
+  "dumpModal": {
+    "placeholder": "What's on your mind?",
+    "submit": "Dump",
+    "attach": "Attach",
+    "voice": "Voice",
+    "saving": "Saving…",
+    "done": "Done",
+    "processing": {
+      "segmenting": "Segmenting your thoughts…",
+      "patterns": "Finding patterns…",
+      "connecting": "Connecting to existing ideas…",
+      "synthesizing": "Synthesizing threads…"
+    },
+    "toast": {
+      "workingOn": "Good Job working on {titles}",
+      "captured": "Thought captured securely.",
+      "limitReached": "Free limit reached",
+      "limitDescription": "You've used your guest credits. Sign in to continue dumping thoughts.",
+      "failed": "Failed to save thought. Please try again."
+    }
+  },
+  "onboarding": {
+    "steps": {
+      "welcome": {
+        "title": "Welcome to Rynk Ideas",
+        "description": "AI without the noise. Just dump your thoughts, and let AI organize them into actionable plans."
+      },
+      "dump": {
+        "title": "Dump Anything",
+        "description": "Hit the pen icon or press ⌘K anywhere to capture a thought. Don't worry about structure."
+      },
+      "ai": {
+        "title": "Let AI Do the Work",
+        "description": "We'll cluster your thoughts into threads, find connections, and help you turn them into reality."
+      }
+    },
+    "getStarted": "Get Started",
+    "next": "Next"
+  },
+  "thread": {
+    "notFound": "Thread not found",
+    "stateLabels": {
+      "seed": "New idea to explore",
+      "active": "Actively thinking about",
+      "deciding": "Decision needed",
+      "stuck": "Feeling stuck",
+      "parked": "On hold for now",
+      "done": "Resolved"
+    },
+    "state": "State",
+    "groundingNote": "Grounding Note",
+    "whyThisState": "Why this state?",
+    "timeline": "Timeline",
+    "newestFirst": "Newest First",
+    "oldestFirst": "Oldest First",
+    "noEntries": "No entries yet.",
+    "related": "Related",
+    "addNotePlaceholder": "Add a new note to this thread...",
+    "add": "Add",
+    "adding": "Adding...",
+    "toast": {
+      "noteAdded": "Note added and synthesized.",
+      "noteAddedSimple": "Note added.",
+      "noteFailed": "Failed to add note."
+    },
+    "dates": {
+      "today": "today",
+      "yesterday": "yesterday",
+      "daysAgo": "{days}d ago"
+    }
+  },
+  "login": {
+    "tagline": "Your AI thinking partner. Dump your thoughts, get clarity.",
+    "continueWithGoogle": "Continue with Google",
+    "footer": "Same account as rynk chat.",
+    "errors": {
+      "accountLinked": "This email is already associated with another account.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "subscription": {
+    "title": "Subscription",
+    "description": "Manage your plan and usage limits.",
+    "currentUsage": "Current Usage",
+    "unlimitedAccess": "You have unlimited access.",
+    "usageOf": "You have used {usage} of your {limit} monthly dumps.",
+    "dumps": "{usage} / {limit} dumps",
+    "free": {
+      "name": "Free",
+      "description": "Perfect for getting started",
+      "price": "$0",
+      "perMonth": "/mo",
+      "features": {
+        "dumps": "50 Dumps / month",
+        "ai": "Basic AI Organization"
+      }
+    },
+    "standard": {
+      "name": "Standard",
+      "description": "For serious thinkers",
+      "price": "$5.99",
+      "perMonth": "/mo",
+      "current": "Current",
+      "features": {
+        "dumps": "Unlimited Dumps",
+        "ai": "Advanced AI Models",
+        "support": "Priority Support"
+      }
+    },
+    "currentPlan": "Current Plan",
+    "downgrade": "Downgrade",
+    "manageSubscription": "Manage Subscription",
+    "upgradeToStandard": "Upgrade to Standard",
+    "checkoutFailed": "Failed to start checkout",
+    "error": "An error occurred"
+  },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "it": "Italiano",
+    "nl": "Nederlands",
+    "ru": "Русский",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "ar": "العربية",
+    "he": "עברית",
+    "hi": "हिन्दी",
+    "bn": "বাংলা",
+    "tr": "Türkçe",
+    "vi": "Tiếng Việt",
+    "th": "ไทย",
+    "id": "Bahasa Indonesia",
+    "pl": "Polski",
+    "sv": "Svenska"
+  }
+}

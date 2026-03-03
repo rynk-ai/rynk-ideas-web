@@ -4,12 +4,14 @@ import { signIn } from "next-auth/react"
 import { useState, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { useTranslations } from "next-intl"
 
 function LoginForm() {
     const searchParams = useSearchParams()
     const callbackUrl = searchParams.get("callbackUrl") || "/"
     const error = searchParams.get("error")
     const [isLoading, setIsLoading] = useState(false)
+    const t = useTranslations("login")
 
     const handleGoogleSignIn = async () => {
         setIsLoading(true)
@@ -25,7 +27,7 @@ function LoginForm() {
                     <span className="text-foreground">ideas.</span>
                 </h1>
                 <p className="text-sm text-muted-foreground max-w-[280px]">
-                    Your AI thinking partner. Dump your thoughts, get clarity.
+                    {t("tagline")}
                 </p>
             </div>
 
@@ -33,8 +35,8 @@ function LoginForm() {
             {error && (
                 <div className="w-full rounded-lg bg-red-500/10 p-3 text-center text-sm text-red-400">
                     {error === "OAuthAccountNotLinked"
-                        ? "This email is already associated with another account."
-                        : "Something went wrong. Please try again."}
+                        ? t("errors.accountLinked")
+                        : t("errors.generic")}
                 </div>
             )}
 
@@ -77,13 +79,13 @@ function LoginForm() {
                             />
                         </svg>
                     )}
-                    Continue with Google
+                    {t("continueWithGoogle")}
                 </button>
             </div>
 
             {/* Footer */}
             <p className="text-xs text-muted-foreground text-center">
-                Same account as rynk chat.
+                {t("footer")}
             </p>
         </div>
     )

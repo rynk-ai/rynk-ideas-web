@@ -1,0 +1,166 @@
+{
+    "common": {
+        "loading": "読み込み中…",
+        "back": "← ボード",
+        "close": "閉じる",
+        "user": "ユーザー"
+    },
+    "appShell": {
+        "newDump": "新しいダンプ",
+        "signIn": "ログイン",
+        "signOut": "ログアウト",
+        "subscription": "サブスクリプション",
+        "settings": "設定",
+        "quickDump": "クイックダンプ"
+    },
+    "board": {
+        "states": {
+            "seed": "探索中",
+            "active": "アクティブ",
+            "deciding": "決断中",
+            "stuck": "行き詰まり",
+            "parked": "保留中",
+            "done": "解決済み"
+        }
+    },
+    "dumpModal": {
+        "placeholder": "何を考えていますか？",
+        "submit": "ダンプ",
+        "attach": "添付",
+        "voice": "音声",
+        "saving": "保存中…",
+        "done": "完了",
+        "processing": {
+            "segmenting": "思考をセグメント化中…",
+            "patterns": "パターンを検出中…",
+            "connecting": "既存のアイデアに接続中…",
+            "synthesizing": "スレッドを合成中…"
+        },
+        "toast": {
+            "workingOn": "{titles}で素晴らしい仕事です",
+            "captured": "思考を安全にキャプチャしました。",
+            "limitReached": "無料枠に達しました",
+            "limitDescription": "ゲストクレジットを使い切りました。ログインして続けてください。",
+            "failed": "保存に失敗しました。もう一度お試しください。"
+        }
+    },
+    "onboarding": {
+        "steps": {
+            "welcome": {
+                "title": "Rynk Ideas へようこそ",
+                "description": "ノイズのないAI。思考をダンプするだけで、AIがアクションプランに整理します。"
+            },
+            "dump": {
+                "title": "何でもダンプ",
+                "description": "ペンアイコンまたは⌘Kを押して思考をキャプチャ。構造を気にする必要はありません。"
+            },
+            "ai": {
+                "title": "AIに任せましょう",
+                "description": "思考をスレッドにまとめ、つながりを見つけ、実現をお手伝いします。"
+            }
+        },
+        "getStarted": "始める",
+        "next": "次へ"
+    },
+    "thread": {
+        "notFound": "スレッドが見つかりません",
+        "stateLabels": {
+            "seed": "探索する新しいアイデア",
+            "active": "積極的に考え中",
+            "deciding": "決断が必要",
+            "stuck": "行き詰まりを感じている",
+            "parked": "一時保留中",
+            "done": "解決済み"
+        },
+        "state": "状態",
+        "groundingNote": "グラウンディングノート",
+        "whyThisState": "なぜこの状態？",
+        "timeline": "タイムライン",
+        "newestFirst": "新しい順",
+        "oldestFirst": "古い順",
+        "noEntries": "まだエントリーがありません。",
+        "related": "関連",
+        "addNotePlaceholder": "このスレッドに新しいノートを追加...",
+        "add": "追加",
+        "adding": "追加中...",
+        "toast": {
+            "noteAdded": "ノートが追加され合成されました。",
+            "noteAddedSimple": "ノートが追加されました。",
+            "noteFailed": "ノートの追加に失敗しました。"
+        },
+        "dates": {
+            "today": "今日",
+            "yesterday": "昨日",
+            "daysAgo": "{days}日前"
+        }
+    },
+    "login": {
+        "tagline": "AIシンキングパートナー。思考をダンプして、明晰さを得ましょう。",
+        "continueWithGoogle": "Googleで続ける",
+        "footer": "rynk chatと同じアカウント。",
+        "errors": {
+            "accountLinked": "このメールは別のアカウントに関連付けられています。",
+            "generic": "問題が発生しました。もう一度お試しください。"
+        }
+    },
+    "subscription": {
+        "title": "サブスクリプション",
+        "description": "プランと利用制限を管理します。",
+        "currentUsage": "現在の使用量",
+        "unlimitedAccess": "無制限のアクセスがあります。",
+        "usageOf": "月間{limit}回のダンプのうち{usage}回を使用しました。",
+        "dumps": "{usage} / {limit} ダンプ",
+        "free": {
+            "name": "無料",
+            "description": "始めるのに最適",
+            "price": "$0",
+            "perMonth": "/月",
+            "features": {
+                "dumps": "月50回のダンプ",
+                "ai": "基本AI整理"
+            }
+        },
+        "standard": {
+            "name": "スタンダード",
+            "description": "本格的な思考者向け",
+            "price": "$5.99",
+            "perMonth": "/月",
+            "current": "現在",
+            "features": {
+                "dumps": "無制限ダンプ",
+                "ai": "高度なAIモデル",
+                "support": "優先サポート"
+            }
+        },
+        "currentPlan": "現在のプラン",
+        "downgrade": "ダウングレード",
+        "manageSubscription": "サブスクリプション管理",
+        "upgradeToStandard": "スタンダードにアップグレード",
+        "checkoutFailed": "決済に失敗しました",
+        "error": "エラーが発生しました"
+    },
+    "language": {
+        "label": "言語",
+        "en": "English",
+        "es": "Español",
+        "fr": "Français",
+        "de": "Deutsch",
+        "pt": "Português",
+        "it": "Italiano",
+        "nl": "Nederlands",
+        "ru": "Русский",
+        "zh": "中文",
+        "ja": "日本語",
+        "ko": "한국어",
+        "ar": "العربية",
+        "he": "עברית",
+        "hi": "हिन्दी",
+        "bn": "বাংলা",
+        "tr": "Türkçe",
+        "vi": "Tiếng Việt",
+        "th": "ไทย",
+        "id": "Bahasa Indonesia",
+        "pl": "Polski",
+        "sv": "Svenska"
+    }
+}

@@ -1,0 +1,166 @@
+{
+    "common": {
+        "loading": "Yükleniyor…",
+        "back": "← Pano",
+        "close": "Kapat",
+        "user": "Kullanıcı"
+    },
+    "appShell": {
+        "newDump": "Yeni Döküm",
+        "signIn": "Giriş Yap",
+        "signOut": "Çıkış Yap",
+        "subscription": "Abonelik",
+        "settings": "Ayarlar",
+        "quickDump": "Hızlı Döküm"
+    },
+    "board": {
+        "states": {
+            "seed": "Keşfediyor",
+            "active": "Aktif",
+            "deciding": "Karar Veriyor",
+            "stuck": "Takıldı",
+            "parked": "Durduruldu",
+            "done": "Çözüldü"
+        }
+    },
+    "dumpModal": {
+        "placeholder": "Aklında ne var?",
+        "submit": "Dök",
+        "attach": "Ekle",
+        "voice": "Ses",
+        "saving": "Kaydediliyor…",
+        "done": "Tamam",
+        "processing": {
+            "segmenting": "Düşünceleriniz bölümleniyor…",
+            "patterns": "Kalıplar bulunuyor…",
+            "connecting": "Mevcut fikirlerle bağlanıyor…",
+            "synthesizing": "İplikler sentezleniyor…"
+        },
+        "toast": {
+            "workingOn": "{titles} üzerinde harika iş",
+            "captured": "Düşünce güvenle kaydedildi.",
+            "limitReached": "Ücretsiz limite ulaşıldı",
+            "limitDescription": "Misafir kredilerinizi kullandınız. Devam etmek için giriş yapın.",
+            "failed": "Kaydetme başarısız. Lütfen tekrar deneyin."
+        }
+    },
+    "onboarding": {
+        "steps": {
+            "welcome": {
+                "title": "Rynk Ideas'a Hoş Geldiniz",
+                "description": "Gürültüsüz yapay zeka. Düşüncelerinizi dökün, yapay zeka onları eylem planlarına dönüştürsün."
+            },
+            "dump": {
+                "title": "Her Şeyi Dökün",
+                "description": "Bir düşünce yakalamak için kalem simgesine veya ⌘K'ye basın. Yapı hakkında endişelenmeyin."
+            },
+            "ai": {
+                "title": "Yapay Zekanın Çalışmasına İzin Verin",
+                "description": "Düşüncelerinizi ipliklere ayıracak, bağlantılar bulacak ve gerçeğe dönüştürmenize yardımcı olacağız."
+            }
+        },
+        "getStarted": "Başlayın",
+        "next": "İleri"
+    },
+    "thread": {
+        "notFound": "İplik bulunamadı",
+        "stateLabels": {
+            "seed": "Keşfedilecek yeni fikir",
+            "active": "Aktif olarak düşünüyor",
+            "deciding": "Karar gerekli",
+            "stuck": "Takılmış hissediyor",
+            "parked": "Şimdilik beklemede",
+            "done": "Çözüldü"
+        },
+        "state": "Durum",
+        "groundingNote": "Temel Not",
+        "whyThisState": "Neden bu durum?",
+        "timeline": "Zaman Çizelgesi",
+        "newestFirst": "En yeni önce",
+        "oldestFirst": "En eski önce",
+        "noEntries": "Henüz giriş yok.",
+        "related": "İlgili",
+        "addNotePlaceholder": "Bu ipliğe yeni bir not ekleyin...",
+        "add": "Ekle",
+        "adding": "Ekleniyor...",
+        "toast": {
+            "noteAdded": "Not eklendi ve sentezlendi.",
+            "noteAddedSimple": "Not eklendi.",
+            "noteFailed": "Not eklenemedi."
+        },
+        "dates": {
+            "today": "bugün",
+            "yesterday": "dün",
+            "daysAgo": "{days}g önce"
+        }
+    },
+    "login": {
+        "tagline": "Yapay zeka düşünce ortağınız. Düşüncelerinizi dökün, netlik kazanın.",
+        "continueWithGoogle": "Google ile Devam Et",
+        "footer": "rynk chat ile aynı hesap.",
+        "errors": {
+            "accountLinked": "Bu e-posta zaten başka bir hesapla ilişkilendirilmiş.",
+            "generic": "Bir şeyler yanlış gitti. Lütfen tekrar deneyin."
+        }
+    },
+    "subscription": {
+        "title": "Abonelik",
+        "description": "Planınızı ve kullanım limitlerini yönetin.",
+        "currentUsage": "Mevcut Kullanım",
+        "unlimitedAccess": "Sınırsız erişiminiz var.",
+        "usageOf": "{limit} aylık dökümünüzden {usage} tanesini kullandınız.",
+        "dumps": "{usage} / {limit} döküm",
+        "free": {
+            "name": "Ücretsiz",
+            "description": "Başlamak için mükemmel",
+            "price": "$0",
+            "perMonth": "/ay",
+            "features": {
+                "dumps": "Ayda 50 Döküm",
+                "ai": "Temel Yapay Zeka Organizasyonu"
+            }
+        },
+        "standard": {
+            "name": "Standart",
+            "description": "Ciddi düşünürler için",
+            "price": "$5,99",
+            "perMonth": "/ay",
+            "current": "Mevcut",
+            "features": {
+                "dumps": "Sınırsız Döküm",
+                "ai": "Gelişmiş Yapay Zeka Modelleri",
+                "support": "Öncelikli Destek"
+            }
+        },
+        "currentPlan": "Mevcut Plan",
+        "downgrade": "Düşür",
+        "manageSubscription": "Aboneliği Yönet",
+        "upgradeToStandard": "Standart'a Yükselt",
+        "checkoutFailed": "Ödeme başarısız",
+        "error": "Bir hata oluştu"
+    },
+    "language": {
+        "label": "Dil",
+        "en": "English",
+        "es": "Español",
+        "fr": "Français",
+        "de": "Deutsch",
+        "pt": "Português",
+        "it": "Italiano",
+        "nl": "Nederlands",
+        "ru": "Русский",
+        "zh": "中文",
+        "ja": "日本語",
+        "ko": "한국어",
+        "ar": "العربية",
+        "he": "עברית",
+        "hi": "हिन्दी",
+        "bn": "বাংলা",
+        "tr": "Türkçe",
+        "vi": "Tiếng Việt",
+        "th": "ไทย",
+        "id": "Bahasa Indonesia",
+        "pl": "Polski",
+        "sv": "Svenska"
+    }
+}

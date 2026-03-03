@@ -1,0 +1,166 @@
+{
+    "common": {
+        "loading": "กำลังโหลด…",
+        "back": "← บอร์ด",
+        "close": "ปิด",
+        "user": "ผู้ใช้"
+    },
+    "appShell": {
+        "newDump": "ดัมพ์ใหม่",
+        "signIn": "เข้าสู่ระบบ",
+        "signOut": "ออกจากระบบ",
+        "subscription": "สมาชิก",
+        "settings": "การตั้งค่า",
+        "quickDump": "ดัมพ์ด่วน"
+    },
+    "board": {
+        "states": {
+            "seed": "สำรวจ",
+            "active": "ใช้งาน",
+            "deciding": "ตัดสินใจ",
+            "stuck": "ติดขัด",
+            "parked": "หยุดชั่วคราว",
+            "done": "แก้ไขแล้ว"
+        }
+    },
+    "dumpModal": {
+        "placeholder": "คุณกำลังคิดอะไรอยู่?",
+        "submit": "ดัมพ์",
+        "attach": "แนบ",
+        "voice": "เสียง",
+        "saving": "กำลังบันทึก…",
+        "done": "เสร็จ",
+        "processing": {
+            "segmenting": "กำลังแบ่งส่วนความคิด…",
+            "patterns": "กำลังค้นหารูปแบบ…",
+            "connecting": "กำลังเชื่อมต่อกับไอเดียที่มีอยู่…",
+            "synthesizing": "กำลังสังเคราะห์เธรด…"
+        },
+        "toast": {
+            "workingOn": "ทำได้ดีมากกับ {titles}",
+            "captured": "บันทึกความคิดอย่างปลอดภัยแล้ว",
+            "limitReached": "ถึงขีดจำกัดฟรีแล้ว",
+            "limitDescription": "คุณใช้เครดิตผู้เยี่ยมชมหมดแล้ว เข้าสู่ระบบเพื่อดำเนินการต่อ",
+            "failed": "บันทึกไม่สำเร็จ กรุณาลองอีกครั้ง"
+        }
+    },
+    "onboarding": {
+        "steps": {
+            "welcome": {
+                "title": "ยินดีต้อนรับสู่ Rynk Ideas",
+                "description": "AI ไร้สัญญาณรบกวน แค่เทความคิดออกมา แล้วให้ AI จัดระเบียบเป็นแผนปฏิบัติการ"
+            },
+            "dump": {
+                "title": "เทความคิดอะไรก็ได้",
+                "description": "กดไอคอนปากกาหรือ ⌘K ที่ไหนก็ได้เพื่อจับความคิด ไม่ต้องกังวลเรื่องโครงสร้าง"
+            },
+            "ai": {
+                "title": "ให้ AI ทำงาน",
+                "description": "เราจะจัดกลุ่มความคิดเป็นเธรด ค้นหาความเชื่อมโยง และช่วยให้คุณทำให้เป็นจริง"
+            }
+        },
+        "getStarted": "เริ่มต้น",
+        "next": "ถัดไป"
+    },
+    "thread": {
+        "notFound": "ไม่พบเธรด",
+        "stateLabels": {
+            "seed": "ไอเดียใหม่ที่จะสำรวจ",
+            "active": "กำลังคิดอย่างจริงจัง",
+            "deciding": "ต้องตัดสินใจ",
+            "stuck": "รู้สึกติดขัด",
+            "parked": "พักไว้ก่อน",
+            "done": "แก้ไขแล้ว"
+        },
+        "state": "สถานะ",
+        "groundingNote": "บันทึกพื้นฐาน",
+        "whyThisState": "ทำไมถึงเป็นสถานะนี้?",
+        "timeline": "ไทม์ไลน์",
+        "newestFirst": "ใหม่สุดก่อน",
+        "oldestFirst": "เก่าสุดก่อน",
+        "noEntries": "ยังไม่มีรายการ",
+        "related": "ที่เกี่ยวข้อง",
+        "addNotePlaceholder": "เพิ่มบันทึกใหม่ในเธรดนี้...",
+        "add": "เพิ่ม",
+        "adding": "กำลังเพิ่ม...",
+        "toast": {
+            "noteAdded": "เพิ่มบันทึกและสังเคราะห์แล้ว",
+            "noteAddedSimple": "เพิ่มบันทึกแล้ว",
+            "noteFailed": "เพิ่มบันทึกไม่สำเร็จ"
+        },
+        "dates": {
+            "today": "วันนี้",
+            "yesterday": "เมื่อวาน",
+            "daysAgo": "{days} วันที่แล้ว"
+        }
+    },
+    "login": {
+        "tagline": "คู่หูคิด AI ของคุณ เทความคิดออกมา ได้ความชัดเจน",
+        "continueWithGoogle": "ดำเนินการต่อด้วย Google",
+        "footer": "บัญชีเดียวกับ rynk chat",
+        "errors": {
+            "accountLinked": "อีเมลนี้เชื่อมโยงกับบัญชีอื่นแล้ว",
+            "generic": "มีบางอย่างผิดพลาด กรุณาลองอีกครั้ง"
+        }
+    },
+    "subscription": {
+        "title": "สมาชิก",
+        "description": "จัดการแผนและขีดจำกัดการใช้งาน",
+        "currentUsage": "การใช้งานปัจจุบัน",
+        "unlimitedAccess": "คุณมีสิทธิ์เข้าถึงไม่จำกัด",
+        "usageOf": "คุณใช้ไปแล้ว {usage} จาก {limit} ดัมพ์รายเดือน",
+        "dumps": "{usage} / {limit} ดัมพ์",
+        "free": {
+            "name": "ฟรี",
+            "description": "เหมาะสำหรับเริ่มต้น",
+            "price": "$0",
+            "perMonth": "/เดือน",
+            "features": {
+                "dumps": "50 ดัมพ์ / เดือน",
+                "ai": "การจัดระเบียบ AI พื้นฐาน"
+            }
+        },
+        "standard": {
+            "name": "มาตรฐาน",
+            "description": "สำหรับนักคิดจริงจัง",
+            "price": "$5.99",
+            "perMonth": "/เดือน",
+            "current": "ปัจจุบัน",
+            "features": {
+                "dumps": "ดัมพ์ไม่จำกัด",
+                "ai": "โมเดล AI ขั้นสูง",
+                "support": "สนับสนุนลำดับความสำคัญ"
+            }
+        },
+        "currentPlan": "แผนปัจจุบัน",
+        "downgrade": "ลดระดับ",
+        "manageSubscription": "จัดการสมาชิก",
+        "upgradeToStandard": "อัปเกรดเป็นมาตรฐาน",
+        "checkoutFailed": "การชำระเงินล้มเหลว",
+        "error": "เกิดข้อผิดพลาด"
+    },
+    "language": {
+        "label": "ภาษา",
+        "en": "English",
+        "es": "Español",
+        "fr": "Français",
+        "de": "Deutsch",
+        "pt": "Português",
+        "it": "Italiano",
+        "nl": "Nederlands",
+        "ru": "Русский",
+        "zh": "中文",
+        "ja": "日本語",
+        "ko": "한국어",
+        "ar": "العربية",
+        "he": "עברית",
+        "hi": "हिन्दी",
+        "bn": "বাংলা",
+        "tr": "Türkçe",
+        "vi": "Tiếng Việt",
+        "th": "ไทย",
+        "id": "Bahasa Indonesia",
+        "pl": "Polski",
+        "sv": "Svenska"
+    }
+}

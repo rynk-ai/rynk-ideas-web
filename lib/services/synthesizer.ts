@@ -10,6 +10,19 @@
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 const GROQ_MODEL = "moonshotai/kimi-k2-instruct-0905";
 
+const LANGUAGE_NAMES: Record<string, string> = {
+    en: "English", es: "Spanish", fr: "French", de: "German",
+    pt: "Portuguese", it: "Italian", nl: "Dutch", ru: "Russian",
+    zh: "Chinese (Simplified)", ja: "Japanese", ko: "Korean",
+    ar: "Arabic", he: "Hebrew", hi: "Hindi", bn: "Bengali",
+    tr: "Turkish", vi: "Vietnamese", th: "Thai",
+    id: "Indonesian", pl: "Polish", sv: "Swedish",
+};
+
+function getLanguageName(locale: string): string {
+    return LANGUAGE_NAMES[locale] || "English";
+}
+
 export interface SynthesisResult {
     title: string;
     summary: string;
@@ -29,7 +42,7 @@ export interface TemporalContext {
     olderDumpCount: number;      // dumps before last 7 days
 }
 
-function buildSynthesisPrompt(temporal: TemporalContext | null): string {
+function buildSynthesisPrompt(temporal: TemporalContext | null, locale?: string): string {
     const temporalSection = temporal
         ? `
 TEMPORAL CONTEXT (use this to assess state and momentum):
@@ -68,13 +81,14 @@ Rules:
   - "declining" = Fewer recent dumps than before
   - "stale" = No mentions for 14+ days
 
-Return ONLY valid JSON with fields: title, summary, state, stateReason, realityScore, groundingNote, momentum`;
+Return ONLY valid JSON with fields: title, summary, state, stateReason, realityScore, groundingNote, momentum${locale && locale !== 'en' ? `\n\nIMPORTANT: Generate the title, summary, stateReason, and groundingNote in ${getLanguageName(locale)}. The state and momentum fields must remain in English (e.g. "seed", "active", "rising").` : ''}`;
 }
 
 export async function synthesizeThread(
     ai: any,
     segments: Array<{ text: string; type: string; createdAt: string }>,
-    temporal: TemporalContext | null = null
+    temporal: TemporalContext | null = null,
+    locale?: string
 ): Promise<SynthesisResult> {
     const segmentText = segments
         .map((s) => `[${s.createdAt}] (${s.type}) ${s.text}`)
@@ -84,7 +98,7 @@ export async function synthesizeThread(
     const computedMomentum = computeMomentum(temporal);
 
     try {
-        const prompt = buildSynthesisPrompt(temporal);
+        const prompt = buildSynthesisPrompt(temporal, locale);
         const apiKey = process.env.GROQ_API_KEY;
         if (!apiKey) throw new Error("GROQ_API_KEY not configured");
 

@@ -61,12 +61,12 @@ export function useSaveDump() {
 }
 
 export function useProcessDump() {
-    const processDump = useCallback(async (dumpId: string, threadId?: string) => {
+    const processDump = useCallback(async (dumpId: string, threadId?: string, locale?: string) => {
         // Trigger pipeline
         const res = await fetch("/api/pipeline/process", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ dumpId, threadId }),
+            body: JSON.stringify({ dumpId, threadId, locale }),
         });
 
         if (!res.ok) {

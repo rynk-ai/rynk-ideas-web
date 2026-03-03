@@ -1,0 +1,166 @@
+{
+    "common": {
+        "loading": "Ładowanie…",
+        "back": "← Tablica",
+        "close": "Zamknij",
+        "user": "Użytkownik"
+    },
+    "appShell": {
+        "newDump": "Nowy Zrzut",
+        "signIn": "Zaloguj się",
+        "signOut": "Wyloguj się",
+        "subscription": "Subskrypcja",
+        "settings": "Ustawienia",
+        "quickDump": "Szybki zrzut"
+    },
+    "board": {
+        "states": {
+            "seed": "Eksploracja",
+            "active": "Aktywne",
+            "deciding": "Decydowanie",
+            "stuck": "Zablokowane",
+            "parked": "Wstrzymane",
+            "done": "Rozwiązane"
+        }
+    },
+    "dumpModal": {
+        "placeholder": "Co masz na myśli?",
+        "submit": "Zrzuć",
+        "attach": "Załącz",
+        "voice": "Głos",
+        "saving": "Zapisywanie…",
+        "done": "Gotowe",
+        "processing": {
+            "segmenting": "Segmentowanie twoich myśli…",
+            "patterns": "Szukanie wzorców…",
+            "connecting": "Łączenie z istniejącymi pomysłami…",
+            "synthesizing": "Synteza wątków…"
+        },
+        "toast": {
+            "workingOn": "Świetna robota nad {titles}",
+            "captured": "Myśl bezpiecznie zapisana.",
+            "limitReached": "Osiągnięto darmowy limit",
+            "limitDescription": "Wykorzystałeś swoje kredyty gościa. Zaloguj się, aby kontynuować.",
+            "failed": "Nie udało się zapisać. Spróbuj ponownie."
+        }
+    },
+    "onboarding": {
+        "steps": {
+            "welcome": {
+                "title": "Witaj w Rynk Ideas",
+                "description": "AI bez szumu. Po prostu zrzuć swoje myśli, a AI zorganizuje je w plany działania."
+            },
+            "dump": {
+                "title": "Zrzuć cokolwiek",
+                "description": "Naciśnij ikonę pióra lub ⌘K gdziekolwiek, aby uchwycić myśl. Nie martw się o strukturę."
+            },
+            "ai": {
+                "title": "Pozwól AI pracować",
+                "description": "Pogrupujemy twoje myśli w wątki, znajdziemy połączenia i pomożemy ci je zrealizować."
+            }
+        },
+        "getStarted": "Zacznij",
+        "next": "Dalej"
+    },
+    "thread": {
+        "notFound": "Wątek nie znaleziony",
+        "stateLabels": {
+            "seed": "Nowy pomysł do zbadania",
+            "active": "Aktywnie myślę",
+            "deciding": "Potrzebna decyzja",
+            "stuck": "Czuję się zablokowany",
+            "parked": "Na razie wstrzymane",
+            "done": "Rozwiązane"
+        },
+        "state": "Stan",
+        "groundingNote": "Nota zakotwiczenia",
+        "whyThisState": "Dlaczego ten stan?",
+        "timeline": "Oś czasu",
+        "newestFirst": "Najnowsze najpierw",
+        "oldestFirst": "Najstarsze najpierw",
+        "noEntries": "Brak wpisów.",
+        "related": "Powiązane",
+        "addNotePlaceholder": "Dodaj nową notatkę do tego wątku...",
+        "add": "Dodaj",
+        "adding": "Dodawanie...",
+        "toast": {
+            "noteAdded": "Notatka dodana i zsyntezowana.",
+            "noteAddedSimple": "Notatka dodana.",
+            "noteFailed": "Nie udało się dodać notatki."
+        },
+        "dates": {
+            "today": "dzisiaj",
+            "yesterday": "wczoraj",
+            "daysAgo": "{days}d temu"
+        }
+    },
+    "login": {
+        "tagline": "Twój partner myślowy AI. Zrzuć myśli, zyskaj jasność.",
+        "continueWithGoogle": "Kontynuuj z Google",
+        "footer": "To samo konto co rynk chat.",
+        "errors": {
+            "accountLinked": "Ten email jest już powiązany z innym kontem.",
+            "generic": "Coś poszło nie tak. Spróbuj ponownie."
+        }
+    },
+    "subscription": {
+        "title": "Subskrypcja",
+        "description": "Zarządzaj planem i limitami użycia.",
+        "currentUsage": "Bieżące użycie",
+        "unlimitedAccess": "Masz nieograniczony dostęp.",
+        "usageOf": "Wykorzystałeś {usage} z {limit} miesięcznych zrzutów.",
+        "dumps": "{usage} / {limit} zrzutów",
+        "free": {
+            "name": "Darmowy",
+            "description": "Idealny na start",
+            "price": "$0",
+            "perMonth": "/mies.",
+            "features": {
+                "dumps": "50 Zrzutów / miesiąc",
+                "ai": "Podstawowa organizacja AI"
+            }
+        },
+        "standard": {
+            "name": "Standard",
+            "description": "Dla poważnych myślicieli",
+            "price": "$5,99",
+            "perMonth": "/mies.",
+            "current": "Bieżący",
+            "features": {
+                "dumps": "Nieograniczone zrzuty",
+                "ai": "Zaawansowane modele AI",
+                "support": "Priorytetowe wsparcie"
+            }
+        },
+        "currentPlan": "Bieżący plan",
+        "downgrade": "Obniż",
+        "manageSubscription": "Zarządzaj subskrypcją",
+        "upgradeToStandard": "Uaktualnij do Standard",
+        "checkoutFailed": "Płatność nie powiodła się",
+        "error": "Wystąpił błąd"
+    },
+    "language": {
+        "label": "Język",
+        "en": "English",
+        "es": "Español",
+        "fr": "Français",
+        "de": "Deutsch",
+        "pt": "Português",
+        "it": "Italiano",
+        "nl": "Nederlands",
+        "ru": "Русский",
+        "zh": "中文",
+        "ja": "日本語",
+        "ko": "한국어",
+        "ar": "العربية",
+        "he": "עברית",
+        "hi": "हिन्दी",
+        "bn": "বাংলা",
+        "tr": "Türkçe",
+        "vi": "Tiếng Việt",
+        "th": "ไทย",
+        "id": "Bahasa Indonesia",
+        "pl": "Polski",
+        "sv": "Svenska"
+    }
+}

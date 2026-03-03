@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
             userId = `guest:${ipHash}`;
         }
 
-        const { dumpId, threadId: targetThreadId } = await req.json();
+        const { dumpId, threadId: targetThreadId, locale } = await req.json();
 
         if (!dumpId) {
             return NextResponse.json({ error: "dumpId is required" }, { status: 400 });
@@ -162,7 +162,7 @@ export async function POST(req: NextRequest) {
             const temporal = await computeTemporalContext(db, threadId);
 
             // Synthesize with full context
-            const synthesis = await synthesizeThread(ai, threadSegments, temporal);
+            const synthesis = await synthesizeThread(ai, threadSegments, temporal, locale);
 
             // Store everything including grounding note + momentum
             await db

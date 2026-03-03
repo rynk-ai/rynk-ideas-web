@@ -3,26 +3,27 @@
 import { cn } from "@/lib/utils";
 import { useThreads } from "@/hooks/use-rynk-data";
 import { OnboardingContent } from "@/components/onboarding-content";
-
-const STATE_CONFIG: Record<string, { label: string; className: string }> = {
-    seed: { label: "Exploring", className: "bg-blue-500/10 text-blue-500 border-blue-500/20" },
-    active: { label: "Active", className: "bg-emerald-500/10 text-emerald-500 border-emerald-500/20" },
-    deciding: { label: "Deciding", className: "bg-amber-500/10 text-amber-500 border-amber-500/20" },
-    stuck: { label: "Stuck", className: "bg-red-500/10 text-red-500 border-red-500/20" },
-    parked: { label: "Parked", className: "bg-zinc-500/10 text-zinc-400 border-zinc-500/20" },
-    done: { label: "Resolved", className: "bg-purple-500/10 text-purple-500 border-purple-500/20" },
-};
+import { useTranslations } from "next-intl";
 
 export default function BoardPage() {
     const { threads, loading } = useThreads();
+    const t = useTranslations("board");
+    const tc = useTranslations("common");
 
-
+    const STATE_CONFIG: Record<string, { labelKey: string; className: string }> = {
+        seed: { labelKey: "states.seed", className: "bg-blue-500/10 text-blue-500 border-blue-500/20" },
+        active: { labelKey: "states.active", className: "bg-emerald-500/10 text-emerald-500 border-emerald-500/20" },
+        deciding: { labelKey: "states.deciding", className: "bg-amber-500/10 text-amber-500 border-amber-500/20" },
+        stuck: { labelKey: "states.stuck", className: "bg-red-500/10 text-red-500 border-red-500/20" },
+        parked: { labelKey: "states.parked", className: "bg-zinc-500/10 text-zinc-400 border-zinc-500/20" },
+        done: { labelKey: "states.done", className: "bg-purple-500/10 text-purple-500 border-purple-500/20" },
+    };
 
     if (loading) {
         return (
             <div className="flex items-center justify-center h-full min-h-[60vh]">
                 <div className="text-sm text-muted-foreground/70 animate-pulse">
-                    Loading…
+                    {tc("loading")}
                 </div>
             </div>
         );
@@ -35,7 +36,6 @@ export default function BoardPage() {
                     <OnboardingContent
                         className="bg-card/40 border border-border/30 rounded-2xl p-8 shadow-sm"
                         onComplete={() => {
-                            // Trigger dump modal via keyboard shortcut simulation
                             window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
                         }}
                     />
@@ -46,8 +46,6 @@ export default function BoardPage() {
 
     return (
         <div className="p-4 md:p-6">
-
-
             {/* Masonry Grid */}
             <div className="max-w-7xl mx-auto">
                 <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6">
@@ -73,7 +71,7 @@ export default function BoardPage() {
                                             "flex-none inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium border",
                                             stateCfg.className
                                         )}>
-                                            {stateCfg.label}
+                                            {t(stateCfg.labelKey)}
                                         </span>
                                     </div>
                                     {thread.summary && (

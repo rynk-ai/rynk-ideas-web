@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import { useSaveDump, useProcessDump } from "@/hooks/use-rynk-data";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
+import { useAppLocale } from "./providers/locale-provider";
 
 interface DumpModalProps {
     open: boolean;
@@ -14,21 +16,25 @@ interface DumpModalProps {
 
 type Phase = "writing" | "saving" | "processing" | "done";
 
-const PROCESSING_MESSAGES = [
-    "Segmenting your thoughts…",
-    "Finding patterns…",
-    "Connecting to existing ideas…",
-    "Synthesizing threads…",
-];
-
 export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
     const { data: session } = useSession();
     const [content, setContent] = useState("");
     const [phase, setPhase] = useState<Phase>("writing");
-    const [processingMsg, setProcessingMsg] = useState(PROCESSING_MESSAGES[0]);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const { saveDump } = useSaveDump();
     const { processDump } = useProcessDump();
+    const t = useTranslations("dumpModal");
+    const tc = useTranslations("common");
+    const { locale } = useAppLocale();
+
+    const PROCESSING_MESSAGES = [
+        t("processing.segmenting"),
+        t("processing.patterns"),
+        t("processing.connecting"),
+        t("processing.synthesizing"),
+    ];
+
+    const [processingMsg, setProcessingMsg] = useState(PROCESSING_MESSAGES[0]);
 
     // Focus textarea when modal opens
     useEffect(() => {
@@ -79,14 +85,14 @@ export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
             const result = await saveDump(content.trim());
 
             setPhase("processing");
-            const processResult = await processDump(result.id);
+            const processResult = await processDump(result.id, undefined, locale);
 
             setPhase("done");
 
             if (processResult?.affectedThreadTitles?.length > 0) {
-                toast.success(`Good Job working on ${processResult.affectedThreadTitles.join(", ")}`);
+                toast.success(t("toast.workingOn", { titles: processResult.affectedThreadTitles.join(", ") }));
             } else {
-                toast.success("Thought captured securely.");
+                toast.success(t("toast.captured"));
             }
 
             setTimeout(() => {
@@ -97,16 +103,16 @@ export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
             setPhase("writing");
 
             if (error.message === "LIMIT_REACHED") {
-                toast.info("Free limit reached", {
-                    description: "You've used your guest credits. Sign in to continue dumping thoughts.",
+                toast.info(t("toast.limitReached"), {
+                    description: t("toast.limitDescription"),
                     action: {
-                        label: "Sign In",
+                        label: t("toast.limitReached"),
                         onClick: () => window.location.href = "/api/auth/signin"
                     },
                     duration: 8000,
                 });
             } else {
-                toast.error("Failed to save thought. Please try again.");
+                toast.error(t("toast.failed"));
             }
         }
     }
@@ -142,9 +148,9 @@ export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
                         <button
                             onClick={onClose}
                             className="p-3 rounded-full hover:bg-muted transition-colors flex items-center gap-2 text-sm"
-                            title="Close (Esc)"
+                            title={`${tc("close")} (Esc)`}
                         >
-                            <span className="hidden md:block text-muted-foreground mr-1">Close</span>
+                            <span className="hidden md:block text-muted-foreground mr-1">{tc("close")}</span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                 <line x1="18" y1="6" x2="6" y2="18" />
                                 <line x1="6" y1="6" x2="18" y2="18" />
@@ -165,7 +171,7 @@ export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
                                 value={content}
                                 onChange={(e) => setContent(e.target.value)}
                                 onKeyDown={handleKeyDown}
-                                placeholder="What's on your mind?"
+                                placeholder={t("placeholder")}
                                 className={cn(
                                     "w-full min-h-[30vh] max-h-[70vh]",
                                     "bg-transparent text-foreground text-2xl md:text-3xl font-light leading-relaxed tracking-tight",
@@ -177,10 +183,10 @@ export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
                             {/* Footer */}
                             <div className="flex items-center justify-between mt-8 pt-4 border-t border-border/40 opacity-70 focus-within:opacity-100 transition-opacity">
                                 <div className="flex items-center gap-2">
-                                    <button className="p-3 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground" title="Attach">
+                                    <button className="p-3 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground" title={t("attach")}>
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48" /></svg>
                                     </button>
-                                    <button className="p-3 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground" title="Voice">
+                                    <button className="p-3 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground" title={t("voice")}>
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1="12" x2="12" y1="19" y2="22" /></svg>
                                     </button>
                                 </div>
@@ -199,7 +205,7 @@ export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
                                             "disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:scale-100"
                                         )}
                                     >
-                                        Dump
+                                        {t("submit")}
                                     </button>
                                 </div>
                             </div>
@@ -217,9 +223,9 @@ export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
                                 "text-sm text-muted-foreground transition-all",
                                 phase === "done" && "text-emerald-400"
                             )}>
-                                {phase === "saving" ? "Saving…" :
+                                {phase === "saving" ? t("saving") :
                                     phase === "processing" ? processingMsg :
-                                        "Done"}
+                                        t("done")}
                             </p>
                         </div>
                     )}

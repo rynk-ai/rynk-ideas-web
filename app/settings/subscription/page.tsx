@@ -8,17 +8,16 @@ import { Check, Loader2 } from "lucide-react"
 import { useState, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { toast } from "sonner"
+import { useTranslations } from "next-intl"
 
 function SubscriptionContent() {
     const { subscription, loading, isPro } = useSubscription()
     const [checkoutLoading, setCheckoutLoading] = useState<string | null>(null)
     const searchParams = useSearchParams()
+    const t = useTranslations("subscription")
 
     // Show success toast if redirected back from checkout
     if (searchParams.get("success") === "true" && !loading) {
-        // Need to use useEffect to avoid hydration mismatch or infinite loop, 
-        // but for simplicity in this MVP let's just render a success message conditionally
-        // or actually, sonner toast is usually triggered in useEffect.
     }
 
     const handleCheckout = async (tier: "standard" | "standard_plus") => {
@@ -32,21 +31,17 @@ function SubscriptionContent() {
             if (data.checkoutUrl) {
                 window.location.href = data.checkoutUrl
             } else {
-                toast.error("Failed to start checkout")
+                toast.error(t("checkoutFailed"))
             }
         } catch (error) {
             console.error(error)
-            toast.error("An error occurred")
+            toast.error(t("error"))
         } finally {
             setCheckoutLoading(null)
         }
     }
 
     const handleManageSubscription = () => {
-        // Redirect to Polar customer portal
-        // Since we don't have a direct portal link API yet, we can link to rynk-web settings
-        // or just tell them to manage via email links for now.
-        // Ideally we should have a portal link. For now let's link to generic rynk settings if available.
         window.open("https://rynk.io/settings", "_blank")
     }
 
@@ -66,20 +61,20 @@ function SubscriptionContent() {
     return (
         <div className="flex flex-col gap-8 p-6 md:p-10 max-w-5xl mx-auto">
             <div className="flex flex-col gap-2">
-                <h1 className="text-3xl font-bold tracking-tight">Subscription</h1>
+                <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
                 <p className="text-muted-foreground">
-                    Manage your plan and usage limits.
+                    {t("description")}
                 </p>
             </div>
 
             {/* Usage Section */}
             <Card>
                 <CardHeader>
-                    <CardTitle>Current Usage</CardTitle>
+                    <CardTitle>{t("currentUsage")}</CardTitle>
                     <CardDescription>
                         {limit === -1
-                            ? "You have unlimited access."
-                            : `You have used ${usage} of your ${limit} monthly dumps.`
+                            ? t("unlimitedAccess")
+                            : t("usageOf", { usage, limit })
                         }
                     </CardDescription>
                 </CardHeader>
@@ -88,7 +83,7 @@ function SubscriptionContent() {
                         <div className="space-y-2">
                             <Progress value={percentage} className="h-2" />
                             <p className="text-xs text-muted-foreground text-right">
-                                {usage} / {limit} dumps
+                                {t("dumps", { usage, limit })}
                             </p>
                         </div>
                     )}
@@ -100,25 +95,25 @@ function SubscriptionContent() {
                 {/* Free Plan */}
                 <Card className={!isPro ? "border-primary" : ""}>
                     <CardHeader>
-                        <CardTitle>Free</CardTitle>
-                        <CardDescription>Perfect for getting started</CardDescription>
+                        <CardTitle>{t("free.name")}</CardTitle>
+                        <CardDescription>{t("free.description")}</CardDescription>
                     </CardHeader>
                     <CardContent className="grid gap-4">
-                        <div className="text-3xl font-bold">$0<span className="text-sm font-normal text-muted-foreground">/mo</span></div>
+                        <div className="text-3xl font-bold">{t("free.price")}<span className="text-sm font-normal text-muted-foreground">{t("free.perMonth")}</span></div>
                         <ul className="grid gap-2 text-sm">
                             <li className="flex items-center gap-2">
                                 <Check className="h-4 w-4 text-primary" />
-                                50 Dumps / month
+                                {t("free.features.dumps")}
                             </li>
                             <li className="flex items-center gap-2">
                                 <Check className="h-4 w-4 text-primary" />
-                                Basic AI Organization
+                                {t("free.features.ai")}
                             </li>
                         </ul>
                     </CardContent>
                     <CardFooter>
                         <Button className="w-full" variant="outline" disabled={!isPro}>
-                            {!isPro ? "Current Plan" : "Downgrade"}
+                            {!isPro ? t("currentPlan") : t("downgrade")}
                         </Button>
                     </CardFooter>
                 </Card>
@@ -127,34 +122,34 @@ function SubscriptionContent() {
                 <Card className={isPro ? "border-primary relative overflow-hidden" : "relative overflow-hidden"}>
                     {isPro && (
                         <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-bl-lg">
-                            Current
+                            {t("standard.current")}
                         </div>
                     )}
                     <CardHeader>
-                        <CardTitle>Standard</CardTitle>
-                        <CardDescription>For serious thinkers</CardDescription>
+                        <CardTitle>{t("standard.name")}</CardTitle>
+                        <CardDescription>{t("standard.description")}</CardDescription>
                     </CardHeader>
                     <CardContent className="grid gap-4">
-                        <div className="text-3xl font-bold">$5.99<span className="text-sm font-normal text-muted-foreground">/mo</span></div>
+                        <div className="text-3xl font-bold">{t("standard.price")}<span className="text-sm font-normal text-muted-foreground">{t("standard.perMonth")}</span></div>
                         <ul className="grid gap-2 text-sm">
                             <li className="flex items-center gap-2">
                                 <Check className="h-4 w-4 text-primary" />
-                                Unlimited Dumps
+                                {t("standard.features.dumps")}
                             </li>
                             <li className="flex items-center gap-2">
                                 <Check className="h-4 w-4 text-primary" />
-                                Advanced AI Models
+                                {t("standard.features.ai")}
                             </li>
                             <li className="flex items-center gap-2">
                                 <Check className="h-4 w-4 text-primary" />
-                                Priority Support
+                                {t("standard.features.support")}
                             </li>
                         </ul>
                     </CardContent>
                     <CardFooter>
                         {isPro ? (
                             <Button className="w-full" variant="outline" onClick={handleManageSubscription}>
-                                Manage Subscription
+                                {t("manageSubscription")}
                             </Button>
                         ) : (
                             <Button
@@ -163,7 +158,7 @@ function SubscriptionContent() {
                                 disabled={!!checkoutLoading}
                             >
                                 {checkoutLoading === "standard" && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                Upgrade to Standard
+                                {t("upgradeToStandard")}
                             </Button>
                         )}
                     </CardFooter>

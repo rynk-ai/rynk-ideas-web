@@ -2,27 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-
-type Step = {
-    title: string;
-    description: string;
-    image?: string;
-};
-
-const STEPS: Step[] = [
-    {
-        title: "Welcome to Rynk Ideas",
-        description: "AI without the noise. Just dump your thoughts, and let AI organize them into actionable plans.",
-    },
-    {
-        title: "Dump Anything",
-        description: "Hit the pen icon or press ⌘K anywhere to capture a thought. Don't worry about structure.",
-    },
-    {
-        title: "Let AI Do the Work",
-        description: "We'll cluster your thoughts into threads, find connections, and help you turn them into reality.",
-    },
-];
+import { useTranslations } from "next-intl";
 
 interface OnboardingContentProps {
     onComplete?: () => void;
@@ -32,6 +12,22 @@ interface OnboardingContentProps {
 
 export function OnboardingContent({ onComplete, className, isModal = false }: OnboardingContentProps) {
     const [step, setStep] = useState(0);
+    const t = useTranslations("onboarding");
+
+    const STEPS = [
+        {
+            title: t("steps.welcome.title"),
+            description: t("steps.welcome.description"),
+        },
+        {
+            title: t("steps.dump.title"),
+            description: t("steps.dump.description"),
+        },
+        {
+            title: t("steps.ai.title"),
+            description: t("steps.ai.description"),
+        },
+    ];
 
     const handleNext = () => {
         if (step < STEPS.length - 1) {
@@ -53,7 +49,6 @@ export function OnboardingContent({ onComplete, className, isModal = false }: On
             </div>
 
             <div className="py-6 flex flex-col items-center justify-center gap-4 min-h-[150px] bg-muted/20 rounded-xl mb-6">
-                {/* Placeholder for visual/animation */}
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl font-bold">
                     {step + 1}
                 </div>
@@ -76,7 +71,7 @@ export function OnboardingContent({ onComplete, className, isModal = false }: On
                     onClick={handleNext}
                     className="px-4 py-2 bg-foreground text-background rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
                 >
-                    {step === STEPS.length - 1 ? "Get Started" : "Next"}
+                    {step === STEPS.length - 1 ? t("getStarted") : t("next")}
                 </button>
             </div>
         </div>

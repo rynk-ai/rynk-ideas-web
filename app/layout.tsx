@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { LocaleProvider } from "@/components/providers/locale-provider";
 import { Toaster } from "sonner";
 import { ShellWrapper } from "@/components/shell-wrapper";
 import "./globals.css";
@@ -54,13 +55,15 @@ export default function RootLayout({
                     forcedTheme="dark"
                     disableTransitionOnChange
                 >
-                    <ShellWrapper>{children}</ShellWrapper>
-                    <Toaster
-                        position="top-center"
-                        richColors
-                        closeButton
-                        toastOptions={{ duration: 5000 }}
-                    />
+                    <LocaleProvider>
+                        <ShellWrapper>{children}</ShellWrapper>
+                        <Toaster
+                            position="top-center"
+                            richColors
+                            closeButton
+                            toastOptions={{ duration: 5000 }}
+                        />
+                    </LocaleProvider>
                 </ThemeProvider>
             </body>
         </html>

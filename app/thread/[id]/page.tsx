@@ -4,6 +4,8 @@ import { useState, useEffect, use } from "react";
 import { cn } from "@/lib/utils";
 import { useSaveDump, useProcessDump } from "@/hooks/use-rynk-data";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
+import { useAppLocale } from "@/components/providers/locale-provider";
 
 interface ThreadDetail {
     id: string;
@@ -30,27 +32,6 @@ interface ThreadEdge {
     connectedThreadId: string;
 }
 
-function friendlyDate(dateStr: string): string {
-    const date = new Date(dateStr);
-    const now = new Date();
-    const diffMs = now.getTime() - date.getTime();
-    const diffDay = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-    if (diffDay === 0) return "today";
-    if (diffDay === 1) return "yesterday";
-    if (diffDay < 7) return `${diffDay}d ago`;
-    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-}
-
-const STATE_LABELS: Record<string, string> = {
-    seed: "New idea to explore",
-    active: "Actively thinking about",
-    deciding: "Decision needed",
-    stuck: "Feeling stuck",
-    parked: "On hold for now",
-    done: "Resolved",
-};
-
 export default function ThreadPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
     const [thread, setThread] = useState<ThreadDetail | null>(null);
@@ -63,6 +44,21 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
 
     const { saveDump } = useSaveDump();
     const { processDump } = useProcessDump();
+    const t = useTranslations("thread");
+    const tc = useTranslations("common");
+    const { locale } = useAppLocale();
+
+    function friendlyDate(dateStr: string): string {
+        const date = new Date(dateStr);
+        const now = new Date();
+        const diffMs = now.getTime() - date.getTime();
+        const diffDay = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+        if (diffDay === 0) return t("dates.today");
+        if (diffDay === 1) return t("dates.yesterday");
+        if (diffDay < 7) return t("dates.daysAgo", { days: diffDay });
+        return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    }
 
     useEffect(() => {
         async function fetchThread() {
@@ -87,21 +83,21 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
         setIsSubmitting(true);
         try {
             const result = await saveDump(newNote.trim());
-            const processResult = await processDump(result.id, id);
+            const processResult = await processDump(result.id, id, locale);
 
             setNewNote("");
 
             if (processResult?.threadsAffected > 0) {
-                toast.success("Note added and synthesized.");
+                toast.success(t("toast.noteAdded"));
             } else {
-                toast.success("Note added.");
+                toast.success(t("toast.noteAddedSimple"));
             }
 
             // Reload to fetch new segments
             window.location.reload();
         } catch (error) {
             console.error("Failed to add note:", error);
-            toast.error("Failed to add note.");
+            toast.error(t("toast.noteFailed"));
         } finally {
             setIsSubmitting(false);
         }
@@ -118,7 +114,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
         return (
             <div className="flex items-center justify-center h-full min-h-[60vh]">
                 <div className="text-sm text-muted-foreground/70 animate-pulse">
-                    Loading…
+                    {tc("loading")}
                 </div>
             </div>
         );
@@ -128,8 +124,8 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
         return (
             <div className="flex items-center justify-center h-full min-h-[60vh]">
                 <div className="text-center">
-                    <p className="text-muted-foreground text-sm mb-4">Thread not found</p>
-                    <a href="/" className="text-sm text-primary hover:underline">← Back</a>
+                    <p className="text-muted-foreground text-sm mb-4">{t("notFound")}</p>
+                    <a href="/" className="text-sm text-primary hover:underline">{tc("back")}</a>
                 </div>
             </div>
         );
@@ -143,7 +139,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
                     href="/"
                     className="inline-flex items-center gap-1 text-sm text-muted-foreground/70 hover:text-foreground transition-colors mb-8"
                 >
-                    ← Board
+                    {tc("back")}
                 </a>
 
                 {/* Title & Summary (Primary Focus) */}
@@ -162,9 +158,9 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
                 {/* Metadata Row (Deprioritized) */}
                 <div className="flex flex-wrap items-center gap-4 mb-12 py-4 border-y border-border/40">
                     <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50">State</span>
+                        <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50">{t("state")}</span>
                         <span className="text-xs font-medium px-2 py-1 rounded-md bg-muted/50 text-foreground/70">
-                            {STATE_LABELS[thread.state] || thread.state}
+                            {t(`stateLabels.${thread.state}`) || thread.state}
                         </span>
                     </div>
                 </div>
@@ -173,10 +169,10 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
                 {thread.groundingNote && (
                     <div className="mb-12 border-l-2 border-primary/30 pl-6 py-2">
                         <div className="text-[10px] font-mono font-medium tracking-widest text-primary/60 uppercase mb-3">
-                            Grounding Note
+                            {t("groundingNote")}
                         </div>
                         <p className="text-base text-foreground/90 leading-relaxed italic">
-                            "{thread.groundingNote}"
+                            &ldquo;{thread.groundingNote}&rdquo;
                         </p>
                     </div>
                 )}
@@ -185,7 +181,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
                 {thread.stateReason && (
                     <div className="mb-12 bg-muted/20 rounded-xl p-5 border border-border/40">
                         <div className="text-[10px] font-mono font-medium tracking-widest text-muted-foreground/60 uppercase mb-2">
-                            Why this state?
+                            {t("whyThisState")}
                         </div>
                         <p className="text-sm text-foreground/80 leading-relaxed">
                             {thread.stateReason}
@@ -197,7 +193,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
                 <div className="mb-10">
                     <div className="flex items-center justify-between mb-6">
                         <h2 className="text-[11px] font-mono font-medium tracking-widest text-muted-foreground/70 uppercase">
-                            Timeline
+                            {t("timeline")}
                         </h2>
                         <button
                             onClick={() => setOrder(order === "desc" ? "asc" : "desc")}
@@ -206,7 +202,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={cn("transition-transform", order === "asc" && "rotate-180")}>
                                 <path d="m3 16 4 4 4-4" /><path d="M7 20V4" /><path d="m21 8-4-4-4 4" /><path d="M17 4v16" />
                             </svg>
-                            {order === "desc" ? "Newest First" : "Oldest First"}
+                            {order === "desc" ? t("newestFirst") : t("oldestFirst")}
                         </button>
                     </div>
 
@@ -217,7 +213,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
                                 value={newNote}
                                 onChange={(e) => setNewNote(e.target.value)}
                                 onKeyDown={handleKeyDown}
-                                placeholder="Add a new note to this thread..."
+                                placeholder={t("addNotePlaceholder")}
                                 disabled={isSubmitting}
                                 className="w-full min-h-[60px] md:min-h-[100px] p-3 md:p-4 pb-12 bg-card/50 md:bg-card/30 border border-border/50 md:border-border/40 rounded-xl md:rounded-xl text-base md:text-sm placeholder:text-muted-foreground/40 focus:outline-none focus:border-border/80 resize-none transition-colors disabled:opacity-50"
                             />
@@ -232,14 +228,14 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
                                     disabled={!newNote.trim() || isSubmitting}
                                     className="px-4 py-1.5 rounded-lg text-xs font-semibold bg-foreground text-background hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100 transition-all font-sans"
                                 >
-                                    {isSubmitting ? "Adding..." : "Add"}
+                                    {isSubmitting ? t("adding") : t("add")}
                                 </button>
                             </div>
                         </div>
                     </div>
 
                     {segments.length === 0 ? (
-                        <p className="text-sm text-muted-foreground/70">No entries yet.</p>
+                        <p className="text-sm text-muted-foreground/70">{t("noEntries")}</p>
                     ) : (
                         <div className="space-y-6">
                             {(order === "desc" ? [...segments].reverse() : segments).map((segment, i) => (
@@ -265,7 +261,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
                 {edges.length > 0 && (
                     <div className="mb-10">
                         <h2 className="text-[11px] font-mono font-medium tracking-widest text-muted-foreground/70 uppercase mb-4">
-                            Related
+                            {t("related")}
                         </h2>
                         <div className="space-y-1.5">
                             {edges.map((edge) => (

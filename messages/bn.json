@@ -1,0 +1,166 @@
+{
+    "common": {
+        "loading": "লোড হচ্ছে…",
+        "back": "← বোর্ড",
+        "close": "বন্ধ করুন",
+        "user": "ব্যবহারকারী"
+    },
+    "appShell": {
+        "newDump": "নতুন ডাম্প",
+        "signIn": "সাইন ইন",
+        "signOut": "সাইন আউট",
+        "subscription": "সাবস্ক্রিপশন",
+        "settings": "সেটিংস",
+        "quickDump": "দ্রুত ডাম্প"
+    },
+    "board": {
+        "states": {
+            "seed": "অনুসন্ধান",
+            "active": "সক্রিয়",
+            "deciding": "সিদ্ধান্ত",
+            "stuck": "আটকে গেছে",
+            "parked": "বিরতি",
+            "done": "সমাধান হয়েছে"
+        }
+    },
+    "dumpModal": {
+        "placeholder": "আপনার মনে কী আছে?",
+        "submit": "ডাম্প",
+        "attach": "সংযুক্ত",
+        "voice": "ভয়েস",
+        "saving": "সংরক্ষণ করা হচ্ছে…",
+        "done": "হয়ে গেছে",
+        "processing": {
+            "segmenting": "আপনার চিন্তা বিভাজন করা হচ্ছে…",
+            "patterns": "প্যাটার্ন খোঁজা হচ্ছে…",
+            "connecting": "বিদ্যমান ধারণার সাথে সংযোগ করা হচ্ছে…",
+            "synthesizing": "থ্রেড সংশ্লেষণ করা হচ্ছে…"
+        },
+        "toast": {
+            "workingOn": "{titles} নিয়ে চমৎকার কাজ",
+            "captured": "চিন্তা নিরাপদে ক্যাপচার হয়েছে।",
+            "limitReached": "বিনামূল্যে সীমা পূর্ণ",
+            "limitDescription": "আপনি আপনার অতিথি ক্রেডিট ব্যবহার করেছেন। চালিয়ে যেতে সাইন ইন করুন।",
+            "failed": "সংরক্ষণ ব্যর্থ। আবার চেষ্টা করুন।"
+        }
+    },
+    "onboarding": {
+        "steps": {
+            "welcome": {
+                "title": "Rynk Ideas-এ স্বাগতম",
+                "description": "গোলমাল ছাড়া AI। শুধু আপনার চিন্তা ঢেলে দিন, AI সেগুলো কর্ম পরিকল্পনায় সাজাবে।"
+            },
+            "dump": {
+                "title": "যেকোনো কিছু ঢালুন",
+                "description": "কলম আইকন বা ⌘K চাপুন যেকোনো জায়গায় চিন্তা ক্যাপচার করতে। কাঠামো নিয়ে চিন্তা করবেন না।"
+            },
+            "ai": {
+                "title": "AI-কে কাজ করতে দিন",
+                "description": "আমরা আপনার চিন্তা থ্রেডে গুছিয়ে দেব, সংযোগ খুঁজে বের করব, এবং বাস্তবে রূপান্তর করতে সাহায্য করব।"
+            }
+        },
+        "getStarted": "শুরু করুন",
+        "next": "পরবর্তী"
+    },
+    "thread": {
+        "notFound": "থ্রেড পাওয়া যায়নি",
+        "stateLabels": {
+            "seed": "অনুসন্ধানের জন্য নতুন ধারণা",
+            "active": "সক্রিয়ভাবে ভাবছে",
+            "deciding": "সিদ্ধান্ত প্রয়োজন",
+            "stuck": "আটকে গেছে বলে মনে হচ্ছে",
+            "parked": "আপাতত স্থগিত",
+            "done": "সমাধান হয়েছে"
+        },
+        "state": "অবস্থা",
+        "groundingNote": "ভিত্তি নোট",
+        "whyThisState": "কেন এই অবস্থা?",
+        "timeline": "সময়রেখা",
+        "newestFirst": "নতুন আগে",
+        "oldestFirst": "পুরনো আগে",
+        "noEntries": "এখনো কোনো এন্ট্রি নেই।",
+        "related": "সম্পর্কিত",
+        "addNotePlaceholder": "এই থ্রেডে নতুন নোট যোগ করুন...",
+        "add": "যোগ করুন",
+        "adding": "যোগ হচ্ছে...",
+        "toast": {
+            "noteAdded": "নোট যোগ হয়েছে এবং সংশ্লেষিত হয়েছে।",
+            "noteAddedSimple": "নোট যোগ হয়েছে।",
+            "noteFailed": "নোট যোগ করতে ব্যর্থ।"
+        },
+        "dates": {
+            "today": "আজ",
+            "yesterday": "গতকাল",
+            "daysAgo": "{days} দিন আগে"
+        }
+    },
+    "login": {
+        "tagline": "আপনার AI চিন্তা সঙ্গী। চিন্তা ঢালুন, স্পষ্টতা পান।",
+        "continueWithGoogle": "Google দিয়ে চালিয়ে যান",
+        "footer": "rynk chat এর মতো একই অ্যাকাউন্ট।",
+        "errors": {
+            "accountLinked": "এই ইমেইল ইতিমধ্যে অন্য অ্যাকাউন্টের সাথে যুক্ত।",
+            "generic": "কিছু ভুল হয়েছে। আবার চেষ্টা করুন।"
+        }
+    },
+    "subscription": {
+        "title": "সাবস্ক্রিপশন",
+        "description": "আপনার পরিকল্পনা এবং ব্যবহার সীমা পরিচালনা করুন।",
+        "currentUsage": "বর্তমান ব্যবহার",
+        "unlimitedAccess": "আপনার সীমাহীন অ্যাক্সেস আছে।",
+        "usageOf": "আপনি আপনার {limit}টি মাসিক ডাম্পের মধ্যে {usage}টি ব্যবহার করেছেন।",
+        "dumps": "{usage} / {limit} ডাম্প",
+        "free": {
+            "name": "বিনামূল্যে",
+            "description": "শুরু করার জন্য উপযুক্ত",
+            "price": "$0",
+            "perMonth": "/মাস",
+            "features": {
+                "dumps": "50 ডাম্প / মাস",
+                "ai": "মৌলিক AI সংগঠন"
+            }
+        },
+        "standard": {
+            "name": "স্ট্যান্ডার্ড",
+            "description": "গুরুতর চিন্তাবিদদের জন্য",
+            "price": "$5.99",
+            "perMonth": "/মাস",
+            "current": "বর্তমান",
+            "features": {
+                "dumps": "সীমাহীন ডাম্প",
+                "ai": "উন্নত AI মডেল",
+                "support": "অগ্রাধিকার সমর্থন"
+            }
+        },
+        "currentPlan": "বর্তমান পরিকল্পনা",
+        "downgrade": "ডাউনগ্রেড",
+        "manageSubscription": "সাবস্ক্রিপশন পরিচালনা",
+        "upgradeToStandard": "স্ট্যান্ডার্ডে আপগ্রেড",
+        "checkoutFailed": "পেমেন্ট ব্যর্থ",
+        "error": "একটি ত্রুটি ঘটেছে"
+    },
+    "language": {
+        "label": "ভাষা",
+        "en": "English",
+        "es": "Español",
+        "fr": "Français",
+        "de": "Deutsch",
+        "pt": "Português",
+        "it": "Italiano",
+        "nl": "Nederlands",
+        "ru": "Русский",
+        "zh": "中文",
+        "ja": "日本語",
+        "ko": "한국어",
+        "ar": "العربية",
+        "he": "עברית",
+        "hi": "हिन्दी",
+        "bn": "বাংলা",
+        "tr": "Türkçe",
+        "vi": "Tiếng Việt",
+        "th": "ไทย",
+        "id": "Bahasa Indonesia",
+        "pl": "Polski",
+        "sv": "Svenska"
+    }
+}

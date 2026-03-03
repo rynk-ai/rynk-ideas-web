@@ -1,0 +1,166 @@
+{
+    "common": {
+        "loading": "Laden…",
+        "back": "← Bord",
+        "close": "Sluiten",
+        "user": "Gebruiker"
+    },
+    "appShell": {
+        "newDump": "Nieuwe Dump",
+        "signIn": "Inloggen",
+        "signOut": "Uitloggen",
+        "subscription": "Abonnement",
+        "settings": "Instellingen",
+        "quickDump": "Snelle dump"
+    },
+    "board": {
+        "states": {
+            "seed": "Verkennen",
+            "active": "Actief",
+            "deciding": "Beslissen",
+            "stuck": "Vastgelopen",
+            "parked": "Gepauzeerd",
+            "done": "Opgelost"
+        }
+    },
+    "dumpModal": {
+        "placeholder": "Wat houdt je bezig?",
+        "submit": "Dumpen",
+        "attach": "Bijlage",
+        "voice": "Stem",
+        "saving": "Opslaan…",
+        "done": "Klaar",
+        "processing": {
+            "segmenting": "Je gedachten segmenteren…",
+            "patterns": "Patronen vinden…",
+            "connecting": "Verbinden met bestaande ideeën…",
+            "synthesizing": "Draden samenvoegen…"
+        },
+        "toast": {
+            "workingOn": "Goed bezig met {titles}",
+            "captured": "Gedachte veilig vastgelegd.",
+            "limitReached": "Gratis limiet bereikt",
+            "limitDescription": "Je hebt je gastcredits gebruikt. Log in om door te gaan.",
+            "failed": "Opslaan mislukt. Probeer opnieuw."
+        }
+    },
+    "onboarding": {
+        "steps": {
+            "welcome": {
+                "title": "Welkom bij Rynk Ideas",
+                "description": "AI zonder ruis. Dump je gedachten en laat AI ze organiseren in actieplannen."
+            },
+            "dump": {
+                "title": "Dump alles",
+                "description": "Druk op het penpictogram of ⌘K om een gedachte vast te leggen. Maak je geen zorgen over structuur."
+            },
+            "ai": {
+                "title": "Laat AI het werk doen",
+                "description": "We groeperen je gedachten in draden, vinden verbanden en helpen je ze te realiseren."
+            }
+        },
+        "getStarted": "Aan de slag",
+        "next": "Volgende"
+    },
+    "thread": {
+        "notFound": "Draad niet gevonden",
+        "stateLabels": {
+            "seed": "Nieuw idee om te verkennen",
+            "active": "Actief over nadenken",
+            "deciding": "Beslissing nodig",
+            "stuck": "Vastgelopen",
+            "parked": "Voorlopig geparkeerd",
+            "done": "Opgelost"
+        },
+        "state": "Status",
+        "groundingNote": "Ankernota",
+        "whyThisState": "Waarom deze status?",
+        "timeline": "Tijdlijn",
+        "newestFirst": "Nieuwste eerst",
+        "oldestFirst": "Oudste eerst",
+        "noEntries": "Nog geen items.",
+        "related": "Gerelateerd",
+        "addNotePlaceholder": "Voeg een nieuwe notitie toe aan deze draad...",
+        "add": "Toevoegen",
+        "adding": "Toevoegen...",
+        "toast": {
+            "noteAdded": "Notitie toegevoegd en samengevat.",
+            "noteAddedSimple": "Notitie toegevoegd.",
+            "noteFailed": "Notitie toevoegen mislukt."
+        },
+        "dates": {
+            "today": "vandaag",
+            "yesterday": "gisteren",
+            "daysAgo": "{days}d geleden"
+        }
+    },
+    "login": {
+        "tagline": "Je AI-denkpartner. Dump je gedachten, krijg helderheid.",
+        "continueWithGoogle": "Doorgaan met Google",
+        "footer": "Hetzelfde account als rynk chat.",
+        "errors": {
+            "accountLinked": "Dit e-mailadres is al gekoppeld aan een ander account.",
+            "generic": "Er is iets misgegaan. Probeer opnieuw."
+        }
+    },
+    "subscription": {
+        "title": "Abonnement",
+        "description": "Beheer je plan en gebruikslimieten.",
+        "currentUsage": "Huidig gebruik",
+        "unlimitedAccess": "Je hebt onbeperkte toegang.",
+        "usageOf": "Je hebt {usage} van je {limit} maandelijkse dumps gebruikt.",
+        "dumps": "{usage} / {limit} dumps",
+        "free": {
+            "name": "Gratis",
+            "description": "Perfect om te beginnen",
+            "price": "€0",
+            "perMonth": "/maand",
+            "features": {
+                "dumps": "50 Dumps / maand",
+                "ai": "Basis AI-organisatie"
+            }
+        },
+        "standard": {
+            "name": "Standaard",
+            "description": "Voor serieuze denkers",
+            "price": "€5,99",
+            "perMonth": "/maand",
+            "current": "Huidig",
+            "features": {
+                "dumps": "Onbeperkte Dumps",
+                "ai": "Geavanceerde AI-modellen",
+                "support": "Prioriteitsondersteuning"
+            }
+        },
+        "currentPlan": "Huidig plan",
+        "downgrade": "Downgraden",
+        "manageSubscription": "Abonnement beheren",
+        "upgradeToStandard": "Upgraden naar Standaard",
+        "checkoutFailed": "Betaling mislukt",
+        "error": "Er is een fout opgetreden"
+    },
+    "language": {
+        "label": "Taal",
+        "en": "English",
+        "es": "Español",
+        "fr": "Français",
+        "de": "Deutsch",
+        "pt": "Português",
+        "it": "Italiano",
+        "nl": "Nederlands",
+        "ru": "Русский",
+        "zh": "中文",
+        "ja": "日本語",
+        "ko": "한국어",
+        "ar": "العربية",
+        "he": "עברית",
+        "hi": "हिन्दी",
+        "bn": "বাংলা",
+        "tr": "Türkçe",
+        "vi": "Tiếng Việt",
+        "th": "ไทย",
+        "id": "Bahasa Indonesia",
+        "pl": "Polski",
+        "sv": "Svenska"
+    }
+}

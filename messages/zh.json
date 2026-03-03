@@ -1,0 +1,166 @@
+{
+    "common": {
+        "loading": "加载中…",
+        "back": "← 看板",
+        "close": "关闭",
+        "user": "用户"
+    },
+    "appShell": {
+        "newDump": "新想法",
+        "signIn": "登录",
+        "signOut": "退出登录",
+        "subscription": "订阅",
+        "settings": "设置",
+        "quickDump": "快速记录"
+    },
+    "board": {
+        "states": {
+            "seed": "探索中",
+            "active": "活跃",
+            "deciding": "待决策",
+            "stuck": "卡住了",
+            "parked": "暂停",
+            "done": "已解决"
+        }
+    },
+    "dumpModal": {
+        "placeholder": "你在想什么？",
+        "submit": "记录",
+        "attach": "附件",
+        "voice": "语音",
+        "saving": "保存中…",
+        "done": "完成",
+        "processing": {
+            "segmenting": "正在分割你的想法…",
+            "patterns": "正在寻找模式…",
+            "connecting": "正在连接到现有想法…",
+            "synthesizing": "正在合成线索…"
+        },
+        "toast": {
+            "workingOn": "做得好，正在处理 {titles}",
+            "captured": "想法已安全捕获。",
+            "limitReached": "免费额度已用完",
+            "limitDescription": "你已用完访客额度。请登录以继续记录想法。",
+            "failed": "保存失败，请重试。"
+        }
+    },
+    "onboarding": {
+        "steps": {
+            "welcome": {
+                "title": "欢迎来到 Rynk Ideas",
+                "description": "无噪音的 AI。只需倾倒你的想法，让 AI 将它们组织成行动计划。"
+            },
+            "dump": {
+                "title": "记录任何想法",
+                "description": "点击笔图标或按 ⌘K 随时捕捉想法。不用担心结构。"
+            },
+            "ai": {
+                "title": "让 AI 来工作",
+                "description": "我们会将你的想法聚合成线索，发现联系，帮助你将它们变为现实。"
+            }
+        },
+        "getStarted": "开始使用",
+        "next": "下一步"
+    },
+    "thread": {
+        "notFound": "未找到线索",
+        "stateLabels": {
+            "seed": "待探索的新想法",
+            "active": "正在积极思考",
+            "deciding": "需要决策",
+            "stuck": "感觉卡住了",
+            "parked": "暂时搁置",
+            "done": "已解决"
+        },
+        "state": "状态",
+        "groundingNote": "锚定笔记",
+        "whyThisState": "为什么是这个状态？",
+        "timeline": "时间线",
+        "newestFirst": "最新优先",
+        "oldestFirst": "最早优先",
+        "noEntries": "暂无条目。",
+        "related": "相关",
+        "addNotePlaceholder": "为此线索添加新笔记...",
+        "add": "添加",
+        "adding": "添加中...",
+        "toast": {
+            "noteAdded": "笔记已添加并合成。",
+            "noteAddedSimple": "笔记已添加。",
+            "noteFailed": "添加笔记失败。"
+        },
+        "dates": {
+            "today": "今天",
+            "yesterday": "昨天",
+            "daysAgo": "{days}天前"
+        }
+    },
+    "login": {
+        "tagline": "你的 AI 思考伙伴。倾倒想法，获得清晰。",
+        "continueWithGoogle": "使用 Google 继续",
+        "footer": "与 rynk chat 相同的账户。",
+        "errors": {
+            "accountLinked": "此邮箱已关联其他账户。",
+            "generic": "出了点问题，请重试。"
+        }
+    },
+    "subscription": {
+        "title": "订阅",
+        "description": "管理你的计划和使用限制。",
+        "currentUsage": "当前用量",
+        "unlimitedAccess": "你拥有无限访问权限。",
+        "usageOf": "你已使用 {usage}/{limit} 次月度记录。",
+        "dumps": "{usage} / {limit} 次记录",
+        "free": {
+            "name": "免费",
+            "description": "适合入门",
+            "price": "$0",
+            "perMonth": "/月",
+            "features": {
+                "dumps": "每月50次记录",
+                "ai": "基础 AI 组织"
+            }
+        },
+        "standard": {
+            "name": "标准版",
+            "description": "适合认真的思考者",
+            "price": "$5.99",
+            "perMonth": "/月",
+            "current": "当前",
+            "features": {
+                "dumps": "无限次记录",
+                "ai": "高级 AI 模型",
+                "support": "优先支持"
+            }
+        },
+        "currentPlan": "当前计划",
+        "downgrade": "降级",
+        "manageSubscription": "管理订阅",
+        "upgradeToStandard": "升级到标准版",
+        "checkoutFailed": "支付失败",
+        "error": "发生了错误"
+    },
+    "language": {
+        "label": "语言",
+        "en": "English",
+        "es": "Español",
+        "fr": "Français",
+        "de": "Deutsch",
+        "pt": "Português",
+        "it": "Italiano",
+        "nl": "Nederlands",
+        "ru": "Русский",
+        "zh": "中文",
+        "ja": "日本語",
+        "ko": "한국어",
+        "ar": "العربية",
+        "he": "עברית",
+        "hi": "हिन्दी",
+        "bn": "বাংলা",
+        "tr": "Türkçe",
+        "vi": "Tiếng Việt",
+        "th": "ไทย",
+        "id": "Bahasa Indonesia",
+        "pl": "Polski",
+        "sv": "Svenska"
+    }
+}

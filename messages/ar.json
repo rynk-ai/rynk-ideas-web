@@ -1,0 +1,166 @@
+{
+    "common": {
+        "loading": "جارٍ التحميل…",
+        "back": "← اللوحة",
+        "close": "إغلاق",
+        "user": "مستخدم"
+    },
+    "appShell": {
+        "newDump": "تفريغ جديد",
+        "signIn": "تسجيل الدخول",
+        "signOut": "تسجيل الخروج",
+        "subscription": "الاشتراك",
+        "settings": "الإعدادات",
+        "quickDump": "تفريغ سريع"
+    },
+    "board": {
+        "states": {
+            "seed": "استكشاف",
+            "active": "نشط",
+            "deciding": "قيد القرار",
+            "stuck": "عالق",
+            "parked": "متوقف",
+            "done": "تم الحل"
+        }
+    },
+    "dumpModal": {
+        "placeholder": "ما الذي يشغل بالك؟",
+        "submit": "تفريغ",
+        "attach": "إرفاق",
+        "voice": "صوت",
+        "saving": "جارٍ الحفظ…",
+        "done": "تم",
+        "processing": {
+            "segmenting": "تقسيم أفكارك…",
+            "patterns": "البحث عن أنماط…",
+            "connecting": "الربط بالأفكار الموجودة…",
+            "synthesizing": "تجميع الخيوط…"
+        },
+        "toast": {
+            "workingOn": "عمل رائع على {titles}",
+            "captured": "تم حفظ الفكرة بأمان.",
+            "limitReached": "تم الوصول للحد المجاني",
+            "limitDescription": "لقد استخدمت رصيدك المجاني. سجّل دخولك للمتابعة.",
+            "failed": "فشل الحفظ. حاول مرة أخرى."
+        }
+    },
+    "onboarding": {
+        "steps": {
+            "welcome": {
+                "title": "مرحباً بك في Rynk Ideas",
+                "description": "ذكاء اصطناعي بدون ضوضاء. فقط فرّغ أفكارك ودع الذكاء الاصطناعي ينظمها في خطط عمل."
+            },
+            "dump": {
+                "title": "فرّغ أي شيء",
+                "description": "اضغط على أيقونة القلم أو ⌘K في أي مكان لالتقاط فكرة. لا تقلق بشأن الهيكل."
+            },
+            "ai": {
+                "title": "دع الذكاء الاصطناعي يعمل",
+                "description": "سنجمع أفكارك في خيوط، ونجد الروابط، ونساعدك على تحويلها إلى واقع."
+            }
+        },
+        "getStarted": "ابدأ الآن",
+        "next": "التالي"
+    },
+    "thread": {
+        "notFound": "الخيط غير موجود",
+        "stateLabels": {
+            "seed": "فكرة جديدة للاستكشاف",
+            "active": "يفكر بنشاط",
+            "deciding": "قرار مطلوب",
+            "stuck": "شعور بالعلق",
+            "parked": "معلق حالياً",
+            "done": "تم الحل"
+        },
+        "state": "الحالة",
+        "groundingNote": "ملاحظة تأسيسية",
+        "whyThisState": "لماذا هذه الحالة؟",
+        "timeline": "الجدول الزمني",
+        "newestFirst": "الأحدث أولاً",
+        "oldestFirst": "الأقدم أولاً",
+        "noEntries": "لا توجد مدخلات بعد.",
+        "related": "ذو صلة",
+        "addNotePlaceholder": "أضف ملاحظة جديدة لهذا الخيط...",
+        "add": "إضافة",
+        "adding": "جارٍ الإضافة...",
+        "toast": {
+            "noteAdded": "تمت إضافة الملاحظة وتجميعها.",
+            "noteAddedSimple": "تمت إضافة الملاحظة.",
+            "noteFailed": "فشل إضافة الملاحظة."
+        },
+        "dates": {
+            "today": "اليوم",
+            "yesterday": "أمس",
+            "daysAgo": "منذ {days} يوم"
+        }
+    },
+    "login": {
+        "tagline": "شريكك في التفكير بالذكاء الاصطناعي. فرّغ أفكارك، احصل على الوضوح.",
+        "continueWithGoogle": "المتابعة مع Google",
+        "footer": "نفس الحساب مثل rynk chat.",
+        "errors": {
+            "accountLinked": "هذا البريد مرتبط بحساب آخر بالفعل.",
+            "generic": "حدث خطأ ما. حاول مرة أخرى."
+        }
+    },
+    "subscription": {
+        "title": "الاشتراك",
+        "description": "إدارة خطتك وحدود الاستخدام.",
+        "currentUsage": "الاستخدام الحالي",
+        "unlimitedAccess": "لديك وصول غير محدود.",
+        "usageOf": "لقد استخدمت {usage} من {limit} تفريغ شهري.",
+        "dumps": "{usage} / {limit} تفريغ",
+        "free": {
+            "name": "مجاني",
+            "description": "مثالي للبدء",
+            "price": "$0",
+            "perMonth": "/شهر",
+            "features": {
+                "dumps": "50 تفريغ / شهر",
+                "ai": "تنظيم ذكاء اصطناعي أساسي"
+            }
+        },
+        "standard": {
+            "name": "قياسي",
+            "description": "للمفكرين الجادين",
+            "price": "$5.99",
+            "perMonth": "/شهر",
+            "current": "الحالي",
+            "features": {
+                "dumps": "تفريغات غير محدودة",
+                "ai": "نماذج ذكاء اصطناعي متقدمة",
+                "support": "دعم ذو أولوية"
+            }
+        },
+        "currentPlan": "الخطة الحالية",
+        "downgrade": "تخفيض",
+        "manageSubscription": "إدارة الاشتراك",
+        "upgradeToStandard": "الترقية إلى القياسي",
+        "checkoutFailed": "فشل الدفع",
+        "error": "حدث خطأ"
+    },
+    "language": {
+        "label": "اللغة",
+        "en": "English",
+        "es": "Español",
+        "fr": "Français",
+        "de": "Deutsch",
+        "pt": "Português",
+        "it": "Italiano",
+        "nl": "Nederlands",
+        "ru": "Русский",
+        "zh": "中文",
+        "ja": "日本語",
+        "ko": "한국어",
+        "ar": "العربية",
+        "he": "עברית",
+        "hi": "हिन्दी",
+        "bn": "বাংলা",
+        "tr": "Türkçe",
+        "vi": "Tiếng Việt",
+        "th": "ไทย",
+        "id": "Bahasa Indonesia",
+        "pl": "Polski",
+        "sv": "Svenska"
+    }
+}
