@@ -168,7 +168,7 @@ export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
                                 placeholder="What's on your mind?"
                                 className={cn(
                                     "w-full min-h-[30vh] max-h-[70vh]",
-                                    "bg-transparent text-foreground text-3xl md:text-5xl font-light leading-snug md:leading-tight tracking-tight",
+                                    "bg-transparent text-foreground text-2xl md:text-3xl font-light leading-relaxed tracking-tight",
                                     "placeholder:text-muted-foreground/30",
                                     "focus:outline-none resize-none"
                                 )}
