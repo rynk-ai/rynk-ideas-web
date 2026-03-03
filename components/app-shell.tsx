@@ -14,6 +14,7 @@ interface AppShellProps {
 
 export function AppShell({ children }: AppShellProps) {
     const pathname = usePathname();
+    const isThreadPage = pathname?.startsWith("/thread/");
     const { data: session } = useSession();
     const user = session?.user;
     const [dumpOpen, setDumpOpen] = useState(false);
@@ -63,237 +64,80 @@ export function AppShell({ children }: AppShellProps) {
         : "?";
 
     return (
-        <div className="min-h-screen flex bg-background">
+        <div className="min-h-screen flex flex-col bg-background">
             {/* Sidebar (Desktop) */}
-            <aside className="hidden md:flex flex-none w-[52px] border-r border-border/30 flex-col items-center py-4 gap-1">
+            {/* Top Navigation */}
+            <header className="flex-none h-14 md:h-16 border-b border-border/40 bg-background/80 backdrop-blur-xl flex items-center px-4 md:px-8 justify-between sticky top-0 z-40">
                 {/* Brand */}
-                <a href="/" className="mb-4 group" title="rynk ideas">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-muted-foreground/70 group-hover:text-foreground transition-colors">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor" opacity="0.1" />
-                        <circle cx="12" cy="12" r="3" fill="currentColor" />
-                    </svg>
-                </a>
+                <a href="/" className="flex items-center gap-2 group" title="rynk ideas">
+                    <div className="max-w-6xl mx-auto">
+                        <h1 className="text-lg font-semibold tracking-tight">
+                            <span className="gradient-text">rynk</span>{" "}
+                            <span className="text-foreground/80">ideas</span>
+                        </h1>
+                    </div>       </a >
 
-                {/* Nav icons */}
-                <button
-                    onClick={() => window.location.href = "/"}
-                    className={cn(
-                        "sidebar-icon",
-                        pathname === "/" && "sidebar-icon-active"
-                    )}
-                    title="Board"
-                >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="3" y="3" width="7" height="7" rx="1" />
-                        <rect x="14" y="3" width="7" height="7" rx="1" />
-                        <rect x="3" y="14" width="7" height="7" rx="1" />
-                        <rect x="14" y="14" width="7" height="7" rx="1" />
-                    </svg>
-                </button>
-
-                <button
-                    onClick={() => setDumpOpen(true)}
-                    className="sidebar-icon"
-                    title="Quick Dump"
-                >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M12 20h9" />
-                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
-                    </svg>
-                </button>
-
-                {/* Spacer */}
-                <div className="flex-1" />
-
-                {/* Settings or Sign In */}
-                {!user ? (
-                    <button
-                        onClick={() => window.location.href = "/api/auth/signin"}
-                        className="sidebar-icon"
-                        title="Sign In"
-                    >
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-                            <polyline points="10 17 15 12 10 7" />
-                            <line x1="15" x2="3" y1="12" y2="12" />
-                        </svg>
-                    </button>
-                ) : (
-                    <div className="relative" ref={settingsRef}>
-                        <button
-                            onClick={() => setSettingsOpen(!settingsOpen)}
-                            className={cn(
-                                "sidebar-icon",
-                                settingsOpen && "sidebar-icon-active"
-                            )}
-                            title="Settings"
-                        >
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                <circle cx="12" cy="12" r="3" />
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                            </svg>
-                        </button>
-
-                        {/* Popover */}
-                        {settingsOpen && (
-                            <div className={cn(
-                                "absolute left-[56px] bottom-0",
-                                "w-56 rounded-xl shadow-xl",
-                                "bg-card border border-border/50",
-                                "animate-fade-slide-up",
-                                "z-50"
-                            )}>
-                                {/* User info */}
-                                <div className="p-4 border-b border-border/30">
-                                    <div className="flex items-center gap-3">
-                                        {user?.image ? (
-                                            <img
-                                                src={user.image}
-                                                alt=""
-                                                className="w-8 h-8 rounded-full"
-                                            />
-                                        ) : (
-                                            <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-semibold">
-                                                {initials}
-                                            </div>
-                                        )}
-                                        <div className="min-w-0">
-                                            <div className="text-sm font-medium text-foreground/90 truncate">
-                                                {user?.name || "User"}
-                                            </div>
-                                            <div className="text-[11px] text-muted-foreground/70 truncate">
-                                                {user?.email || ""}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Actions */}
-                                <div className="p-1.5 space-y-1">
-                                    <button
-                                        onClick={() => {
-                                            setSettingsOpen(false);
-                                            window.location.href = "/settings/subscription";
-                                        }}
-                                        className={cn(
-                                            "flex items-center gap-2 w-full px-3 py-2 rounded-lg",
-                                            "text-sm text-muted-foreground",
-                                            "hover:bg-card/80 hover:text-foreground",
-                                            "transition-colors"
-                                        )}
-                                    >
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                            <rect x="2" y="4" width="20" height="16" rx="2" />
-                                            <line x1="2" y1="10" x2="22" y2="10" />
-                                            <line x1="7" y1="15" x2="7.01" y2="15" />
-                                            <line x1="11" y1="15" x2="13" y2="15" />
-                                        </svg>
-                                        Subscription
-                                    </button>
-                                    <button
-                                        onClick={() => signOut({ callbackUrl: "/login" })}
-                                        className={cn(
-                                            "flex items-center gap-2 w-full px-3 py-2 rounded-lg",
-                                            "text-sm text-muted-foreground/80",
-                                            "hover:bg-card/80 hover:text-foreground",
-                                            "transition-colors"
-                                        )}
-                                    >
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                                            <polyline points="16 17 21 12 16 7" />
-                                            <line x1="21" x2="9" y1="12" y2="12" />
-                                        </svg>
-                                        Sign out
-                                    </button>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                )}
-            </aside>
-
-            {/* Main content */}
-            <main className="flex-1 min-w-0 overflow-auto pb-20 md:pb-0">
-                {children}
-            </main>
-            {/* Mobile Bottom Nav */}
-            <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-card/80 backdrop-blur-xl border-t border-border/50 pb-safe">
-                <div className="flex items-center justify-around h-16 px-2">
-                    <button
-                        onClick={() => window.location.href = "/"}
-                        className={cn(
-                            "flex flex-col items-center justify-center w-16 gap-1",
-                            "text-muted-foreground/70 transition-colors",
-                            pathname === "/" && "text-foreground"
-                        )}
-                    >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                            <rect x="3" y="3" width="7" height="7" rx="1" />
-                            <rect x="14" y="3" width="7" height="7" rx="1" />
-                            <rect x="3" y="14" width="7" height="7" rx="1" />
-                            <rect x="14" y="14" width="7" height="7" rx="1" />
-                        </svg>
-                        <span className="text-[9px] font-medium tracking-wide">BOARD</span>
-                    </button>
-
+                <div className="flex items-center gap-3 md:gap-4">
+                    {/* Desktop Dump Button */}
                     <button
                         onClick={() => setDumpOpen(true)}
-                        className="flex flex-col items-center justify-center w-16 gap-1 text-muted-foreground/70 hover:text-foreground transition-colors"
+                        className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-foreground text-background font-medium hover:bg-foreground/90 transition-colors text-sm"
                     >
-                        <div className="p-2 rounded-full bg-foreground text-background shadow-lg transform -translate-y-4 border-4 border-background">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M12 5v14M5 12h14" />
-                            </svg>
-                        </div>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M12 5v14M5 12h14" />
+                        </svg>
+                        New Dump <span className="text-background/60 ml-1 text-xs font-mono">⌘K</span>
                     </button>
 
+                    {/* Settings or Sign In */}
                     {!user ? (
                         <button
                             onClick={() => window.location.href = "/api/auth/signin"}
-                            className="flex flex-col items-center justify-center w-16 gap-1 text-muted-foreground/70 hover:text-foreground transition-colors"
+                            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                         >
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-                                <polyline points="10 17 15 12 10 7" />
-                                <line x1="15" x2="3" y1="12" y2="12" />
-                            </svg>
-                            <span className="text-[9px] font-medium tracking-wide">SIGN IN</span>
+                            Sign In
                         </button>
                     ) : (
-                        <div className="relative" ref={mobileSettingsRef}>
+                        <div className="relative" ref={settingsRef}>
                             <button
                                 onClick={() => setSettingsOpen(!settingsOpen)}
                                 className={cn(
-                                    "flex flex-col items-center justify-center w-16 gap-1",
-                                    "text-muted-foreground/70 transition-colors",
-                                    settingsOpen && "text-foreground"
+                                    "flex p-0.5 rounded-full border-2 transition-colors",
+                                    settingsOpen ? "border-foreground" : "border-transparent hover:border-border"
                                 )}
+                                title="Settings"
                             >
                                 {user?.image ? (
-                                    <img src={user.image} alt="" className="w-5 h-5 rounded-full" />
+                                    <img
+                                        src={user.image}
+                                        alt=""
+                                        className="w-7 h-7 md:w-8 md:h-8 rounded-full"
+                                    />
                                 ) : (
-                                    <div className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[9px] font-bold">
+                                    <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-muted text-foreground flex items-center justify-center text-xs font-semibold">
                                         {initials}
                                     </div>
                                 )}
-                                <span className="text-[9px] font-medium tracking-wide">YOU</span>
                             </button>
 
+                            {/* Settings Dropdown */}
                             {settingsOpen && (
                                 <div className={cn(
-                                    "absolute right-0 bottom-full mb-4",
-                                    "w-64 rounded-2xl shadow-2xl",
+                                    "absolute right-0 top-full mt-2 w-64 rounded-xl shadow-xl",
                                     "bg-card border border-border/50",
-                                    "animate-fade-slide-up",
+                                    "animate-fade-slide-up origin-top-right",
                                     "z-50 overflow-hidden"
                                 )}>
-                                    <div className="p-4 bg-muted/30 border-b border-border/30">
+                                    <div className="p-4 bg-muted/20 border-b border-white/5">
                                         <div className="flex items-center gap-3">
                                             {user?.image ? (
-                                                <img src={user.image} alt="" className="w-10 h-10 rounded-full" />
+                                                <img
+                                                    src={user.image}
+                                                    alt=""
+                                                    className="w-10 h-10 rounded-full"
+                                                />
                                             ) : (
-                                                <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-bold">
+                                                <div className="w-10 h-10 rounded-full bg-muted text-foreground flex items-center justify-center text-sm font-semibold">
                                                     {initials}
                                                 </div>
                                             )}
@@ -301,21 +145,22 @@ export function AppShell({ children }: AppShellProps) {
                                                 <div className="text-sm font-medium text-foreground truncate">
                                                     {user?.name || "User"}
                                                 </div>
-                                                <div className="text-xs text-muted-foreground/80 truncate">
-                                                    {user?.email}
+                                                <div className="text-xs text-muted-foreground truncate">
+                                                    {user?.email || ""}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="p-2 space-y-1">
+
+                                    <div className="p-1 space-y-0.5">
                                         <button
                                             onClick={() => {
                                                 setSettingsOpen(false);
                                                 window.location.href = "/settings/subscription";
                                             }}
-                                            className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm text-foreground hover:bg-muted/50 transition-colors"
+                                            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-foreground hover:bg-muted/50 transition-colors"
                                         >
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                                 <rect x="2" y="4" width="20" height="16" rx="2" />
                                                 <line x1="2" y1="10" x2="22" y2="10" />
                                                 <line x1="7" y1="15" x2="7.01" y2="15" />
@@ -325,9 +170,9 @@ export function AppShell({ children }: AppShellProps) {
                                         </button>
                                         <button
                                             onClick={() => signOut({ callbackUrl: "/login" })}
-                                            className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm text-red-400 hover:bg-red-400/10 transition-colors"
+                                            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-red-500 hover:bg-red-500/10 transition-colors"
                                         >
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                                 <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                                                 <polyline points="16 17 21 12 16 7" />
                                                 <line x1="21" x2="9" y1="12" y2="12" />
@@ -340,15 +185,36 @@ export function AppShell({ children }: AppShellProps) {
                         </div>
                     )}
                 </div>
-            </nav>
+            </header >
+
+            {/* Main content */}
+            < main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-6 pb-24 md:pb-6" >
+                {children}
+            </main >
+            {/* Mobile FAB */}
+            {!isThreadPage && (
+                <div className="md:hidden fixed bottom-6 right-6 z-40 animate-fade-slide-up">
+                    <button
+                        onClick={() => setDumpOpen(true)}
+                        className="flex items-center justify-center w-14 h-14 rounded-full bg-foreground text-background shadow-xl hover:scale-105 active:scale-95 transition-transform"
+                        title="Quick Dump"
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M12 5v14M5 12h14" />
+                        </svg>
+                    </button>
+                </div>
+            )}
+
 
             {/* Dump Modal */}
-            <DumpModal
+            < DumpModal
                 open={dumpOpen}
-                onClose={() => setDumpOpen(false)}
+                onClose={() => setDumpOpen(false)
+                }
                 onComplete={handleDumpComplete}
             />
-        </div>
+        </div >
     );
 }
 

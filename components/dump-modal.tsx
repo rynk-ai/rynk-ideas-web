@@ -79,12 +79,19 @@ export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
             const result = await saveDump(content.trim());
 
             setPhase("processing");
-            await processDump(result.id);
+            const processResult = await processDump(result.id);
 
             setPhase("done");
+
+            if (processResult?.affectedThreadTitles?.length > 0) {
+                toast.success(`Good Job working on ${processResult.affectedThreadTitles.join(", ")}`);
+            } else {
+                toast.success("Thought captured securely.");
+            }
+
             setTimeout(() => {
                 onComplete();
-            }, 500);
+            }, 800);
         } catch (error: any) {
             console.error("Failed:", error);
             setPhase("writing");
@@ -117,38 +124,42 @@ export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
         <div className="fixed inset-0 z-50">
             {/* Backdrop */}
             <div
-                className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in"
+                className="absolute inset-0 bg-background/95 backdrop-blur-2xl animate-fade-in"
             />
 
-            {/* Modal */}
+            {/* Modal Container */}
             <div
-                className="absolute inset-0 flex items-center justify-center p-6"
+                className="absolute inset-0 flex flex-col p-6"
                 onClick={(e) => {
                     if (e.target === e.currentTarget && phase === "writing") {
                         onClose();
                     }
                 }}
             >
-                <div className={cn(
-                    "relative w-full w-[95vw] md:max-w-2xl",
-                    "bg-card border border-border/50 rounded-2xl shadow-2xl",
-                    "animate-fade-slide-up"
-                )}>
-                    {phase === "writing" && (
+                {/* Header Actions */}
+                {phase === "writing" && (
+                    <div className="flex justify-end w-full max-w-5xl mx-auto pt-4 pb-12 opacity-50 hover:opacity-100 transition-opacity">
                         <button
                             onClick={onClose}
-                            className="absolute right-3 top-3 p-2 rounded-lg text-muted-foreground/70 hover:text-foreground transition-colors z-10"
-                            title="Close"
+                            className="p-3 rounded-full hover:bg-muted transition-colors flex items-center gap-2 text-sm"
+                            title="Close (Esc)"
                         >
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <span className="hidden md:block text-muted-foreground mr-1">Close</span>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                 <line x1="18" y1="6" x2="6" y2="18" />
                                 <line x1="6" y1="6" x2="18" y2="18" />
                             </svg>
                         </button>
-                    )}
+                    </div>
+                )}
 
+                {/* Main Input Area */}
+                <div className={cn(
+                    "relative w-full max-w-3xl mx-auto flex-1 flex flex-col",
+                    "animate-fade-slide-up"
+                )}>
                     {phase === "writing" ? (
-                        <div className="p-6">
+                        <div className="flex-1 flex flex-col justify-center">
                             <textarea
                                 ref={textareaRef}
                                 value={content}
@@ -156,40 +167,39 @@ export function DumpModal({ open, onClose, onComplete }: DumpModalProps) {
                                 onKeyDown={handleKeyDown}
                                 placeholder="What's on your mind?"
                                 className={cn(
-                                    "w-full min-h-[200px] max-h-[50vh]",
-                                    "bg-transparent text-foreground text-base leading-relaxed",
-                                    "placeholder:text-muted-foreground/60",
-                                    "focus:outline-none resize-none",
-                                    "font-sans"
+                                    "w-full min-h-[30vh] max-h-[70vh]",
+                                    "bg-transparent text-foreground text-3xl md:text-5xl font-light leading-snug md:leading-tight tracking-tight",
+                                    "placeholder:text-muted-foreground/30",
+                                    "focus:outline-none resize-none"
                                 )}
                             />
 
                             {/* Footer */}
-                            <div className="flex items-center justify-between mt-4 pt-3 border-t border-border/30">
-                                <div className="flex items-center gap-1">
-                                    <button className="p-2 rounded-lg text-muted-foreground/70 hover:text-muted-foreground transition-colors" title="Attach">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48" /></svg>
+                            <div className="flex items-center justify-between mt-8 pt-4 border-t border-border/40 opacity-70 focus-within:opacity-100 transition-opacity">
+                                <div className="flex items-center gap-2">
+                                    <button className="p-3 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground" title="Attach">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48" /></svg>
                                     </button>
-                                    <button className="p-2 rounded-lg text-muted-foreground/70 hover:text-muted-foreground transition-colors" title="Voice">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1="12" x2="12" y1="19" y2="22" /></svg>
+                                    <button className="p-3 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground" title="Voice">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1="12" x2="12" y1="19" y2="22" /></svg>
                                     </button>
                                 </div>
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-4">
                                     {content.trim().length > 0 && (
-                                        <span className="hidden md:inline text-[11px] text-muted-foreground/50 font-mono">
-                                            ⌘ Enter
+                                        <span className="hidden md:inline text-sm text-muted-foreground/50 font-mono tracking-widest">
+                                            ⌘ ENTER
                                         </span>
                                     )}
                                     <button
                                         onClick={handleSubmit}
                                         disabled={!content.trim()}
                                         className={cn(
-                                            "px-3 py-1.5 rounded-lg text-sm font-medium transition-all",
-                                            "bg-foreground text-background hover:bg-foreground/90",
-                                            "disabled:opacity-50 disabled:cursor-not-allowed"
+                                            "px-6 py-3 rounded-full text-base font-medium transition-all",
+                                            "bg-foreground text-background hover:scale-[1.02]",
+                                            "disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:scale-100"
                                         )}
                                     >
-                                        Dump it
+                                        Dump
                                     </button>
                                 </div>
                             </div>

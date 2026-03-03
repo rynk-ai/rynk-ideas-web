@@ -198,53 +198,7 @@
         background-clip: text;
     }
 
-    /* ====== STATE DOTS ====== */
-    .state-dot {
-        @apply w-2 h-2 rounded-full inline-block;
-    }
 
-    .state-seed {
-        @apply bg-emerald-400;
-    }
-
-    .state-active {
-        @apply bg-blue-400;
-    }
-
-    .state-deciding {
-        @apply bg-amber-400;
-    }
-
-    .state-stuck {
-        @apply bg-red-400;
-    }
-
-    .state-parked {
-        @apply bg-zinc-400;
-    }
-
-    .state-done {
-        @apply bg-emerald-600;
-    }
-
-    /* ====== GROUNDING NOTE CARD ====== */
-    .card-grounding {
-        @apply rounded-[var(--radius)] p-4;
-        background: rgba(180, 83, 9, 0.08);
-        border: 1px solid rgba(245, 158, 11, 0.25);
-    }
-
-    .dark .card-grounding {
-        background: rgba(180, 83, 9, 0.12);
-        border: 1px solid rgba(245, 158, 11, 0.20);
-    }
-
-    /* ====== KANBAN COLUMN ====== */
-    .kanban-column {
-        min-width: 280px;
-        max-width: 320px;
-        flex-shrink: 0;
-    }
 
     /* ====== FADE SLIDE UP ====== */
     .animate-fade-slide-up {
@@ -263,36 +217,7 @@
         }
     }
 
-    /* ====== BORDERLESS TEXTAREA ====== */
-    .textarea-sacred {
-        background: transparent;
-        border: none;
-        outline: none;
-        resize: none;
-        caret-color: rgba(165, 180, 252, 0.8);
-    }
 
-    .textarea-sacred::placeholder {
-        color: rgba(255, 255, 255, 0.4);
-    }
-
-    .textarea-sacred:focus {
-        outline: none;
-        box-shadow: none;
-    }
-
-    /* ====== SIDEBAR ====== */
-    .sidebar-icon {
-        @apply w-9 h-9 rounded-lg flex items-center justify-center;
-        @apply text-muted-foreground/70 hover:text-foreground;
-        @apply hover:bg-card/50;
-        @apply transition-all duration-150;
-        @apply cursor-pointer;
-    }
-
-    .sidebar-icon-active {
-        @apply text-foreground/80 bg-card/80;
-    }
 
     /* ====== MODAL FADE IN ====== */
     .animate-fade-in {

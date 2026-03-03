@@ -4,22 +4,19 @@ import { cn } from "@/lib/utils";
 import { useThreads } from "@/hooks/use-rynk-data";
 import { OnboardingContent } from "@/components/onboarding-content";
 
-const COLUMNS = [
-    { key: "seed", label: "TO EXPLORE" },
-    { key: "active", label: "THINKING ABOUT" },
-    { key: "deciding", label: "DECIDING" },
-    { key: "stuck", label: "STUCK" },
-    { key: "parked", label: "ON HOLD" },
-    { key: "done", label: "RESOLVED" },
-];
+const STATE_CONFIG: Record<string, { label: string; className: string }> = {
+    seed: { label: "Exploring", className: "bg-blue-500/10 text-blue-500 border-blue-500/20" },
+    active: { label: "Active", className: "bg-emerald-500/10 text-emerald-500 border-emerald-500/20" },
+    deciding: { label: "Deciding", className: "bg-amber-500/10 text-amber-500 border-amber-500/20" },
+    stuck: { label: "Stuck", className: "bg-red-500/10 text-red-500 border-red-500/20" },
+    parked: { label: "Parked", className: "bg-zinc-500/10 text-zinc-400 border-zinc-500/20" },
+    done: { label: "Resolved", className: "bg-purple-500/10 text-purple-500 border-purple-500/20" },
+};
 
 export default function BoardPage() {
     const { threads, loading } = useThreads();
 
-    const grouped = COLUMNS.map((col) => ({
-        ...col,
-        threads: threads.filter((t) => t.state === col.key),
-    })).filter((col) => col.threads.length > 0);
+
 
     if (loading) {
         return (
@@ -49,59 +46,45 @@ export default function BoardPage() {
 
     return (
         <div className="p-4 md:p-6">
-            {/* Header */}
-            <div className="max-w-6xl mx-auto mb-8">
-                <h1 className="text-lg font-semibold tracking-tight">
-                    <span className="gradient-text">rynk</span>{" "}
-                    <span className="text-foreground/80">ideas</span>
-                </h1>
-            </div>
 
-            {/* Kanban */}
-            <div className="max-w-6xl mx-auto">
-                <div className="flex gap-4 md:gap-5 overflow-x-auto pb-24 md:pb-4 -mx-4 px-4 md:mx-0 md:px-0 snap-x snap-mandatory md:snap-none no-scrollbar">
-                    {grouped.map((column) => (
-                        <div
-                            key={column.key}
-                            className="flex-none w-[85vw] md:w-[260px] snap-center md:snap-align-none"
-                        >
-                            {/* Column header */}
-                            <div className="flex items-center gap-2 mb-4 px-1">
-                                <span className="text-[11px] font-mono font-medium tracking-widest text-muted-foreground/80 uppercase">
-                                    {column.label}
-                                </span>
-                                <span className="text-[10px] font-mono text-muted-foreground/60">
-                                    {column.threads.length}
-                                </span>
-                            </div>
 
-                            {/* Cards */}
-                            <div className="space-y-2.5">
-                                {column.threads.map((thread) => (
-                                    <div
-                                        key={thread.id}
-                                        className="group block"
-                                    >
-                                        <a href={`/thread/${thread.id}`} className={cn(
-                                            "block rounded-lg p-4",
-                                            "bg-card/60 border border-border/30",
-                                            "hover:border-border/60 hover:bg-card/80",
-                                            "transition-all duration-150"
+            {/* Masonry Grid */}
+            <div className="max-w-7xl mx-auto">
+                <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6">
+                    {threads.map((thread) => {
+                        const stateCfg = STATE_CONFIG[thread.state] || STATE_CONFIG.seed;
+                        return (
+                            <div
+                                key={thread.id}
+                                className="break-inside-avoid"
+                            >
+                                <a href={`/thread/${thread.id}`} className={cn(
+                                    "block rounded-2xl p-5 md:p-6",
+                                    "bg-card/40 border border-border/30",
+                                    "hover:border-border/60 hover:bg-card/60",
+                                    "transition-all duration-200"
+                                )}>
+                                    <div className="flex items-start justify-between gap-4 mb-3">
+                                        <h3 className="text-sm md:text-base font-medium text-foreground leading-snug">
+                                            {thread.title}
+                                        </h3>
+                                        {/* State Badge */}
+                                        <span className={cn(
+                                            "flex-none inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium border",
+                                            stateCfg.className
                                         )}>
-                                            <h3 className="text-[13px] font-semibold text-foreground/90 leading-snug mb-1 line-clamp-2">
-                                                {thread.title}
-                                            </h3>
-                                            {thread.summary && (
-                                                <p className="text-[12px] text-muted-foreground/80 leading-relaxed line-clamp-2">
-                                                    {thread.summary}
-                                                </p>
-                                            )}
-                                        </a>
+                                            {stateCfg.label}
+                                        </span>
                                     </div>
-                                ))}
+                                    {thread.summary && (
+                                        <p className="text-[13px] text-muted-foreground/80 leading-relaxed line-clamp-4">
+                                            {thread.summary}
+                                        </p>
+                                    )}
+                                </a>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </div>

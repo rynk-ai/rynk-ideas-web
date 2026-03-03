@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
             userId = `guest:${ipHash}`;
         }
 
-        const { dumpId } = await req.json();
+        const { dumpId, threadId: targetThreadId } = await req.json();
 
         if (!dumpId) {
             return NextResponse.json({ error: "dumpId is required" }, { status: 400 });
@@ -50,15 +50,23 @@ export async function POST(req: NextRequest) {
         }
 
         // 2. Fetch existing threads for context-aware segmentation
-        const { results: existingThreads } = await db
-            .prepare(
-                `SELECT id, title, summary, state, segmentCount
+        let existingThreadsQuery = `SELECT id, title, summary, state, segmentCount
          FROM idea_threads
          WHERE userId = ?
          ORDER BY lastActivityAt DESC
-         LIMIT 20`
-            )
-            .bind(userId)
+         LIMIT 20`;
+        let queryArgs = [userId];
+
+        if (targetThreadId) {
+            existingThreadsQuery = `SELECT id, title, summary, state, segmentCount
+         FROM idea_threads
+         WHERE userId = ? AND id = ?`;
+            queryArgs = [userId, targetThreadId];
+        }
+
+        const { results: existingThreads } = await db
+            .prepare(existingThreadsQuery)
+            .bind(...queryArgs)
             .all() as any;
 
         const threadContext: ThreadContext[] = (existingThreads || []).map((t: any) => ({
@@ -91,10 +99,15 @@ export async function POST(req: NextRequest) {
             const vector = await embedSegment(ai, seg.text);
 
             // Cluster: use thread hint from segmenter if available
-            const clusterResult = await clusterSegment(
-                db, vectorize, segmentId, vector, userId, seg.text,
-                seg.existingThreadHint  // pass the hint
-            );
+            let clusterResult;
+            if (targetThreadId) {
+                clusterResult = { threadId: targetThreadId, isNewThread: false };
+            } else {
+                clusterResult = await clusterSegment(
+                    db, vectorize, segmentId, vector, userId, seg.text,
+                    seg.existingThreadHint  // pass the hint
+                );
+            }
 
             // Store embedding with thread metadata
             await storeEmbedding(vectorize, segmentId, vector, {
