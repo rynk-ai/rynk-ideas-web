@@ -91,8 +91,8 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
 
             setNewNote("");
 
-            if (processResult?.affectedThreadTitles?.length > 0) {
-                toast.success(`Note added. Updated: ${processResult.affectedThreadTitles.join(", ")}`);
+            if (processResult?.threadsAffected > 0) {
+                toast.success("Note added and synthesized.");
             } else {
                 toast.success("Note added.");
             }

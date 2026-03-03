@@ -101,6 +101,22 @@ export async function POST(req: NextRequest) {
             // Cluster: use thread hint from segmenter if available
             let clusterResult;
             if (targetThreadId) {
+                await db
+                    .prepare(`UPDATE segments SET threadId = ?, confidence = 1.0 WHERE id = ?`)
+                    .bind(targetThreadId, segmentId)
+                    .run();
+
+                await db
+                    .prepare(
+                        `UPDATE idea_threads 
+               SET segmentCount = segmentCount + 1, 
+                   lastActivityAt = datetime('now'), 
+                   updatedAt = datetime('now')
+               WHERE id = ?`
+                    )
+                    .bind(targetThreadId)
+                    .run();
+
                 clusterResult = { threadId: targetThreadId, isNewThread: false };
             } else {
                 clusterResult = await clusterSegment(
