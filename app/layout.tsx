@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Manrope, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LocaleProvider } from "@/components/providers/locale-provider";
+import { FontProviderWrapper } from "@/components/providers/font-provider-wrapper";
 import { Toaster } from "sonner";
 import { ShellWrapper } from "@/components/shell-wrapper";
 import "./globals.css";

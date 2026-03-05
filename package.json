@@ -30,6 +30,7 @@
         "clsx": "^2.1.1",
         "dexie": "^4.3.0",
         "dexie-react-hooks": "^4.2.0",
+        "geist": "^1.7.0",
         "lucide-react": "^0.562.0",
         "next": "15.0.3",
         "next-auth": "5.0.0-beta.30",

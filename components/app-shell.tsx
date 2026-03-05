@@ -76,7 +76,10 @@ export function AppShell({ children }: AppShellProps) {
         : "?";
 
     return (
-        <div className="min-h-screen flex flex-col bg-background">
+        <div className={cn(
+            "flex flex-col bg-background",
+            isThreadPage ? "h-[100dvh] overflow-hidden" : "min-h-screen"
+        )}>
             {/* Top Navigation */}
             <header className="flex-none h-14 md:h-16 border-b border-border/40 bg-background/80 backdrop-blur-xl flex items-center px-4 md:px-8 justify-between sticky top-0 z-40">
                 {/* Brand */}
@@ -110,9 +113,9 @@ export function AppShell({ children }: AppShellProps) {
 
                         {langOpen && (
                             <div className={cn(
-                                "absolute right-0 top-full mt-2 w-48 max-h-80 overflow-y-auto rounded-xl shadow-xl",
+                                "absolute ltr:right-0 rtl:left-0 top-full mt-2 w-48 max-h-80 overflow-y-auto rounded-xl shadow-xl",
                                 "bg-card border border-border/50",
-                                "animate-fade-slide-up origin-top-right",
+                                "animate-fade-slide-up ltr:origin-top-right rtl:origin-top-left",
                                 "z-50"
                             )}>
                                 <div className="p-1">
@@ -185,9 +188,9 @@ export function AppShell({ children }: AppShellProps) {
                             {/* Settings Dropdown */}
                             {settingsOpen && (
                                 <div className={cn(
-                                    "absolute right-0 top-full mt-2 w-64 rounded-xl shadow-xl",
+                                    "absolute ltr:right-0 rtl:left-0 top-full mt-2 w-64 rounded-xl shadow-xl",
                                     "bg-card border border-border/50",
-                                    "animate-fade-slide-up origin-top-right",
+                                    "animate-fade-slide-up ltr:origin-top-right rtl:origin-top-left",
                                     "z-50 overflow-hidden"
                                 )}>
                                     <div className="p-4 bg-muted/20 border-b border-white/5">
@@ -250,7 +253,10 @@ export function AppShell({ children }: AppShellProps) {
             </header>
 
             {/* Main content */}
-            <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-6 pb-24 md:pb-6">
+            <main className={cn(
+                "flex-1 w-full mx-auto flex flex-col min-h-0",
+                !isThreadPage && "max-w-7xl px-4 sm:px-6 md:px-8 py-6 pb-24 md:pb-6"
+            )}>
                 {children}
             </main>
             {/* Mobile FAB */}

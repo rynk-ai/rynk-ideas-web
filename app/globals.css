@@ -7,56 +7,127 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ============================================
-   RYNK IDEAS — SWISS MODERN DESIGN SYSTEM
-   Inherited from rynk.io
+   RYNK "SWISS MODERN" DESIGN SYSTEM
+   Precision. Clarity. Bold Typography.
+   Inspired by International Typographic Style.
    ============================================ */
 
 @layer base {
     :root {
-        /* ====== PAPER & INK PALETTE (Light Mode) ====== */
+        /* ====== FUNCTIONAL TYPOGRAPHY ====== */
+        --heading-1: clamp(3rem, 7vw, 5.5rem);
+        --heading-2: clamp(2rem, 5vw, 4rem);
+        --heading-3: clamp(1.5rem, 3vw, 2.5rem);
+        --body: 1rem;
+        --caption: 0.875rem;
+
+        /* ====== SPACING SCALE ====== */
+        --space-1: 4px;
+        /* Tighter functional spacing */
+        --space-2: 8px;
+        --space-3: 12px;
+        --space-4: 16px;
+        --space-6: 24px;
+        --space-8: 32px;
+        --space-12: 48px;
+        --space-16: 64px;
+        --space-32: 128px;
+
+        /* ====== PAPER & INK PALETTE (Light Mode Default) ====== */
+        /* Background: Warm "Canvas" White */
         --background: 60 5% 98%;
+
+        /* Foreground: Soft Charcoal (Not pure black) */
         --foreground: 0 0% 12%;
+
+        /* Surface: Pure White for Cards/Panels */
         --card: 0 0% 100%;
         --card-foreground: 0 0% 12%;
+
+        /* Popover: Slightly warmer */
         --popover: 0 0% 100%;
         --popover-foreground: 0 0% 12%;
+
+        /* Primary: "Ink" Black */
         --primary: 0 0% 12%;
         --primary-foreground: 60 5% 98%;
+
+        /* Secondary: "Drafting" Grey */
         --secondary: 0 0% 95%;
         --secondary-foreground: 0 0% 12%;
+
+        /* Muted: Subtle annotations */
         --muted: 0 0% 96%;
         --muted-foreground: 0 0% 40%;
+
+        /* Accent: Functional highlight (e.g., active rows) */
         --accent: 0 0% 94%;
         --accent-foreground: 0 0% 12%;
+
+        /* Destructive: "Red Ink" correction */
         --destructive: 0 84% 60%;
         --destructive-foreground: 0 0% 98%;
+
+        /* Border: Crisp "Pencil" Grey */
         --border: 0 0% 88%;
         --input: 0 0% 88%;
         --ring: 0 0% 12%;
+
+        /* Radius: Softer, friendly */
         --radius: 0.75rem;
+
+        /* Sidebar similar to paper margin */
+        --sidebar: 60 5% 97%;
+        --sidebar-foreground: 0 0% 12%;
+        --sidebar-primary: 0 0% 12%;
+        --sidebar-primary-foreground: 0 0% 98%;
+        --sidebar-accent: 0 0% 93%;
+        --sidebar-accent-foreground: 0 0% 12%;
+        --sidebar-border: 0 0% 88%;
+        --sidebar-ring: 0 0% 80%;
     }
 
     .dark {
-        /* ====== DARK MODE ====== */
+        /* ====== DARK MODE (Inverted Paper) ====== */
+        /* Background: Deep Charcoal */
         --background: 240 5% 8%;
+
+        /* Foreground: Off-white */
         --foreground: 0 0% 95%;
+
         --card: 240 5% 10%;
         --card-foreground: 0 0% 95%;
+
         --popover: 240 5% 10%;
         --popover-foreground: 0 0% 95%;
+
         --primary: 0 0% 95%;
         --primary-foreground: 240 5% 10%;
+
         --secondary: 240 5% 14%;
         --secondary-foreground: 0 0% 95%;
+
         --muted: 240 4% 16%;
         --muted-foreground: 240 5% 60%;
+
         --accent: 240 4% 16%;
         --accent-foreground: 0 0% 95%;
+
         --destructive: 0 62% 30%;
         --destructive-foreground: 0 0% 95%;
+
         --border: 240 5% 18%;
         --input: 240 5% 18%;
         --ring: 240 5% 80%;
+
+        --sidebar: 240 5% 7%;
+        --sidebar-foreground: 0 0% 95%;
+        --sidebar-primary: 0 0% 95%;
+        --sidebar-primary-foreground: 240 5% 10%;
+        --sidebar-accent: 240 4% 16%;
+        --sidebar-accent-foreground: 0 0% 95%;
+        --sidebar-border: 240 5% 18%;
+        --sidebar-ring: 240 5% 80%;
     }
 }
 
@@ -74,6 +145,7 @@
         font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     }
 
+    /* ====== INTELLECTUAL TYPOGRAPHY ====== */
     h1,
     h2,
     h3,
@@ -90,18 +162,19 @@
     }
 
     ::selection {
-        background-color: rgba(165, 180, 252, 0.3);
-        color: inherit;
-    }
-
-    .dark ::selection {
-        background-color: rgba(165, 180, 252, 0.25);
+        background-color: #E2E2E2;
+        /* Subtle highlight */
+        color: #000000;
     }
 }
 
+/* ============================================
+   SWISS DESIGN UTILITIES
+   ============================================ */
+
 @layer utilities {
 
-    /* ====== SWISS TYPOGRAPHY ====== */
+    /* ====== SWISS TYPOGRAPHY CLASSES ====== */
     .swiss-headline {
         font-weight: 700;
         letter-spacing: -0.04em;
@@ -116,7 +189,7 @@
     }
 
     .swiss-mono {
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-family: 'SF Mono', 'Fira Code', ui-monospace, monospace;
         font-weight: 500;
         letter-spacing: 0.1em;
         text-transform: uppercase;
@@ -124,7 +197,7 @@
     }
 
     .swiss-label {
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-family: 'SF Mono', 'Fira Code', ui-monospace, monospace;
         font-weight: 500;
         letter-spacing: 0.1em;
         text-transform: uppercase;
@@ -132,9 +205,16 @@
         @apply text-muted-foreground;
     }
 
-    /* ====== FLAT CARDS ====== */
+    /* ====== GRID SYSTEM ====== */
+    .grid-swiss {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: var(--space-4);
+    }
+
+    /* ====== FLAT CARD (No shadows, sharp) ====== */
     .card-swiss {
-        @apply bg-card border border-border rounded-[var(--radius)];
+        @apply bg-card border border-border;
         transition: background-color 0.2s ease;
     }
 
@@ -142,12 +222,24 @@
         @apply bg-secondary;
     }
 
+    /* ====== DIVIDERS ====== */
+    .divider-swiss {
+        @apply w-full h-px bg-border;
+    }
+
+    .divider-thick {
+        @apply w-full h-[2px] bg-foreground;
+    }
+
     /* ====== INVISIBLE SCROLLBAR ====== */
-    .no-scrollbar::-webkit-scrollbar {
+    /* ====== INVISIBLE SCROLLBAR ====== */
+    .no-scrollbar::-webkit-scrollbar,
+    .scrollbar-hide::-webkit-scrollbar {
         display: none;
     }
 
-    .no-scrollbar {
+    .no-scrollbar,
+    .scrollbar-hide {
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
@@ -166,7 +258,16 @@
         @apply bg-border hover:bg-muted-foreground/30 transition-colors;
     }
 
-    /* ====== ANIMATIONS ====== */
+    /* ====== TEXT UTILITIES ====== */
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .text-pretty {
+        text-wrap: pretty;
+    }
+
+    /* ====== ANIMATION UTILITIES ====== */
     .animate-reveal {
         animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
@@ -180,6 +281,57 @@
         to {
             opacity: 1;
             transform: translateY(0);
+        }
+    }
+
+    /* ====== FOCUS STATES (Swiss precision) ====== */
+    .focus-swiss:focus-visible {
+        @apply outline-2 outline-offset-2 outline-foreground;
+    }
+
+    /* ====== GRADIENT MESH BACKGROUNDS ====== */
+    .gradient-mesh {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .gradient-mesh::before {
+        content: '';
+        position: absolute;
+        width: 150%;
+        height: 150%;
+        top: -25%;
+        left: -25%;
+        background:
+            radial-gradient(ellipse 80% 50% at 20% 40%, rgba(120, 119, 198, 0.15), transparent 50%),
+            radial-gradient(ellipse 60% 80% at 80% 20%, rgba(74, 86, 226, 0.12), transparent 50%),
+            radial-gradient(ellipse 50% 60% at 60% 80%, rgba(147, 51, 234, 0.08), transparent 50%);
+        animation: mesh-drift 20s ease-in-out infinite;
+    }
+
+    .dark .gradient-mesh::before {
+        background:
+            radial-gradient(ellipse 80% 50% at 20% 40%, rgba(120, 119, 198, 0.25), transparent 50%),
+            radial-gradient(ellipse 60% 80% at 80% 20%, rgba(74, 86, 226, 0.2), transparent 50%),
+            radial-gradient(ellipse 50% 60% at 60% 80%, rgba(147, 51, 234, 0.15), transparent 50%);
+    }
+
+    @keyframes mesh-drift {
+
+        0%,
+        100% {
+            transform: translate(0, 0) rotate(0deg);
+        }
+
+        33% {
+            transform: translate(2%, 1%) rotate(1deg);
+        }
+
+        66% {
+            transform: translate(-1%, 2%) rotate(-1deg);
         }
     }
 
@@ -198,39 +350,36 @@
         background-clip: text;
     }
 
-
-
-    /* ====== FADE SLIDE UP ====== */
-    .animate-fade-slide-up {
-        animation: fadeSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    .mask-linear-fade {
+        mask-image: linear-gradient(to right, transparent 0%, black 16px, black calc(100% - 16px), transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 16px, black calc(100% - 16px), transparent 100%);
     }
 
-    @keyframes fadeSlideUp {
-        from {
-            opacity: 0;
-            transform: translateY(8px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    /* ====== SUB-CHAT HIGHLIGHT ====== */
+    /* Styling for DOM-manipulated highlight spans in assistant messages */
+    .subchat-highlight {
+        display: inline;
+        @apply rounded-sm px-0.5 transition-colors;
+        background-color: rgba(250, 204, 21, 0.25);
+        /* Yellow highlight for visibility */
+        border-bottom: 2px solid rgba(250, 204, 21, 0.6);
+        cursor: pointer;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
     }
 
-
-
-    /* ====== MODAL FADE IN ====== */
-    .animate-fade-in {
-        animation: fadeIn 0.15s ease-out forwards;
+    .subchat-highlight:hover {
+        background-color: rgba(250, 204, 21, 0.4);
+        border-bottom-color: rgba(250, 204, 21, 0.8);
     }
 
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
+    .dark .subchat-highlight {
+        background-color: rgba(250, 204, 21, 0.2);
+        border-bottom: 2px solid rgba(250, 204, 21, 0.5);
+    }
 
-        to {
-            opacity: 1;
-        }
+    .dark .subchat-highlight:hover {
+        background-color: rgba(250, 204, 21, 0.35);
+        border-bottom-color: rgba(250, 204, 21, 0.7);
     }
 }
