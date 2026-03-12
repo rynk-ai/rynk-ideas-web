@@ -1,166 +1,180 @@
 {
-    "common": {
-        "loading": "טוען…",
-        "back": "← לוח",
-        "close": "סגור",
-        "user": "משתמש"
-    },
-    "appShell": {
-        "newDump": "דאמפ חדש",
-        "signIn": "התחברות",
-        "signOut": "התנתקות",
-        "subscription": "מנוי",
-        "settings": "הגדרות",
-        "quickDump": "דאמפ מהיר"
-    },
-    "board": {
-        "states": {
-            "seed": "חקירה",
-            "active": "פעיל",
-            "deciding": "החלטה",
-            "stuck": "תקוע",
-            "parked": "מושהה",
-            "done": "נפתר"
-        }
-    },
-    "dumpModal": {
-        "placeholder": "מה עובר לך בראש?",
-        "submit": "דאמפ",
-        "attach": "צרף",
-        "voice": "קול",
-        "saving": "שומר…",
-        "done": "בוצע",
-        "processing": {
-            "segmenting": "מפלח את המחשבות שלך…",
-            "patterns": "מוצא דפוסים…",
-            "connecting": "מתחבר לרעיונות קיימים…",
-            "synthesizing": "מסנתז שרשורים…"
-        },
-        "toast": {
-            "workingOn": "עבודה מצוינת על {titles}",
-            "captured": "המחשבה נלכדה בבטחה.",
-            "limitReached": "הגעת למגבלה החינמית",
-            "limitDescription": "השתמשת בקרדיטים שלך כאורח. התחבר כדי להמשיך.",
-            "failed": "השמירה נכשלה. נסה שוב."
-        }
-    },
-    "onboarding": {
-        "steps": {
-            "welcome": {
-                "title": "ברוכים הבאים ל-Rynk Ideas",
-                "description": "בינה מלאכותית ללא רעש. פשוט שפוך את המחשבות שלך, ותן ל-AI לארגן אותן לתוכניות פעולה."
-            },
-            "dump": {
-                "title": "שפוך הכול",
-                "description": "לחץ על סמל העט או ⌘K בכל מקום כדי ללכוד מחשבה. אל תדאג מהמבנה."
-            },
-            "ai": {
-                "title": "תן ל-AI לעבוד",
-                "description": "נקבץ את המחשבות שלך לשרשורים, נמצא קשרים, ונעזור לך להפוך אותם למציאות."
-            }
-        },
-        "getStarted": "בואו נתחיל",
-        "next": "הבא"
-    },
-    "thread": {
-        "notFound": "השרשור לא נמצא",
-        "stateLabels": {
-            "seed": "רעיון חדש לחקור",
-            "active": "חושב באופן פעיל",
-            "deciding": "נדרשת החלטה",
-            "stuck": "מרגיש תקוע",
-            "parked": "בהמתנה לעת עתה",
-            "done": "נפתר"
-        },
-        "state": "מצב",
-        "groundingNote": "הערת עיגון",
-        "whyThisState": "למה מצב זה?",
-        "timeline": "ציר זמן",
-        "newestFirst": "החדש ביותר קודם",
-        "oldestFirst": "הישן ביותר קודם",
-        "noEntries": "אין רשומות עדיין.",
-        "related": "קשור",
-        "addNotePlaceholder": "הוסף הערה חדשה לשרשור זה...",
-        "add": "הוסף",
-        "adding": "מוסיף...",
-        "toast": {
-            "noteAdded": "ההערה נוספה וסונתזה.",
-            "noteAddedSimple": "ההערה נוספה.",
-            "noteFailed": "הוספת ההערה נכשלה."
-        },
-        "dates": {
-            "today": "היום",
-            "yesterday": "אתמול",
-            "daysAgo": "לפני {days} ימים"
-        }
-    },
-    "login": {
-        "tagline": "שותף החשיבה שלך עם AI. שפוך מחשבות, קבל בהירות.",
-        "continueWithGoogle": "המשך עם Google",
-        "footer": "אותו חשבון כמו rynk chat.",
-        "errors": {
-            "accountLinked": "אימייל זה כבר משויך לחשבון אחר.",
-            "generic": "משהו השתבש. נסה שוב."
-        }
-    },
-    "subscription": {
-        "title": "מנוי",
-        "description": "נהל את התוכנית ומגבלות השימוש שלך.",
-        "currentUsage": "שימוש נוכחי",
-        "unlimitedAccess": "יש לך גישה בלתי מוגבלת.",
-        "usageOf": "השתמשת ב-{usage} מתוך {limit} דאמפים חודשיים.",
-        "dumps": "{usage} / {limit} דאמפים",
-        "free": {
-            "name": "חינם",
-            "description": "מושלם להתחלה",
-            "price": "$0",
-            "perMonth": "/חודש",
-            "features": {
-                "dumps": "50 דאמפים / חודש",
-                "ai": "ארגון AI בסיסי"
-            }
-        },
-        "standard": {
-            "name": "סטנדרט",
-            "description": "לחושבים רציניים",
-            "price": "$5.99",
-            "perMonth": "/חודש",
-            "current": "נוכחי",
-            "features": {
-                "dumps": "דאמפים ללא הגבלה",
-                "ai": "מודלים מתקדמים של AI",
-                "support": "תמיכה בעדיפות"
-            }
-        },
-        "currentPlan": "תוכנית נוכחית",
-        "downgrade": "שנמך",
-        "manageSubscription": "ניהול מנוי",
-        "upgradeToStandard": "שדרג לסטנדרט",
-        "checkoutFailed": "התשלום נכשל",
-        "error": "אירעה שגיאה"
-    },
-    "language": {
-        "label": "שפה",
-        "en": "English",
-        "es": "Español",
-        "fr": "Français",
-        "de": "Deutsch",
-        "pt": "Português",
-        "it": "Italiano",
-        "nl": "Nederlands",
-        "ru": "Русский",
-        "zh": "中文",
-        "ja": "日本語",
-        "ko": "한국어",
-        "ar": "العربية",
-        "he": "עברית",
-        "hi": "हिन्दी",
-        "bn": "বাংলা",
-        "tr": "Türkçe",
-        "vi": "Tiếng Việt",
-        "th": "ไทย",
-        "id": "Bahasa Indonesia",
-        "pl": "Polski",
-        "sv": "Svenska"
+  "common": {
+    "loading": "טוען…",
+    "back": "← לוח",
+    "close": "סגור",
+    "user": "משתמש"
+  },
+  "appShell": {
+    "newDump": "דאמפ חדש",
+    "signIn": "התחברות",
+    "signOut": "התנתקות",
+    "subscription": "מנוי",
+    "settings": "הגדרות",
+    "quickDump": "דאמפ מהיר"
+  },
+  "board": {
+    "states": {
+      "seed": "חקירה",
+      "active": "פעיל",
+      "deciding": "החלטה",
+      "stuck": "תקוע",
+      "parked": "מושהה",
+      "done": "נפתר"
     }
+  },
+  "dumpModal": {
+    "placeholder": "מה עובר לך בראש?",
+    "submit": "דאמפ",
+    "attach": "צרף",
+    "voice": "קול",
+    "saving": "שומר…",
+    "done": "בוצע",
+    "processing": {
+      "segmenting": "מפלח את המחשבות שלך…",
+      "patterns": "מוצא דפוסים…",
+      "connecting": "מתחבר לרעיונות קיימים…",
+      "synthesizing": "מסנתז שרשורים…"
+    },
+    "toast": {
+      "workingOn": "עבודה מצוינת על {titles}",
+      "captured": "המחשבה נלכדה בבטחה.",
+      "limitReached": "הגעת למגבלה החינמית",
+      "limitDescription": "השתמשת בקרדיטים שלך כאורח. התחבר כדי להמשיך.",
+      "failed": "השמירה נכשלה. נסה שוב."
+    }
+  },
+  "onboarding": {
+    "steps": {
+      "welcome": {
+        "title": "ברוכים הבאים ל-Rynk Ideas",
+        "description": "בינה מלאכותית ללא רעש. פשוט שפוך את המחשבות שלך, ותן ל-AI לארגן אותן לתוכניות פעולה."
+      },
+      "dump": {
+        "title": "שפוך הכול",
+        "description": "לחץ על סמל העט או ⌘K בכל מקום כדי ללכוד מחשבה. אל תדאג מהמבנה."
+      },
+      "ai": {
+        "title": "תן ל-AI לעבוד",
+        "description": "נקבץ את המחשבות שלך לשרשורים, נמצא קשרים, ונעזור לך להפוך אותם למציאות."
+      }
+    },
+    "getStarted": "בואו נתחיל",
+    "next": "הבא"
+  },
+  "thread": {
+    "notFound": "השרשור לא נמצא",
+    "stateLabels": {
+      "seed": "רעיון חדש לחקור",
+      "active": "חושב באופן פעיל",
+      "deciding": "נדרשת החלטה",
+      "stuck": "מרגיש תקוע",
+      "parked": "בהמתנה לעת עתה",
+      "done": "נפתר"
+    },
+    "state": "מצב",
+    "groundingNote": "הערת עיגון",
+    "whyThisState": "למה מצב זה?",
+    "timeline": "ציר זמן",
+    "newestFirst": "החדש ביותר קודם",
+    "oldestFirst": "הישן ביותר קודם",
+    "noEntries": "אין רשומות עדיין.",
+    "related": "קשור",
+    "addNotePlaceholder": "הוסף הערה חדשה לשרשור זה...",
+    "add": "הוסף",
+    "adding": "מוסיף...",
+    "toast": {
+      "noteAdded": "ההערה נוספה וסונתזה.",
+      "noteAddedSimple": "ההערה נוספה.",
+      "noteFailed": "הוספת ההערה נכשלה."
+    },
+    "dates": {
+      "today": "היום",
+      "yesterday": "אתמול",
+      "daysAgo": "לפני {days} ימים"
+    }
+  },
+  "login": {
+    "tagline": "שותף החשיבה שלך עם AI. שפוך מחשבות, קבל בהירות.",
+    "continueWithGoogle": "המשך עם Google",
+    "footer": "אותו חשבון כמו <link>rynk chat</link>.",
+    "errors": {
+      "accountLinked": "אימייל זה כבר משויך לחשבון אחר.",
+      "generic": "משהו השתבש. נסה שוב."
+    }
+  },
+  "subscription": {
+    "title": "מנוי",
+    "description": "נהל את התוכנית ומגבלות השימוש שלך.",
+    "currentUsage": "שימוש נוכחי",
+    "unlimitedAccess": "יש לך גישה בלתי מוגבלת.",
+    "usageOf": "השתמשת ב-{usage} מתוך {limit} דאמפים חודשיים.",
+    "dumps": "{usage} / {limit} דאמפים",
+    "free": {
+      "name": "חינם",
+      "description": "Start capturing and organizing your thoughts.",
+      "price": "$0",
+      "perMonth": "/חודש",
+      "features": {
+        "dumps": "50 דאמפים / חודש",
+        "ai": "ארגון AI בסיסי"
+      }
+    },
+    "standard": {
+      "name": "סטנדרט",
+      "description": "The complete package. Unlimited <link>Rynk Chat</link> and Ideas.",
+      "price": "$5.99",
+      "perMonth": "/חודש",
+      "current": "נוכחי",
+      "features": {
+        "dumps": "דאמפים ללא הגבלה",
+        "ai": "מודלים מתקדמים של AI",
+        "support": "תמיכה בעדיפות"
+      }
+    },
+    "currentPlan": "תוכנית נוכחית",
+    "downgrade": "שנמך",
+    "manageSubscription": "ניהול מנוי",
+    "upgradeToStandard": "שדרג לסטנדרט",
+    "checkoutFailed": "התשלום נכשל",
+    "error": "אירעה שגיאה",
+    "ideas": {
+      "name": "Ideas",
+      "description": "Just the board. Unlimited dumps and organization.",
+      "price": "$2.99",
+      "billing": "Monthly subscription for Rynk Ideas only.",
+      "current": "נוכחי",
+      "features": {
+        "dumps": "Unlimited Dumps",
+        "ai": "AI-Powered Organization",
+        "ideasOnly": "Rynk Ideas only"
+      },
+      "includedInStandard": "Included in Standard"
+    },
+    "upgradeToIdeas": "Upgrade to Ideas"
+  },
+  "language": {
+    "label": "שפה",
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "it": "Italiano",
+    "nl": "Nederlands",
+    "ru": "Русский",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "ar": "العربية",
+    "he": "עברית",
+    "hi": "हिन्दी",
+    "bn": "বাংলা",
+    "tr": "Türkçe",
+    "vi": "Tiếng Việt",
+    "th": "ไทย",
+    "id": "Bahasa Indonesia",
+    "pl": "Polski",
+    "sv": "Svenska"
+  }
 }

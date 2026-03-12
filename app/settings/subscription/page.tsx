@@ -91,7 +91,7 @@ function SubscriptionContent() {
             </Card>
 
             {/* Plans Section */}
-            <div className={isPro ? "grid gap-6 md:grid-cols-1 max-w-sm" : "grid gap-6 md:grid-cols-2 lg:grid-cols-3"}>
+            <div className={isPro ? "grid gap-6 md:grid-cols-1 max-w-sm mx-auto w-full" : "grid gap-6 md:grid-cols-2 lg:grid-cols-3"}>
                 {/* Free Plan */}
                 {!isPro && (
                     <Card className="border-primary">
@@ -121,100 +121,118 @@ function SubscriptionContent() {
                 )}
 
                 {/* Ideas Plan ($3) */}
-                <Card className={hasIdeasPro ? "border-primary relative overflow-hidden" : "relative overflow-hidden"}>
-                    {hasIdeasPro && (
-                        <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-bl-lg">
-                            {t("ideas.current")}
-                        </div>
-                    )}
-                    <CardHeader>
-                        <CardTitle>{t("ideas.name")}</CardTitle>
-                        <CardDescription>{t("ideas.description")}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="grid gap-4">
-                        <div className="text-3xl font-bold">{t("ideas.price")}</div>
-                        <p className="text-xs text-muted-foreground mt-[-10px]">{t("ideas.billing")}</p>
-                        <ul className="grid gap-2 text-sm">
-                            <li className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-primary" />
-                                {t("ideas.features.dumps")}
-                            </li>
-                            <li className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-primary" />
-                                {t("ideas.features.ai")}
-                            </li>
-                            <li className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-primary" />
-                                {t("ideas.features.ideasOnly")}
-                            </li>
-                        </ul>
-                    </CardContent>
-                    <CardFooter>
-                        {(hasIdeasPro || hasWebPro) ? (
-                            <Button className="w-full" variant="outline" disabled>
-                                {hasIdeasPro ? t("currentPlan") : t("ideas.includedInStandard")}
-                            </Button>
-                        ) : (
-                            <Button
-                                className="w-full"
-                                onClick={() => handleCheckout("ideas")}
-                                disabled={!!checkoutLoading}
-                            >
-                                {checkoutLoading === "ideas" && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                {t("upgradeToIdeas")}
-                            </Button>
+                {(!isPro || (hasIdeasPro && !hasWebPro)) && (
+                    <Card className={hasIdeasPro ? "border-primary relative overflow-hidden" : "relative overflow-hidden"}>
+                        {hasIdeasPro && (
+                            <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-bl-lg">
+                                {t("ideas.current")}
+                            </div>
                         )}
-                    </CardFooter>
-                </Card>
+                        <CardHeader>
+                            <CardTitle>{t("ideas.name")}</CardTitle>
+                            <CardDescription>{t("ideas.description")}</CardDescription>
+                        </CardHeader>
+                        <CardContent className="grid gap-4">
+                            <div className="text-3xl font-bold">{t("ideas.price")}</div>
+                            <p className="text-xs text-muted-foreground mt-[-10px]">{t("ideas.billing")}</p>
+                            <ul className="grid gap-2 text-sm">
+                                <li className="flex items-center gap-2">
+                                    <Check className="h-4 w-4 text-primary" />
+                                    {t("ideas.features.dumps")}
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <Check className="h-4 w-4 text-primary" />
+                                    {t("ideas.features.ai")}
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <Check className="h-4 w-4 text-primary" />
+                                    {t("ideas.features.ideasOnly")}
+                                </li>
+                            </ul>
+                        </CardContent>
+                        <CardFooter>
+                            {(hasIdeasPro || hasWebPro) ? (
+                                <Button className="w-full" variant="outline" disabled>
+                                    {hasIdeasPro ? t("currentPlan") : t("ideas.includedInStandard")}
+                                </Button>
+                            ) : (
+                                <Button
+                                    className="w-full"
+                                    onClick={() => handleCheckout("ideas")}
+                                    disabled={!!checkoutLoading}
+                                >
+                                    {checkoutLoading === "ideas" && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                    {t("upgradeToIdeas")}
+                                </Button>
+                            )}
+                        </CardFooter>
+                    </Card>
+                )}
 
                 {/* Standard Plan ($6) */}
-                <Card className={hasWebPro ? "border-primary relative overflow-hidden" : "relative overflow-hidden"}>
-                    {hasWebPro && (
-                        <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-bl-lg">
-                            {t("standard.current")}
-                        </div>
-                    )}
-                    <CardHeader>
-                        <CardTitle>{t("standard.name")}</CardTitle>
-                        <CardDescription>{t("standard.description")}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="grid gap-4">
-                        <div className="text-3xl font-bold">{t("standard.price")}</div>
-                        <p className="text-xs text-muted-foreground mt-[-10px]">One-time payment for 1 month access. No recurring charges.</p>
-                        <ul className="grid gap-2 text-sm">
-                            <li className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-primary" />
-                                {t("standard.features.dumps")}
-                            </li>
-                            <li className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-primary" />
-                                {t("standard.features.ai")}
-                            </li>
-                            <li className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-primary" />
-                                {t("standard.features.support")}
-                            </li>
-                        </ul>
-                    </CardContent>
-                    <CardFooter>
-                        {hasWebPro ? (
-                            <Button className="w-full" variant="outline" disabled>
-                                {t("currentPlan")}
-                            </Button>
-                        ) : (
-                            <Button
-                                className="w-full"
-                                onClick={() => handleCheckout("standard")}
-                                disabled={!!checkoutLoading}
-                            >
-                                {checkoutLoading === "standard" && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                {t("upgradeToStandard")}
-                            </Button>
+                {(!isPro || hasWebPro) && (
+                    <Card className={hasWebPro ? "border-primary relative overflow-hidden" : "relative overflow-hidden"}>
+                        {hasWebPro && (
+                            <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-bl-lg">
+                                {t("standard.current")}
+                            </div>
                         )}
-                    </CardFooter>
-                </Card>
+                        <CardHeader>
+                            <CardTitle>{t("standard.name")}</CardTitle>
+                            <CardDescription>
+                                {t.rich("standard.description", {
+                                    link: (chunks) => (
+                                        <a
+                                            href="https://rynk.io"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-primary hover:underline"
+                                        >
+                                            {chunks}
+                                        </a>
+                                    )
+                                })}
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="grid gap-4">
+                            <div className="text-3xl font-bold">{t("standard.price")}</div>
+                            <p className="text-xs text-muted-foreground mt-[-10px]">One-time payment for 1 month access. No recurring charges.</p>
+                            <ul className="grid gap-2 text-sm">
+                                <li className="flex items-center gap-2">
+                                    <Check className="h-4 w-4 text-primary" />
+                                    {t("standard.features.dumps")}
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <Check className="h-4 w-4 text-primary" />
+                                    {t("standard.features.ai")}
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <Check className="h-4 w-4 text-primary" />
+                                    {t("standard.features.support")}
+                                </li>
+                            </ul>
+                        </CardContent>
+                        <CardFooter>
+                            {hasWebPro ? (
+                                <Button className="w-full" variant="outline" disabled>
+                                    {t("currentPlan")}
+                                </Button>
+                            ) : (
+                                <Button
+                                    className="w-full"
+                                    onClick={() => handleCheckout("standard")}
+                                    disabled={!!checkoutLoading}
+                                >
+                                    {checkoutLoading === "standard" && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                    {t("upgradeToStandard")}
+                                </Button>
+                            )}
+                        </CardFooter>
+                    </Card>
+                )}
             </div>
         </div>
+
     )
 }
 

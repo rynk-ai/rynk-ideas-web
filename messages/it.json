@@ -1,166 +1,180 @@
 {
-    "common": {
-        "loading": "Caricamento…",
-        "back": "← Bacheca",
-        "close": "Chiudi",
-        "user": "Utente"
-    },
-    "appShell": {
-        "newDump": "Nuovo Dump",
-        "signIn": "Accedi",
-        "signOut": "Esci",
-        "subscription": "Abbonamento",
-        "settings": "Impostazioni",
-        "quickDump": "Dump rapido"
-    },
-    "board": {
-        "states": {
-            "seed": "In esplorazione",
-            "active": "Attivo",
-            "deciding": "In decisione",
-            "stuck": "Bloccato",
-            "parked": "In pausa",
-            "done": "Risolto"
-        }
-    },
-    "dumpModal": {
-        "placeholder": "Cosa hai in mente?",
-        "submit": "Scarica",
-        "attach": "Allega",
-        "voice": "Voce",
-        "saving": "Salvataggio…",
-        "done": "Fatto",
-        "processing": {
-            "segmenting": "Segmentazione dei tuoi pensieri…",
-            "patterns": "Ricerca di pattern…",
-            "connecting": "Connessione alle idee esistenti…",
-            "synthesizing": "Sintesi dei fili…"
-        },
-        "toast": {
-            "workingOn": "Ottimo lavoro su {titles}",
-            "captured": "Pensiero catturato in sicurezza.",
-            "limitReached": "Limite gratuito raggiunto",
-            "limitDescription": "Hai esaurito i tuoi crediti ospite. Accedi per continuare.",
-            "failed": "Salvataggio fallito. Riprova."
-        }
-    },
-    "onboarding": {
-        "steps": {
-            "welcome": {
-                "title": "Benvenuto su Rynk Ideas",
-                "description": "IA senza rumore. Scarica i tuoi pensieri e lascia che l'IA li organizzi in piani d'azione."
-            },
-            "dump": {
-                "title": "Scarica qualsiasi cosa",
-                "description": "Premi l'icona della penna o ⌘K ovunque per catturare un pensiero. Non preoccuparti della struttura."
-            },
-            "ai": {
-                "title": "Lascia che l'IA lavori",
-                "description": "Raggrupperemo i tuoi pensieri in fili, troveremo connessioni e ti aiuteremo a realizzarli."
-            }
-        },
-        "getStarted": "Inizia",
-        "next": "Avanti"
-    },
-    "thread": {
-        "notFound": "Filo non trovato",
-        "stateLabels": {
-            "seed": "Nuova idea da esplorare",
-            "active": "Ci sto pensando attivamente",
-            "deciding": "Decisione necessaria",
-            "stuck": "Mi sento bloccato",
-            "parked": "In attesa per ora",
-            "done": "Risolto"
-        },
-        "state": "Stato",
-        "groundingNote": "Nota di ancoraggio",
-        "whyThisState": "Perché questo stato?",
-        "timeline": "Timeline",
-        "newestFirst": "Più recenti prima",
-        "oldestFirst": "Più vecchi prima",
-        "noEntries": "Nessuna voce ancora.",
-        "related": "Correlato",
-        "addNotePlaceholder": "Aggiungi una nuova nota a questo filo...",
-        "add": "Aggiungi",
-        "adding": "Aggiungendo...",
-        "toast": {
-            "noteAdded": "Nota aggiunta e sintetizzata.",
-            "noteAddedSimple": "Nota aggiunta.",
-            "noteFailed": "Impossibile aggiungere la nota."
-        },
-        "dates": {
-            "today": "oggi",
-            "yesterday": "ieri",
-            "daysAgo": "{days}g fa"
-        }
-    },
-    "login": {
-        "tagline": "Il tuo partner di pensiero IA. Scarica i tuoi pensieri, ottieni chiarezza.",
-        "continueWithGoogle": "Continua con Google",
-        "footer": "Stesso account di rynk chat.",
-        "errors": {
-            "accountLinked": "Questa email è già associata a un altro account.",
-            "generic": "Qualcosa è andato storto. Riprova."
-        }
-    },
-    "subscription": {
-        "title": "Abbonamento",
-        "description": "Gestisci il tuo piano e i limiti di utilizzo.",
-        "currentUsage": "Utilizzo attuale",
-        "unlimitedAccess": "Hai accesso illimitato.",
-        "usageOf": "Hai usato {usage} dei tuoi {limit} dump mensili.",
-        "dumps": "{usage} / {limit} dump",
-        "free": {
-            "name": "Gratuito",
-            "description": "Perfetto per iniziare",
-            "price": "€0",
-            "perMonth": "/mese",
-            "features": {
-                "dumps": "50 Dump / mese",
-                "ai": "Organizzazione IA base"
-            }
-        },
-        "standard": {
-            "name": "Standard",
-            "description": "Per pensatori seri",
-            "price": "€5,99",
-            "perMonth": "/mese",
-            "current": "Attuale",
-            "features": {
-                "dumps": "Dump illimitati",
-                "ai": "Modelli IA avanzati",
-                "support": "Supporto prioritario"
-            }
-        },
-        "currentPlan": "Piano attuale",
-        "downgrade": "Declassa",
-        "manageSubscription": "Gestisci abbonamento",
-        "upgradeToStandard": "Passa a Standard",
-        "checkoutFailed": "Pagamento fallito",
-        "error": "Si è verificato un errore"
-    },
-    "language": {
-        "label": "Lingua",
-        "en": "English",
-        "es": "Español",
-        "fr": "Français",
-        "de": "Deutsch",
-        "pt": "Português",
-        "it": "Italiano",
-        "nl": "Nederlands",
-        "ru": "Русский",
-        "zh": "中文",
-        "ja": "日本語",
-        "ko": "한국어",
-        "ar": "العربية",
-        "he": "עברית",
-        "hi": "हिन्दी",
-        "bn": "বাংলা",
-        "tr": "Türkçe",
-        "vi": "Tiếng Việt",
-        "th": "ไทย",
-        "id": "Bahasa Indonesia",
-        "pl": "Polski",
-        "sv": "Svenska"
+  "common": {
+    "loading": "Caricamento…",
+    "back": "← Bacheca",
+    "close": "Chiudi",
+    "user": "Utente"
+  },
+  "appShell": {
+    "newDump": "Nuovo Dump",
+    "signIn": "Accedi",
+    "signOut": "Esci",
+    "subscription": "Abbonamento",
+    "settings": "Impostazioni",
+    "quickDump": "Dump rapido"
+  },
+  "board": {
+    "states": {
+      "seed": "In esplorazione",
+      "active": "Attivo",
+      "deciding": "In decisione",
+      "stuck": "Bloccato",
+      "parked": "In pausa",
+      "done": "Risolto"
     }
+  },
+  "dumpModal": {
+    "placeholder": "Cosa hai in mente?",
+    "submit": "Scarica",
+    "attach": "Allega",
+    "voice": "Voce",
+    "saving": "Salvataggio…",
+    "done": "Fatto",
+    "processing": {
+      "segmenting": "Segmentazione dei tuoi pensieri…",
+      "patterns": "Ricerca di pattern…",
+      "connecting": "Connessione alle idee esistenti…",
+      "synthesizing": "Sintesi dei fili…"
+    },
+    "toast": {
+      "workingOn": "Ottimo lavoro su {titles}",
+      "captured": "Pensiero catturato in sicurezza.",
+      "limitReached": "Limite gratuito raggiunto",
+      "limitDescription": "Hai esaurito i tuoi crediti ospite. Accedi per continuare.",
+      "failed": "Salvataggio fallito. Riprova."
+    }
+  },
+  "onboarding": {
+    "steps": {
+      "welcome": {
+        "title": "Benvenuto su Rynk Ideas",
+        "description": "IA senza rumore. Scarica i tuoi pensieri e lascia che l'IA li organizzi in piani d'azione."
+      },
+      "dump": {
+        "title": "Scarica qualsiasi cosa",
+        "description": "Premi l'icona della penna o ⌘K ovunque per catturare un pensiero. Non preoccuparti della struttura."
+      },
+      "ai": {
+        "title": "Lascia che l'IA lavori",
+        "description": "Raggrupperemo i tuoi pensieri in fili, troveremo connessioni e ti aiuteremo a realizzarli."
+      }
+    },
+    "getStarted": "Inizia",
+    "next": "Avanti"
+  },
+  "thread": {
+    "notFound": "Filo non trovato",
+    "stateLabels": {
+      "seed": "Nuova idea da esplorare",
+      "active": "Ci sto pensando attivamente",
+      "deciding": "Decisione necessaria",
+      "stuck": "Mi sento bloccato",
+      "parked": "In attesa per ora",
+      "done": "Risolto"
+    },
+    "state": "Stato",
+    "groundingNote": "Nota di ancoraggio",
+    "whyThisState": "Perché questo stato?",
+    "timeline": "Timeline",
+    "newestFirst": "Più recenti prima",
+    "oldestFirst": "Più vecchi prima",
+    "noEntries": "Nessuna voce ancora.",
+    "related": "Correlato",
+    "addNotePlaceholder": "Aggiungi una nuova nota a questo filo...",
+    "add": "Aggiungi",
+    "adding": "Aggiungendo...",
+    "toast": {
+      "noteAdded": "Nota aggiunta e sintetizzata.",
+      "noteAddedSimple": "Nota aggiunta.",
+      "noteFailed": "Impossibile aggiungere la nota."
+    },
+    "dates": {
+      "today": "oggi",
+      "yesterday": "ieri",
+      "daysAgo": "{days}g fa"
+    }
+  },
+  "login": {
+    "tagline": "Il tuo partner di pensiero IA. Scarica i tuoi pensieri, ottieni chiarezza.",
+    "continueWithGoogle": "Continua con Google",
+    "footer": "Stesso account di <link>rynk chat</link>.",
+    "errors": {
+      "accountLinked": "Questa email è già associata a un altro account.",
+      "generic": "Qualcosa è andato storto. Riprova."
+    }
+  },
+  "subscription": {
+    "title": "Abbonamento",
+    "description": "Gestisci il tuo piano e i limiti di utilizzo.",
+    "currentUsage": "Utilizzo attuale",
+    "unlimitedAccess": "Hai accesso illimitato.",
+    "usageOf": "Hai usato {usage} dei tuoi {limit} dump mensili.",
+    "dumps": "{usage} / {limit} dump",
+    "free": {
+      "name": "Gratuito",
+      "description": "Inizia a catturare e organizzare i tuoi pensieri.",
+      "price": "€0",
+      "perMonth": "/mese",
+      "features": {
+        "dumps": "50 Dump / mese",
+        "ai": "Organizzazione IA base"
+      }
+    },
+    "standard": {
+      "name": "Standard",
+      "description": "Il pacchetto completo. <link>Rynk Chat</link> e Ideas illimitati.",
+      "price": "€5,99",
+      "perMonth": "/mese",
+      "current": "Attuale",
+      "features": {
+        "dumps": "Dump illimitati",
+        "ai": "Modelli IA avanzati",
+        "support": "Supporto prioritario"
+      }
+    },
+    "currentPlan": "Piano attuale",
+    "downgrade": "Declassa",
+    "manageSubscription": "Gestisci abbonamento",
+    "upgradeToStandard": "Passa a Standard",
+    "checkoutFailed": "Pagamento fallito",
+    "error": "Si è verificato un errore",
+    "ideas": {
+      "name": "Ideas",
+      "description": "Solo la lavagna. Dumps e organizzazione illimitati.",
+      "price": "$2.99",
+      "billing": "Abbonamento mensile solo per Rynk Ideas.",
+      "current": "Attuale",
+      "features": {
+        "dumps": "Unlimited Dumps",
+        "ai": "AI-Powered Organization",
+        "ideasOnly": "Rynk Ideas only"
+      },
+      "includedInStandard": "Incluso in Standard"
+    },
+    "upgradeToIdeas": "Passa a Ideas"
+  },
+  "language": {
+    "label": "Lingua",
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "it": "Italiano",
+    "nl": "Nederlands",
+    "ru": "Русский",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "ar": "العربية",
+    "he": "עברית",
+    "hi": "हिन्दी",
+    "bn": "বাংলা",
+    "tr": "Türkçe",
+    "vi": "Tiếng Việt",
+    "th": "ไทย",
+    "id": "Bahasa Indonesia",
+    "pl": "Polski",
+    "sv": "Svenska"
+  }
 }

@@ -1,166 +1,180 @@
 {
-    "common": {
-        "loading": "Đang tải…",
-        "back": "← Bảng",
-        "close": "Đóng",
-        "user": "Người dùng"
-    },
-    "appShell": {
-        "newDump": "Ghi mới",
-        "signIn": "Đăng nhập",
-        "signOut": "Đăng xuất",
-        "subscription": "Đăng ký",
-        "settings": "Cài đặt",
-        "quickDump": "Ghi nhanh"
-    },
-    "board": {
-        "states": {
-            "seed": "Khám phá",
-            "active": "Hoạt động",
-            "deciding": "Quyết định",
-            "stuck": "Bế tắc",
-            "parked": "Tạm dừng",
-            "done": "Đã giải quyết"
-        }
-    },
-    "dumpModal": {
-        "placeholder": "Bạn đang nghĩ gì?",
-        "submit": "Ghi",
-        "attach": "Đính kèm",
-        "voice": "Giọng nói",
-        "saving": "Đang lưu…",
-        "done": "Xong",
-        "processing": {
-            "segmenting": "Đang phân đoạn suy nghĩ…",
-            "patterns": "Đang tìm mẫu…",
-            "connecting": "Đang kết nối với ý tưởng hiện có…",
-            "synthesizing": "Đang tổng hợp luồng…"
-        },
-        "toast": {
-            "workingOn": "Tốt lắm, đang xử lý {titles}",
-            "captured": "Suy nghĩ đã được ghi lại an toàn.",
-            "limitReached": "Đã đạt giới hạn miễn phí",
-            "limitDescription": "Bạn đã sử dụng hết tín dụng khách. Đăng nhập để tiếp tục.",
-            "failed": "Lưu thất bại. Vui lòng thử lại."
-        }
-    },
-    "onboarding": {
-        "steps": {
-            "welcome": {
-                "title": "Chào mừng đến Rynk Ideas",
-                "description": "AI không nhiễu. Chỉ cần ghi lại suy nghĩ, AI sẽ sắp xếp chúng thành kế hoạch hành động."
-            },
-            "dump": {
-                "title": "Ghi bất cứ điều gì",
-                "description": "Nhấn biểu tượng bút hoặc ⌘K ở bất cứ đâu để ghi lại suy nghĩ. Đừng lo về cấu trúc."
-            },
-            "ai": {
-                "title": "Để AI làm việc",
-                "description": "Chúng tôi sẽ nhóm suy nghĩ thành luồng, tìm kết nối, và giúp bạn biến chúng thành hiện thực."
-            }
-        },
-        "getStarted": "Bắt đầu",
-        "next": "Tiếp"
-    },
-    "thread": {
-        "notFound": "Không tìm thấy luồng",
-        "stateLabels": {
-            "seed": "Ý tưởng mới để khám phá",
-            "active": "Đang suy nghĩ tích cực",
-            "deciding": "Cần quyết định",
-            "stuck": "Cảm thấy bế tắc",
-            "parked": "Tạm thời dừng",
-            "done": "Đã giải quyết"
-        },
-        "state": "Trạng thái",
-        "groundingNote": "Ghi chú nền tảng",
-        "whyThisState": "Tại sao trạng thái này?",
-        "timeline": "Dòng thời gian",
-        "newestFirst": "Mới nhất trước",
-        "oldestFirst": "Cũ nhất trước",
-        "noEntries": "Chưa có mục nào.",
-        "related": "Liên quan",
-        "addNotePlaceholder": "Thêm ghi chú mới vào luồng này...",
-        "add": "Thêm",
-        "adding": "Đang thêm...",
-        "toast": {
-            "noteAdded": "Ghi chú đã thêm và tổng hợp.",
-            "noteAddedSimple": "Ghi chú đã thêm.",
-            "noteFailed": "Thêm ghi chú thất bại."
-        },
-        "dates": {
-            "today": "hôm nay",
-            "yesterday": "hôm qua",
-            "daysAgo": "{days} ngày trước"
-        }
-    },
-    "login": {
-        "tagline": "Đối tác tư duy AI của bạn. Ghi lại suy nghĩ, có được sự rõ ràng.",
-        "continueWithGoogle": "Tiếp tục với Google",
-        "footer": "Cùng tài khoản với rynk chat.",
-        "errors": {
-            "accountLinked": "Email này đã được liên kết với tài khoản khác.",
-            "generic": "Đã xảy ra lỗi. Vui lòng thử lại."
-        }
-    },
-    "subscription": {
-        "title": "Đăng ký",
-        "description": "Quản lý gói và giới hạn sử dụng.",
-        "currentUsage": "Sử dụng hiện tại",
-        "unlimitedAccess": "Bạn có quyền truy cập không giới hạn.",
-        "usageOf": "Bạn đã sử dụng {usage} trong {limit} lượt ghi hàng tháng.",
-        "dumps": "{usage} / {limit} lượt ghi",
-        "free": {
-            "name": "Miễn phí",
-            "description": "Hoàn hảo để bắt đầu",
-            "price": "$0",
-            "perMonth": "/tháng",
-            "features": {
-                "dumps": "50 lượt ghi / tháng",
-                "ai": "Tổ chức AI cơ bản"
-            }
-        },
-        "standard": {
-            "name": "Tiêu chuẩn",
-            "description": "Dành cho người suy nghĩ nghiêm túc",
-            "price": "$5,99",
-            "perMonth": "/tháng",
-            "current": "Hiện tại",
-            "features": {
-                "dumps": "Ghi không giới hạn",
-                "ai": "Mô hình AI nâng cao",
-                "support": "Hỗ trợ ưu tiên"
-            }
-        },
-        "currentPlan": "Gói hiện tại",
-        "downgrade": "Hạ cấp",
-        "manageSubscription": "Quản lý đăng ký",
-        "upgradeToStandard": "Nâng cấp lên Tiêu chuẩn",
-        "checkoutFailed": "Thanh toán thất bại",
-        "error": "Đã xảy ra lỗi"
-    },
-    "language": {
-        "label": "Ngôn ngữ",
-        "en": "English",
-        "es": "Español",
-        "fr": "Français",
-        "de": "Deutsch",
-        "pt": "Português",
-        "it": "Italiano",
-        "nl": "Nederlands",
-        "ru": "Русский",
-        "zh": "中文",
-        "ja": "日本語",
-        "ko": "한국어",
-        "ar": "العربية",
-        "he": "עברית",
-        "hi": "हिन्दी",
-        "bn": "বাংলা",
-        "tr": "Türkçe",
-        "vi": "Tiếng Việt",
-        "th": "ไทย",
-        "id": "Bahasa Indonesia",
-        "pl": "Polski",
-        "sv": "Svenska"
+  "common": {
+    "loading": "Đang tải…",
+    "back": "← Bảng",
+    "close": "Đóng",
+    "user": "Người dùng"
+  },
+  "appShell": {
+    "newDump": "Ghi mới",
+    "signIn": "Đăng nhập",
+    "signOut": "Đăng xuất",
+    "subscription": "Đăng ký",
+    "settings": "Cài đặt",
+    "quickDump": "Ghi nhanh"
+  },
+  "board": {
+    "states": {
+      "seed": "Khám phá",
+      "active": "Hoạt động",
+      "deciding": "Quyết định",
+      "stuck": "Bế tắc",
+      "parked": "Tạm dừng",
+      "done": "Đã giải quyết"
     }
+  },
+  "dumpModal": {
+    "placeholder": "Bạn đang nghĩ gì?",
+    "submit": "Ghi",
+    "attach": "Đính kèm",
+    "voice": "Giọng nói",
+    "saving": "Đang lưu…",
+    "done": "Xong",
+    "processing": {
+      "segmenting": "Đang phân đoạn suy nghĩ…",
+      "patterns": "Đang tìm mẫu…",
+      "connecting": "Đang kết nối với ý tưởng hiện có…",
+      "synthesizing": "Đang tổng hợp luồng…"
+    },
+    "toast": {
+      "workingOn": "Tốt lắm, đang xử lý {titles}",
+      "captured": "Suy nghĩ đã được ghi lại an toàn.",
+      "limitReached": "Đã đạt giới hạn miễn phí",
+      "limitDescription": "Bạn đã sử dụng hết tín dụng khách. Đăng nhập để tiếp tục.",
+      "failed": "Lưu thất bại. Vui lòng thử lại."
+    }
+  },
+  "onboarding": {
+    "steps": {
+      "welcome": {
+        "title": "Chào mừng đến Rynk Ideas",
+        "description": "AI không nhiễu. Chỉ cần ghi lại suy nghĩ, AI sẽ sắp xếp chúng thành kế hoạch hành động."
+      },
+      "dump": {
+        "title": "Ghi bất cứ điều gì",
+        "description": "Nhấn biểu tượng bút hoặc ⌘K ở bất cứ đâu để ghi lại suy nghĩ. Đừng lo về cấu trúc."
+      },
+      "ai": {
+        "title": "Để AI làm việc",
+        "description": "Chúng tôi sẽ nhóm suy nghĩ thành luồng, tìm kết nối, và giúp bạn biến chúng thành hiện thực."
+      }
+    },
+    "getStarted": "Bắt đầu",
+    "next": "Tiếp"
+  },
+  "thread": {
+    "notFound": "Không tìm thấy luồng",
+    "stateLabels": {
+      "seed": "Ý tưởng mới để khám phá",
+      "active": "Đang suy nghĩ tích cực",
+      "deciding": "Cần quyết định",
+      "stuck": "Cảm thấy bế tắc",
+      "parked": "Tạm thời dừng",
+      "done": "Đã giải quyết"
+    },
+    "state": "Trạng thái",
+    "groundingNote": "Ghi chú nền tảng",
+    "whyThisState": "Tại sao trạng thái này?",
+    "timeline": "Dòng thời gian",
+    "newestFirst": "Mới nhất trước",
+    "oldestFirst": "Cũ nhất trước",
+    "noEntries": "Chưa có mục nào.",
+    "related": "Liên quan",
+    "addNotePlaceholder": "Thêm ghi chú mới vào luồng này...",
+    "add": "Thêm",
+    "adding": "Đang thêm...",
+    "toast": {
+      "noteAdded": "Ghi chú đã thêm và tổng hợp.",
+      "noteAddedSimple": "Ghi chú đã thêm.",
+      "noteFailed": "Thêm ghi chú thất bại."
+    },
+    "dates": {
+      "today": "hôm nay",
+      "yesterday": "hôm qua",
+      "daysAgo": "{days} ngày trước"
+    }
+  },
+  "login": {
+    "tagline": "Đối tác tư duy AI của bạn. Ghi lại suy nghĩ, có được sự rõ ràng.",
+    "continueWithGoogle": "Tiếp tục với Google",
+    "footer": "Cùng tài khoản với <link>rynk chat</link>.",
+    "errors": {
+      "accountLinked": "Email này đã được liên kết với tài khoản khác.",
+      "generic": "Đã xảy ra lỗi. Vui lòng thử lại."
+    }
+  },
+  "subscription": {
+    "title": "Đăng ký",
+    "description": "Quản lý gói và giới hạn sử dụng.",
+    "currentUsage": "Sử dụng hiện tại",
+    "unlimitedAccess": "Bạn có quyền truy cập không giới hạn.",
+    "usageOf": "Bạn đã sử dụng {usage} trong {limit} lượt ghi hàng tháng.",
+    "dumps": "{usage} / {limit} lượt ghi",
+    "free": {
+      "name": "Miễn phí",
+      "description": "Bắt đầu ghi lại và sắp xếp suy nghĩ của bạn.",
+      "price": "$0",
+      "perMonth": "/tháng",
+      "features": {
+        "dumps": "50 lượt ghi / tháng",
+        "ai": "Tổ chức AI cơ bản"
+      }
+    },
+    "standard": {
+      "name": "Tiêu chuẩn",
+      "description": "Gói đầy đủ. Không giới hạn <link>Rynk Chat</link> và Ideas.",
+      "price": "$5,99",
+      "perMonth": "/tháng",
+      "current": "Hiện tại",
+      "features": {
+        "dumps": "Ghi không giới hạn",
+        "ai": "Mô hình AI nâng cao",
+        "support": "Hỗ trợ ưu tiên"
+      }
+    },
+    "currentPlan": "Gói hiện tại",
+    "downgrade": "Hạ cấp",
+    "manageSubscription": "Quản lý đăng ký",
+    "upgradeToStandard": "Nâng cấp lên Tiêu chuẩn",
+    "checkoutFailed": "Thanh toán thất bại",
+    "error": "Đã xảy ra lỗi",
+    "ideas": {
+      "name": "Ideas",
+      "description": "Chỉ dành cho bảng. Không giới hạn dump và sắp xếp.",
+      "price": "$2.99",
+      "billing": "Đăng ký hàng tháng chỉ dành cho Rynk Ideas.",
+      "current": "Hiện tại",
+      "features": {
+        "dumps": "Unlimited Dumps",
+        "ai": "AI-Powered Organization",
+        "ideasOnly": "Rynk Ideas only"
+      },
+      "includedInStandard": "Đã bao gồm trong Standard"
+    },
+    "upgradeToIdeas": "Nâng cấp lên Ideas"
+  },
+  "language": {
+    "label": "Ngôn ngữ",
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "it": "Italiano",
+    "nl": "Nederlands",
+    "ru": "Русский",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "ar": "العربية",
+    "he": "עברית",
+    "hi": "हिन्दी",
+    "bn": "বাংলা",
+    "tr": "Türkçe",
+    "vi": "Tiếng Việt",
+    "th": "ไทย",
+    "id": "Bahasa Indonesia",
+    "pl": "Polski",
+    "sv": "Svenska"
+  }
 }

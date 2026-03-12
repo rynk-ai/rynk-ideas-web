@@ -1,166 +1,180 @@
 {
-    "common": {
-        "loading": "Laden…",
-        "back": "← Board",
-        "close": "Schließen",
-        "user": "Benutzer"
-    },
-    "appShell": {
-        "newDump": "Neuer Dump",
-        "signIn": "Anmelden",
-        "signOut": "Abmelden",
-        "subscription": "Abonnement",
-        "settings": "Einstellungen",
-        "quickDump": "Schnelldump"
-    },
-    "board": {
-        "states": {
-            "seed": "Erkunden",
-            "active": "Aktiv",
-            "deciding": "Entscheidung",
-            "stuck": "Festgefahren",
-            "parked": "Pausiert",
-            "done": "Erledigt"
-        }
-    },
-    "dumpModal": {
-        "placeholder": "Was beschäftigt dich?",
-        "submit": "Abladen",
-        "attach": "Anhängen",
-        "voice": "Sprache",
-        "saving": "Speichern…",
-        "done": "Fertig",
-        "processing": {
-            "segmenting": "Gedanken werden segmentiert…",
-            "patterns": "Muster werden gefunden…",
-            "connecting": "Verbindung zu bestehenden Ideen…",
-            "synthesizing": "Fäden werden zusammengeführt…"
-        },
-        "toast": {
-            "workingOn": "Gute Arbeit an {titles}",
-            "captured": "Gedanke sicher erfasst.",
-            "limitReached": "Kostenloses Limit erreicht",
-            "limitDescription": "Du hast deine Gast-Credits aufgebraucht. Melde dich an, um fortzufahren.",
-            "failed": "Speichern fehlgeschlagen. Bitte versuche es erneut."
-        }
-    },
-    "onboarding": {
-        "steps": {
-            "welcome": {
-                "title": "Willkommen bei Rynk Ideas",
-                "description": "KI ohne Lärm. Lade einfach deine Gedanken ab und lass die KI sie in Aktionspläne organisieren."
-            },
-            "dump": {
-                "title": "Lade alles ab",
-                "description": "Drücke das Stiftsymbol oder ⌘K, um einen Gedanken festzuhalten. Mach dir keine Sorgen um die Struktur."
-            },
-            "ai": {
-                "title": "Lass die KI arbeiten",
-                "description": "Wir gruppieren deine Gedanken in Fäden, finden Verbindungen und helfen dir, sie zu verwirklichen."
-            }
-        },
-        "getStarted": "Loslegen",
-        "next": "Weiter"
-    },
-    "thread": {
-        "notFound": "Faden nicht gefunden",
-        "stateLabels": {
-            "seed": "Neue Idee zum Erkunden",
-            "active": "Aktiv darüber nachdenken",
-            "deciding": "Entscheidung nötig",
-            "stuck": "Festgefahren",
-            "parked": "Vorerst pausiert",
-            "done": "Erledigt"
-        },
-        "state": "Status",
-        "groundingNote": "Verankerungsnotiz",
-        "whyThisState": "Warum dieser Status?",
-        "timeline": "Zeitstrahl",
-        "newestFirst": "Neueste zuerst",
-        "oldestFirst": "Älteste zuerst",
-        "noEntries": "Noch keine Einträge.",
-        "related": "Verwandt",
-        "addNotePlaceholder": "Neue Notiz zu diesem Faden hinzufügen...",
-        "add": "Hinzufügen",
-        "adding": "Wird hinzugefügt...",
-        "toast": {
-            "noteAdded": "Notiz hinzugefügt und zusammengefasst.",
-            "noteAddedSimple": "Notiz hinzugefügt.",
-            "noteFailed": "Fehler beim Hinzufügen der Notiz."
-        },
-        "dates": {
-            "today": "heute",
-            "yesterday": "gestern",
-            "daysAgo": "vor {days}T"
-        }
-    },
-    "login": {
-        "tagline": "Dein KI-Denkpartner. Lade deine Gedanken ab, gewinne Klarheit.",
-        "continueWithGoogle": "Weiter mit Google",
-        "footer": "Gleiches Konto wie rynk chat.",
-        "errors": {
-            "accountLinked": "Diese E-Mail ist bereits mit einem anderen Konto verknüpft.",
-            "generic": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
-        }
-    },
-    "subscription": {
-        "title": "Abonnement",
-        "description": "Verwalte deinen Plan und Nutzungslimits.",
-        "currentUsage": "Aktuelle Nutzung",
-        "unlimitedAccess": "Du hast unbegrenzten Zugang.",
-        "usageOf": "Du hast {usage} von {limit} monatlichen Dumps verbraucht.",
-        "dumps": "{usage} / {limit} Dumps",
-        "free": {
-            "name": "Kostenlos",
-            "description": "Perfekt zum Einstieg",
-            "price": "0 $",
-            "perMonth": "/Mo.",
-            "features": {
-                "dumps": "50 Dumps / Monat",
-                "ai": "Basis-KI-Organisation"
-            }
-        },
-        "standard": {
-            "name": "Standard",
-            "description": "Für ernsthafte Denker",
-            "price": "5,99 $",
-            "perMonth": "/Mo.",
-            "current": "Aktuell",
-            "features": {
-                "dumps": "Unbegrenzte Dumps",
-                "ai": "Erweiterte KI-Modelle",
-                "support": "Prioritäts-Support"
-            }
-        },
-        "currentPlan": "Aktueller Plan",
-        "downgrade": "Herabstufen",
-        "manageSubscription": "Abonnement verwalten",
-        "upgradeToStandard": "Auf Standard upgraden",
-        "checkoutFailed": "Zahlung fehlgeschlagen",
-        "error": "Ein Fehler ist aufgetreten"
-    },
-    "language": {
-        "label": "Sprache",
-        "en": "English",
-        "es": "Español",
-        "fr": "Français",
-        "de": "Deutsch",
-        "pt": "Português",
-        "it": "Italiano",
-        "nl": "Nederlands",
-        "ru": "Русский",
-        "zh": "中文",
-        "ja": "日本語",
-        "ko": "한국어",
-        "ar": "العربية",
-        "he": "עברית",
-        "hi": "हिन्दी",
-        "bn": "বাংলা",
-        "tr": "Türkçe",
-        "vi": "Tiếng Việt",
-        "th": "ไทย",
-        "id": "Bahasa Indonesia",
-        "pl": "Polski",
-        "sv": "Svenska"
+  "common": {
+    "loading": "Laden…",
+    "back": "← Board",
+    "close": "Schließen",
+    "user": "Benutzer"
+  },
+  "appShell": {
+    "newDump": "Neuer Dump",
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "subscription": "Abonnement",
+    "settings": "Einstellungen",
+    "quickDump": "Schnelldump"
+  },
+  "board": {
+    "states": {
+      "seed": "Erkunden",
+      "active": "Aktiv",
+      "deciding": "Entscheidung",
+      "stuck": "Festgefahren",
+      "parked": "Pausiert",
+      "done": "Erledigt"
     }
+  },
+  "dumpModal": {
+    "placeholder": "Was beschäftigt dich?",
+    "submit": "Abladen",
+    "attach": "Anhängen",
+    "voice": "Sprache",
+    "saving": "Speichern…",
+    "done": "Fertig",
+    "processing": {
+      "segmenting": "Gedanken werden segmentiert…",
+      "patterns": "Muster werden gefunden…",
+      "connecting": "Verbindung zu bestehenden Ideen…",
+      "synthesizing": "Fäden werden zusammengeführt…"
+    },
+    "toast": {
+      "workingOn": "Gute Arbeit an {titles}",
+      "captured": "Gedanke sicher erfasst.",
+      "limitReached": "Kostenloses Limit erreicht",
+      "limitDescription": "Du hast deine Gast-Credits aufgebraucht. Melde dich an, um fortzufahren.",
+      "failed": "Speichern fehlgeschlagen. Bitte versuche es erneut."
+    }
+  },
+  "onboarding": {
+    "steps": {
+      "welcome": {
+        "title": "Willkommen bei Rynk Ideas",
+        "description": "KI ohne Lärm. Lade einfach deine Gedanken ab und lass die KI sie in Aktionspläne organisieren."
+      },
+      "dump": {
+        "title": "Lade alles ab",
+        "description": "Drücke das Stiftsymbol oder ⌘K, um einen Gedanken festzuhalten. Mach dir keine Sorgen um die Struktur."
+      },
+      "ai": {
+        "title": "Lass die KI arbeiten",
+        "description": "Wir gruppieren deine Gedanken in Fäden, finden Verbindungen und helfen dir, sie zu verwirklichen."
+      }
+    },
+    "getStarted": "Loslegen",
+    "next": "Weiter"
+  },
+  "thread": {
+    "notFound": "Faden nicht gefunden",
+    "stateLabels": {
+      "seed": "Neue Idee zum Erkunden",
+      "active": "Aktiv darüber nachdenken",
+      "deciding": "Entscheidung nötig",
+      "stuck": "Festgefahren",
+      "parked": "Vorerst pausiert",
+      "done": "Erledigt"
+    },
+    "state": "Status",
+    "groundingNote": "Verankerungsnotiz",
+    "whyThisState": "Warum dieser Status?",
+    "timeline": "Zeitstrahl",
+    "newestFirst": "Neueste zuerst",
+    "oldestFirst": "Älteste zuerst",
+    "noEntries": "Noch keine Einträge.",
+    "related": "Verwandt",
+    "addNotePlaceholder": "Neue Notiz zu diesem Faden hinzufügen...",
+    "add": "Hinzufügen",
+    "adding": "Wird hinzugefügt...",
+    "toast": {
+      "noteAdded": "Notiz hinzugefügt und zusammengefasst.",
+      "noteAddedSimple": "Notiz hinzugefügt.",
+      "noteFailed": "Fehler beim Hinzufügen der Notiz."
+    },
+    "dates": {
+      "today": "heute",
+      "yesterday": "gestern",
+      "daysAgo": "vor {days}T"
+    }
+  },
+  "login": {
+    "tagline": "Dein KI-Denkpartner. Lade deine Gedanken ab, gewinne Klarheit.",
+    "continueWithGoogle": "Weiter mit Google",
+    "footer": "Gleiches Konto wie <link>rynk chat</link>.",
+    "errors": {
+      "accountLinked": "Diese E-Mail ist bereits mit einem anderen Konto verknüpft.",
+      "generic": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    }
+  },
+  "subscription": {
+    "title": "Abonnement",
+    "description": "Verwalte deinen Plan und Nutzungslimits.",
+    "currentUsage": "Aktuelle Nutzung",
+    "unlimitedAccess": "Du hast unbegrenzten Zugang.",
+    "usageOf": "Du hast {usage} von {limit} monatlichen Dumps verbraucht.",
+    "dumps": "{usage} / {limit} Dumps",
+    "free": {
+      "name": "Kostenlos",
+      "description": "Beginnen Sie damit, Ihre Gedanken festzuhalten und zu organisieren.",
+      "price": "0 $",
+      "perMonth": "/Mo.",
+      "features": {
+        "dumps": "50 Dumps / Monat",
+        "ai": "Basis-KI-Organisation"
+      }
+    },
+    "standard": {
+      "name": "Standard",
+      "description": "Das Komplettpaket. Unbegrenzt <link>Rynk Chat</link> und Ideas.",
+      "price": "5,99 $",
+      "perMonth": "/Mo.",
+      "current": "Aktuell",
+      "features": {
+        "dumps": "Unbegrenzte Dumps",
+        "ai": "Erweiterte KI-Modelle",
+        "support": "Prioritäts-Support"
+      }
+    },
+    "currentPlan": "Aktueller Plan",
+    "downgrade": "Herabstufen",
+    "manageSubscription": "Abonnement verwalten",
+    "upgradeToStandard": "Auf Standard upgraden",
+    "checkoutFailed": "Zahlung fehlgeschlagen",
+    "error": "Ein Fehler ist aufgetreten",
+    "ideas": {
+      "name": "Ideas",
+      "description": "Nur das Board. Unbegrenzte Dumps und Organisation.",
+      "price": "$2.99",
+      "billing": "Monatliches Abonnement nur für Rynk Ideas.",
+      "current": "Aktuell",
+      "features": {
+        "dumps": "Unlimited Dumps",
+        "ai": "AI-Powered Organization",
+        "ideasOnly": "Rynk Ideas only"
+      },
+      "includedInStandard": "In Standard enthalten"
+    },
+    "upgradeToIdeas": "Upgrade auf Ideas"
+  },
+  "language": {
+    "label": "Sprache",
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "it": "Italiano",
+    "nl": "Nederlands",
+    "ru": "Русский",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "ar": "العربية",
+    "he": "עברית",
+    "hi": "हिन्दी",
+    "bn": "বাংলা",
+    "tr": "Türkçe",
+    "vi": "Tiếng Việt",
+    "th": "ไทย",
+    "id": "Bahasa Indonesia",
+    "pl": "Polski",
+    "sv": "Svenska"
+  }
 }

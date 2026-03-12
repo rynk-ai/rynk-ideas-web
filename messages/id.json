@@ -1,166 +1,180 @@
 {
-    "common": {
-        "loading": "Memuat…",
-        "back": "← Papan",
-        "close": "Tutup",
-        "user": "Pengguna"
-    },
-    "appShell": {
-        "newDump": "Dump Baru",
-        "signIn": "Masuk",
-        "signOut": "Keluar",
-        "subscription": "Langganan",
-        "settings": "Pengaturan",
-        "quickDump": "Dump Cepat"
-    },
-    "board": {
-        "states": {
-            "seed": "Menjelajahi",
-            "active": "Aktif",
-            "deciding": "Memutuskan",
-            "stuck": "Terjebak",
-            "parked": "Dijeda",
-            "done": "Terselesaikan"
-        }
-    },
-    "dumpModal": {
-        "placeholder": "Apa yang ada di pikiranmu?",
-        "submit": "Dump",
-        "attach": "Lampirkan",
-        "voice": "Suara",
-        "saving": "Menyimpan…",
-        "done": "Selesai",
-        "processing": {
-            "segmenting": "Memisahkan pikiranmu…",
-            "patterns": "Menemukan pola…",
-            "connecting": "Menghubungkan ke ide yang ada…",
-            "synthesizing": "Mensintesis utas…"
-        },
-        "toast": {
-            "workingOn": "Kerja bagus pada {titles}",
-            "captured": "Pikiran berhasil disimpan.",
-            "limitReached": "Batas gratis tercapai",
-            "limitDescription": "Kamu telah menggunakan kredit tamu. Masuk untuk melanjutkan.",
-            "failed": "Gagal menyimpan. Silakan coba lagi."
-        }
-    },
-    "onboarding": {
-        "steps": {
-            "welcome": {
-                "title": "Selamat datang di Rynk Ideas",
-                "description": "AI tanpa kebisingan. Cukup tuangkan pikiranmu, biarkan AI mengaturnya menjadi rencana aksi."
-            },
-            "dump": {
-                "title": "Tuangkan apa saja",
-                "description": "Tekan ikon pena atau ⌘K di mana saja untuk menangkap pikiran. Jangan khawatir soal struktur."
-            },
-            "ai": {
-                "title": "Biarkan AI bekerja",
-                "description": "Kami akan mengelompokkan pikiranmu ke dalam utas, menemukan koneksi, dan membantumu mewujudkannya."
-            }
-        },
-        "getStarted": "Mulai",
-        "next": "Berikutnya"
-    },
-    "thread": {
-        "notFound": "Utas tidak ditemukan",
-        "stateLabels": {
-            "seed": "Ide baru untuk dijelajahi",
-            "active": "Sedang dipikirkan aktif",
-            "deciding": "Keputusan diperlukan",
-            "stuck": "Merasa terjebak",
-            "parked": "Ditunda untuk saat ini",
-            "done": "Terselesaikan"
-        },
-        "state": "Status",
-        "groundingNote": "Catatan Dasar",
-        "whyThisState": "Mengapa status ini?",
-        "timeline": "Linimasa",
-        "newestFirst": "Terbaru Dulu",
-        "oldestFirst": "Terlama Dulu",
-        "noEntries": "Belum ada entri.",
-        "related": "Terkait",
-        "addNotePlaceholder": "Tambahkan catatan baru ke utas ini...",
-        "add": "Tambah",
-        "adding": "Menambahkan...",
-        "toast": {
-            "noteAdded": "Catatan ditambahkan dan disintesis.",
-            "noteAddedSimple": "Catatan ditambahkan.",
-            "noteFailed": "Gagal menambahkan catatan."
-        },
-        "dates": {
-            "today": "hari ini",
-            "yesterday": "kemarin",
-            "daysAgo": "{days}h lalu"
-        }
-    },
-    "login": {
-        "tagline": "Mitra berpikir AI kamu. Tuangkan pikiran, dapatkan kejelasan.",
-        "continueWithGoogle": "Lanjutkan dengan Google",
-        "footer": "Akun yang sama dengan rynk chat.",
-        "errors": {
-            "accountLinked": "Email ini sudah terhubung dengan akun lain.",
-            "generic": "Terjadi kesalahan. Silakan coba lagi."
-        }
-    },
-    "subscription": {
-        "title": "Langganan",
-        "description": "Kelola paket dan batas penggunaanmu.",
-        "currentUsage": "Penggunaan Saat Ini",
-        "unlimitedAccess": "Kamu memiliki akses tak terbatas.",
-        "usageOf": "Kamu telah menggunakan {usage} dari {limit} dump bulanan.",
-        "dumps": "{usage} / {limit} dump",
-        "free": {
-            "name": "Gratis",
-            "description": "Sempurna untuk memulai",
-            "price": "$0",
-            "perMonth": "/bulan",
-            "features": {
-                "dumps": "50 Dump / bulan",
-                "ai": "Organisasi AI dasar"
-            }
-        },
-        "standard": {
-            "name": "Standar",
-            "description": "Untuk pemikir serius",
-            "price": "$5,99",
-            "perMonth": "/bulan",
-            "current": "Saat Ini",
-            "features": {
-                "dumps": "Dump tak terbatas",
-                "ai": "Model AI canggih",
-                "support": "Dukungan prioritas"
-            }
-        },
-        "currentPlan": "Paket Saat Ini",
-        "downgrade": "Turunkan",
-        "manageSubscription": "Kelola Langganan",
-        "upgradeToStandard": "Upgrade ke Standar",
-        "checkoutFailed": "Pembayaran gagal",
-        "error": "Terjadi kesalahan"
-    },
-    "language": {
-        "label": "Bahasa",
-        "en": "English",
-        "es": "Español",
-        "fr": "Français",
-        "de": "Deutsch",
-        "pt": "Português",
-        "it": "Italiano",
-        "nl": "Nederlands",
-        "ru": "Русский",
-        "zh": "中文",
-        "ja": "日本語",
-        "ko": "한국어",
-        "ar": "العربية",
-        "he": "עברית",
-        "hi": "हिन्दी",
-        "bn": "বাংলা",
-        "tr": "Türkçe",
-        "vi": "Tiếng Việt",
-        "th": "ไทย",
-        "id": "Bahasa Indonesia",
-        "pl": "Polski",
-        "sv": "Svenska"
+  "common": {
+    "loading": "Memuat…",
+    "back": "← Papan",
+    "close": "Tutup",
+    "user": "Pengguna"
+  },
+  "appShell": {
+    "newDump": "Dump Baru",
+    "signIn": "Masuk",
+    "signOut": "Keluar",
+    "subscription": "Langganan",
+    "settings": "Pengaturan",
+    "quickDump": "Dump Cepat"
+  },
+  "board": {
+    "states": {
+      "seed": "Menjelajahi",
+      "active": "Aktif",
+      "deciding": "Memutuskan",
+      "stuck": "Terjebak",
+      "parked": "Dijeda",
+      "done": "Terselesaikan"
     }
+  },
+  "dumpModal": {
+    "placeholder": "Apa yang ada di pikiranmu?",
+    "submit": "Dump",
+    "attach": "Lampirkan",
+    "voice": "Suara",
+    "saving": "Menyimpan…",
+    "done": "Selesai",
+    "processing": {
+      "segmenting": "Memisahkan pikiranmu…",
+      "patterns": "Menemukan pola…",
+      "connecting": "Menghubungkan ke ide yang ada…",
+      "synthesizing": "Mensintesis utas…"
+    },
+    "toast": {
+      "workingOn": "Kerja bagus pada {titles}",
+      "captured": "Pikiran berhasil disimpan.",
+      "limitReached": "Batas gratis tercapai",
+      "limitDescription": "Kamu telah menggunakan kredit tamu. Masuk untuk melanjutkan.",
+      "failed": "Gagal menyimpan. Silakan coba lagi."
+    }
+  },
+  "onboarding": {
+    "steps": {
+      "welcome": {
+        "title": "Selamat datang di Rynk Ideas",
+        "description": "AI tanpa kebisingan. Cukup tuangkan pikiranmu, biarkan AI mengaturnya menjadi rencana aksi."
+      },
+      "dump": {
+        "title": "Tuangkan apa saja",
+        "description": "Tekan ikon pena atau ⌘K di mana saja untuk menangkap pikiran. Jangan khawatir soal struktur."
+      },
+      "ai": {
+        "title": "Biarkan AI bekerja",
+        "description": "Kami akan mengelompokkan pikiranmu ke dalam utas, menemukan koneksi, dan membantumu mewujudkannya."
+      }
+    },
+    "getStarted": "Mulai",
+    "next": "Berikutnya"
+  },
+  "thread": {
+    "notFound": "Utas tidak ditemukan",
+    "stateLabels": {
+      "seed": "Ide baru untuk dijelajahi",
+      "active": "Sedang dipikirkan aktif",
+      "deciding": "Keputusan diperlukan",
+      "stuck": "Merasa terjebak",
+      "parked": "Ditunda untuk saat ini",
+      "done": "Terselesaikan"
+    },
+    "state": "Status",
+    "groundingNote": "Catatan Dasar",
+    "whyThisState": "Mengapa status ini?",
+    "timeline": "Linimasa",
+    "newestFirst": "Terbaru Dulu",
+    "oldestFirst": "Terlama Dulu",
+    "noEntries": "Belum ada entri.",
+    "related": "Terkait",
+    "addNotePlaceholder": "Tambahkan catatan baru ke utas ini...",
+    "add": "Tambah",
+    "adding": "Menambahkan...",
+    "toast": {
+      "noteAdded": "Catatan ditambahkan dan disintesis.",
+      "noteAddedSimple": "Catatan ditambahkan.",
+      "noteFailed": "Gagal menambahkan catatan."
+    },
+    "dates": {
+      "today": "hari ini",
+      "yesterday": "kemarin",
+      "daysAgo": "{days}h lalu"
+    }
+  },
+  "login": {
+    "tagline": "Mitra berpikir AI kamu. Tuangkan pikiran, dapatkan kejelasan.",
+    "continueWithGoogle": "Lanjutkan dengan Google",
+    "footer": "Akun yang sama dengan <link>rynk chat</link>.",
+    "errors": {
+      "accountLinked": "Email ini sudah terhubung dengan akun lain.",
+      "generic": "Terjadi kesalahan. Silakan coba lagi."
+    }
+  },
+  "subscription": {
+    "title": "Langganan",
+    "description": "Kelola paket dan batas penggunaanmu.",
+    "currentUsage": "Penggunaan Saat Ini",
+    "unlimitedAccess": "Kamu memiliki akses tak terbatas.",
+    "usageOf": "Kamu telah menggunakan {usage} dari {limit} dump bulanan.",
+    "dumps": "{usage} / {limit} dump",
+    "free": {
+      "name": "Gratis",
+      "description": "Start capturing and organizing your thoughts.",
+      "price": "$0",
+      "perMonth": "/bulan",
+      "features": {
+        "dumps": "50 Dump / bulan",
+        "ai": "Organisasi AI dasar"
+      }
+    },
+    "standard": {
+      "name": "Standar",
+      "description": "The complete package. Unlimited <link>Rynk Chat</link> and Ideas.",
+      "price": "$5,99",
+      "perMonth": "/bulan",
+      "current": "Saat Ini",
+      "features": {
+        "dumps": "Dump tak terbatas",
+        "ai": "Model AI canggih",
+        "support": "Dukungan prioritas"
+      }
+    },
+    "currentPlan": "Paket Saat Ini",
+    "downgrade": "Turunkan",
+    "manageSubscription": "Kelola Langganan",
+    "upgradeToStandard": "Upgrade ke Standar",
+    "checkoutFailed": "Pembayaran gagal",
+    "error": "Terjadi kesalahan",
+    "ideas": {
+      "name": "Ideas",
+      "description": "Just the board. Unlimited dumps and organization.",
+      "price": "$2.99",
+      "billing": "Monthly subscription for Rynk Ideas only.",
+      "current": "Saat Ini",
+      "features": {
+        "dumps": "Unlimited Dumps",
+        "ai": "AI-Powered Organization",
+        "ideasOnly": "Rynk Ideas only"
+      },
+      "includedInStandard": "Included in Standard"
+    },
+    "upgradeToIdeas": "Upgrade to Ideas"
+  },
+  "language": {
+    "label": "Bahasa",
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "it": "Italiano",
+    "nl": "Nederlands",
+    "ru": "Русский",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "ar": "العربية",
+    "he": "עברית",
+    "hi": "हिन्दी",
+    "bn": "বাংলা",
+    "tr": "Türkçe",
+    "vi": "Tiếng Việt",
+    "th": "ไทย",
+    "id": "Bahasa Indonesia",
+    "pl": "Polski",
+    "sv": "Svenska"
+  }
 }

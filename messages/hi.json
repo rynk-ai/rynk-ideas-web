@@ -1,166 +1,180 @@
 {
-    "common": {
-        "loading": "लोड हो रहा है…",
-        "back": "← बोर्ड",
-        "close": "बंद करें",
-        "user": "उपयोगकर्ता"
-    },
-    "appShell": {
-        "newDump": "नया डंप",
-        "signIn": "साइन इन",
-        "signOut": "साइन आउट",
-        "subscription": "सदस्यता",
-        "settings": "सेटिंग्स",
-        "quickDump": "त्वरित डंप"
-    },
-    "board": {
-        "states": {
-            "seed": "अन्वेषण",
-            "active": "सक्रिय",
-            "deciding": "निर्णय",
-            "stuck": "अटका हुआ",
-            "parked": "रुका हुआ",
-            "done": "हल हो गया"
-        }
-    },
-    "dumpModal": {
-        "placeholder": "आपके मन में क्या है?",
-        "submit": "डंप",
-        "attach": "संलग्न",
-        "voice": "आवाज़",
-        "saving": "सहेज रहे हैं…",
-        "done": "हो गया",
-        "processing": {
-            "segmenting": "आपके विचार विभाजित हो रहे हैं…",
-            "patterns": "पैटर्न खोज रहे हैं…",
-            "connecting": "मौजूदा विचारों से जोड़ रहे हैं…",
-            "synthesizing": "थ्रेड संश्लेषित हो रहे हैं…"
-        },
-        "toast": {
-            "workingOn": "{titles} पर बढ़िया काम",
-            "captured": "विचार सुरक्षित रूप से कैप्चर हुआ।",
-            "limitReached": "मुफ्त सीमा पूरी हुई",
-            "limitDescription": "आपने अपने अतिथि क्रेडिट का उपयोग कर लिया है। जारी रखने के लिए साइन इन करें।",
-            "failed": "सहेजने में विफल। कृपया पुनः प्रयास करें।"
-        }
-    },
-    "onboarding": {
-        "steps": {
-            "welcome": {
-                "title": "Rynk Ideas में आपका स्वागत है",
-                "description": "शोर के बिना AI। बस अपने विचार डालें, और AI उन्हें कार्य योजनाओं में व्यवस्थित करने दें।"
-            },
-            "dump": {
-                "title": "कुछ भी डालें",
-                "description": "पेन आइकन या ⌘K दबाएं कहीं भी विचार कैप्चर करने के लिए। संरचना की चिंता न करें।"
-            },
-            "ai": {
-                "title": "AI को काम करने दें",
-                "description": "हम आपके विचारों को थ्रेड में समूहित करेंगे, कनेक्शन खोजेंगे, और उन्हें वास्तविकता बनाने में मदद करेंगे।"
-            }
-        },
-        "getStarted": "शुरू करें",
-        "next": "अगला"
-    },
-    "thread": {
-        "notFound": "थ्रेड नहीं मिला",
-        "stateLabels": {
-            "seed": "अन्वेषण के लिए नया विचार",
-            "active": "सक्रिय रूप से सोच रहे हैं",
-            "deciding": "निर्णय आवश्यक",
-            "stuck": "अटका हुआ महसूस हो रहा है",
-            "parked": "अभी के लिए रुका हुआ",
-            "done": "हल हो गया"
-        },
-        "state": "स्थिति",
-        "groundingNote": "आधार नोट",
-        "whyThisState": "यह स्थिति क्यों?",
-        "timeline": "समयरेखा",
-        "newestFirst": "नवीनतम पहले",
-        "oldestFirst": "सबसे पुराना पहले",
-        "noEntries": "अभी कोई प्रविष्टि नहीं।",
-        "related": "संबंधित",
-        "addNotePlaceholder": "इस थ्रेड में नया नोट जोड़ें...",
-        "add": "जोड़ें",
-        "adding": "जोड़ रहे हैं...",
-        "toast": {
-            "noteAdded": "नोट जोड़ा और संश्लेषित किया गया।",
-            "noteAddedSimple": "नोट जोड़ा गया।",
-            "noteFailed": "नोट जोड़ने में विफल।"
-        },
-        "dates": {
-            "today": "आज",
-            "yesterday": "कल",
-            "daysAgo": "{days} दिन पहले"
-        }
-    },
-    "login": {
-        "tagline": "आपका AI सोच भागीदार। विचार डालें, स्पष्टता पाएं।",
-        "continueWithGoogle": "Google से जारी रखें",
-        "footer": "rynk chat जैसा ही खाता।",
-        "errors": {
-            "accountLinked": "यह ईमेल पहले से किसी अन्य खाते से जुड़ा है।",
-            "generic": "कुछ गलत हो गया। कृपया पुनः प्रयास करें।"
-        }
-    },
-    "subscription": {
-        "title": "सदस्यता",
-        "description": "अपनी योजना और उपयोग सीमा प्रबंधित करें।",
-        "currentUsage": "वर्तमान उपयोग",
-        "unlimitedAccess": "आपके पास असीमित पहुंच है।",
-        "usageOf": "आपने अपने {limit} मासिक डंप में से {usage} का उपयोग किया है।",
-        "dumps": "{usage} / {limit} डंप",
-        "free": {
-            "name": "मुफ्त",
-            "description": "शुरू करने के लिए बिल्कुल सही",
-            "price": "$0",
-            "perMonth": "/माह",
-            "features": {
-                "dumps": "50 डंप / माह",
-                "ai": "बुनियादी AI संगठन"
-            }
-        },
-        "standard": {
-            "name": "स्टैंडर्ड",
-            "description": "गंभीर विचारकों के लिए",
-            "price": "$5.99",
-            "perMonth": "/माह",
-            "current": "वर्तमान",
-            "features": {
-                "dumps": "असीमित डंप",
-                "ai": "उन्नत AI मॉडल",
-                "support": "प्राथमिकता सहायता"
-            }
-        },
-        "currentPlan": "वर्तमान योजना",
-        "downgrade": "डाउनग्रेड",
-        "manageSubscription": "सदस्यता प्रबंधित करें",
-        "upgradeToStandard": "स्टैंडर्ड में अपग्रेड करें",
-        "checkoutFailed": "भुगतान विफल",
-        "error": "एक त्रुटि हुई"
-    },
-    "language": {
-        "label": "भाषा",
-        "en": "English",
-        "es": "Español",
-        "fr": "Français",
-        "de": "Deutsch",
-        "pt": "Português",
-        "it": "Italiano",
-        "nl": "Nederlands",
-        "ru": "Русский",
-        "zh": "中文",
-        "ja": "日本語",
-        "ko": "한국어",
-        "ar": "العربية",
-        "he": "עברית",
-        "hi": "हिन्दी",
-        "bn": "বাংলা",
-        "tr": "Türkçe",
-        "vi": "Tiếng Việt",
-        "th": "ไทย",
-        "id": "Bahasa Indonesia",
-        "pl": "Polski",
-        "sv": "Svenska"
+  "common": {
+    "loading": "लोड हो रहा है…",
+    "back": "← बोर्ड",
+    "close": "बंद करें",
+    "user": "उपयोगकर्ता"
+  },
+  "appShell": {
+    "newDump": "नया डंप",
+    "signIn": "साइन इन",
+    "signOut": "साइन आउट",
+    "subscription": "सदस्यता",
+    "settings": "सेटिंग्स",
+    "quickDump": "त्वरित डंप"
+  },
+  "board": {
+    "states": {
+      "seed": "अन्वेषण",
+      "active": "सक्रिय",
+      "deciding": "निर्णय",
+      "stuck": "अटका हुआ",
+      "parked": "रुका हुआ",
+      "done": "हल हो गया"
     }
+  },
+  "dumpModal": {
+    "placeholder": "आपके मन में क्या है?",
+    "submit": "डंप",
+    "attach": "संलग्न",
+    "voice": "आवाज़",
+    "saving": "सहेज रहे हैं…",
+    "done": "हो गया",
+    "processing": {
+      "segmenting": "आपके विचार विभाजित हो रहे हैं…",
+      "patterns": "पैटर्न खोज रहे हैं…",
+      "connecting": "मौजूदा विचारों से जोड़ रहे हैं…",
+      "synthesizing": "थ्रेड संश्लेषित हो रहे हैं…"
+    },
+    "toast": {
+      "workingOn": "{titles} पर बढ़िया काम",
+      "captured": "विचार सुरक्षित रूप से कैप्चर हुआ।",
+      "limitReached": "मुफ्त सीमा पूरी हुई",
+      "limitDescription": "आपने अपने अतिथि क्रेडिट का उपयोग कर लिया है। जारी रखने के लिए साइन इन करें।",
+      "failed": "सहेजने में विफल। कृपया पुनः प्रयास करें।"
+    }
+  },
+  "onboarding": {
+    "steps": {
+      "welcome": {
+        "title": "Rynk Ideas में आपका स्वागत है",
+        "description": "शोर के बिना AI। बस अपने विचार डालें, और AI उन्हें कार्य योजनाओं में व्यवस्थित करने दें।"
+      },
+      "dump": {
+        "title": "कुछ भी डालें",
+        "description": "पेन आइकन या ⌘K दबाएं कहीं भी विचार कैप्चर करने के लिए। संरचना की चिंता न करें।"
+      },
+      "ai": {
+        "title": "AI को काम करने दें",
+        "description": "हम आपके विचारों को थ्रेड में समूहित करेंगे, कनेक्शन खोजेंगे, और उन्हें वास्तविकता बनाने में मदद करेंगे।"
+      }
+    },
+    "getStarted": "शुरू करें",
+    "next": "अगला"
+  },
+  "thread": {
+    "notFound": "थ्रेड नहीं मिला",
+    "stateLabels": {
+      "seed": "अन्वेषण के लिए नया विचार",
+      "active": "सक्रिय रूप से सोच रहे हैं",
+      "deciding": "निर्णय आवश्यक",
+      "stuck": "अटका हुआ महसूस हो रहा है",
+      "parked": "अभी के लिए रुका हुआ",
+      "done": "हल हो गया"
+    },
+    "state": "स्थिति",
+    "groundingNote": "आधार नोट",
+    "whyThisState": "यह स्थिति क्यों?",
+    "timeline": "समयरेखा",
+    "newestFirst": "नवीनतम पहले",
+    "oldestFirst": "सबसे पुराना पहले",
+    "noEntries": "अभी कोई प्रविष्टि नहीं।",
+    "related": "संबंधित",
+    "addNotePlaceholder": "इस थ्रेड में नया नोट जोड़ें...",
+    "add": "जोड़ें",
+    "adding": "जोड़ रहे हैं...",
+    "toast": {
+      "noteAdded": "नोट जोड़ा और संश्लेषित किया गया।",
+      "noteAddedSimple": "नोट जोड़ा गया।",
+      "noteFailed": "नोट जोड़ने में विफल।"
+    },
+    "dates": {
+      "today": "आज",
+      "yesterday": "कल",
+      "daysAgo": "{days} दिन पहले"
+    }
+  },
+  "login": {
+    "tagline": "आपका AI सोच भागीदार। विचार डालें, स्पष्टता पाएं।",
+    "continueWithGoogle": "Google से जारी रखें",
+    "footer": "<link>rynk chat</link> जैसा ही खाता।",
+    "errors": {
+      "accountLinked": "यह ईमेल पहले से किसी अन्य खाते से जुड़ा है।",
+      "generic": "कुछ गलत हो गया। कृपया पुनः प्रयास करें।"
+    }
+  },
+  "subscription": {
+    "title": "सदस्यता",
+    "description": "अपनी योजना और उपयोग सीमा प्रबंधित करें।",
+    "currentUsage": "वर्तमान उपयोग",
+    "unlimitedAccess": "आपके पास असीमित पहुंच है।",
+    "usageOf": "आपने अपने {limit} मासिक डंप में से {usage} का उपयोग किया है।",
+    "dumps": "{usage} / {limit} डंप",
+    "free": {
+      "name": "मुफ्त",
+      "description": "अपने विचारों को कैप्चर और व्यवस्थित करना शुरू करें।",
+      "price": "$0",
+      "perMonth": "/माह",
+      "features": {
+        "dumps": "50 डंप / माह",
+        "ai": "बुनियादी AI संगठन"
+      }
+    },
+    "standard": {
+      "name": "स्टैंडर्ड",
+      "description": "पूरा पैकेज। असीमित <link>Rynk Chat</link> और Ideas।",
+      "price": "$5.99",
+      "perMonth": "/माह",
+      "current": "वर्तमान",
+      "features": {
+        "dumps": "असीमित डंप",
+        "ai": "उन्नत AI मॉडल",
+        "support": "प्राथमिकता सहायता"
+      }
+    },
+    "currentPlan": "वर्तमान योजना",
+    "downgrade": "डाउनग्रेड",
+    "manageSubscription": "सदस्यता प्रबंधित करें",
+    "upgradeToStandard": "स्टैंडर्ड में अपग्रेड करें",
+    "checkoutFailed": "भुगतान विफल",
+    "error": "एक त्रुटि हुई",
+    "ideas": {
+      "name": "Ideas",
+      "description": "सिर्फ बोर्ड। असीमित डंप और संगठन।",
+      "price": "$2.99",
+      "billing": "केवल Rynk Ideas के लिए मासिक सदस्यता।",
+      "current": "वर्तमान",
+      "features": {
+        "dumps": "Unlimited Dumps",
+        "ai": "AI-Powered Organization",
+        "ideasOnly": "Rynk Ideas only"
+      },
+      "includedInStandard": "स्टैंडर्ड में शामिल"
+    },
+    "upgradeToIdeas": "Ideas में अपग्रेड करें"
+  },
+  "language": {
+    "label": "भाषा",
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "it": "Italiano",
+    "nl": "Nederlands",
+    "ru": "Русский",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "ar": "العربية",
+    "he": "עברית",
+    "hi": "हिन्दी",
+    "bn": "বাংলা",
+    "tr": "Türkçe",
+    "vi": "Tiếng Việt",
+    "th": "ไทย",
+    "id": "Bahasa Indonesia",
+    "pl": "Polski",
+    "sv": "Svenska"
+  }
 }

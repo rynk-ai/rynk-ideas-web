@@ -85,7 +85,18 @@ function LoginForm() {
 
             {/* Footer */}
             <p className="text-xs text-muted-foreground text-center">
-                {t("footer")}
+                {t.rich("footer", {
+                    link: (chunks) => (
+                        <a 
+                            href="https://rynk.io" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-primary hover:underline"
+                        >
+                            {chunks}
+                        </a>
+                    )
+                })}
             </p>
         </div>
     )

@@ -97,7 +97,7 @@
   "login": {
     "tagline": "Your AI thinking partner. Dump your thoughts, get clarity.",
     "continueWithGoogle": "Continue with Google",
-    "footer": "Same account as rynk chat.",
+    "footer": "Same account as <link>rynk chat</link>.",
     "errors": {
       "accountLinked": "This email is already associated with another account.",
       "generic": "Something went wrong. Please try again."
@@ -112,7 +112,7 @@
     "dumps": "{usage} / {limit} dumps",
     "free": {
       "name": "Free",
-      "description": "Perfect for getting started",
+      "description": "Start capturing and organizing your thoughts.",
       "price": "$0",
       "perMonth": "/mo",
       "features": {
@@ -122,7 +122,7 @@
     },
     "standard": {
       "name": "Standard",
-      "description": "Full access to Rynk Chat + Ideas",
+      "description": "The complete package. Unlimited <link>Rynk Chat</link> and Ideas.",
       "price": "$5.99",
       "perMonth": "/mo",
       "current": "Current",
@@ -134,7 +134,7 @@
     },
     "ideas": {
       "name": "Ideas",
-      "description": "Unlimited access to Rynk Ideas",
+      "description": "Just the board. Unlimited dumps and organization.",
       "price": "$2.99",
       "billing": "Monthly subscription for Rynk Ideas only.",
       "current": "Current",

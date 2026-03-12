@@ -1,166 +1,180 @@
 {
-    "common": {
-        "loading": "Cargando…",
-        "back": "← Tablero",
-        "close": "Cerrar",
-        "user": "Usuario"
-    },
-    "appShell": {
-        "newDump": "Nuevo Volcado",
-        "signIn": "Iniciar sesión",
-        "signOut": "Cerrar sesión",
-        "subscription": "Suscripción",
-        "settings": "Configuración",
-        "quickDump": "Volcado rápido"
-    },
-    "board": {
-        "states": {
-            "seed": "Explorando",
-            "active": "Activo",
-            "deciding": "Decidiendo",
-            "stuck": "Atascado",
-            "parked": "En pausa",
-            "done": "Resuelto"
-        }
-    },
-    "dumpModal": {
-        "placeholder": "¿Qué tienes en mente?",
-        "submit": "Volcar",
-        "attach": "Adjuntar",
-        "voice": "Voz",
-        "saving": "Guardando…",
-        "done": "Listo",
-        "processing": {
-            "segmenting": "Segmentando tus pensamientos…",
-            "patterns": "Encontrando patrones…",
-            "connecting": "Conectando con ideas existentes…",
-            "synthesizing": "Sintetizando hilos…"
-        },
-        "toast": {
-            "workingOn": "Buen trabajo en {titles}",
-            "captured": "Pensamiento capturado de forma segura.",
-            "limitReached": "Límite gratuito alcanzado",
-            "limitDescription": "Has utilizado tus créditos de invitado. Inicia sesión para seguir volcando pensamientos.",
-            "failed": "Error al guardar el pensamiento. Inténtalo de nuevo."
-        }
-    },
-    "onboarding": {
-        "steps": {
-            "welcome": {
-                "title": "Bienvenido a Rynk Ideas",
-                "description": "IA sin ruido. Solo vuelca tus pensamientos y deja que la IA los organice en planes de acción."
-            },
-            "dump": {
-                "title": "Vuelca cualquier cosa",
-                "description": "Presiona el icono del lápiz o ⌘K en cualquier lugar para capturar un pensamiento. No te preocupes por la estructura."
-            },
-            "ai": {
-                "title": "Deja que la IA haga el trabajo",
-                "description": "Agruparemos tus pensamientos en hilos, encontraremos conexiones y te ayudaremos a hacerlos realidad."
-            }
-        },
-        "getStarted": "Comenzar",
-        "next": "Siguiente"
-    },
-    "thread": {
-        "notFound": "Hilo no encontrado",
-        "stateLabels": {
-            "seed": "Nueva idea para explorar",
-            "active": "Pensando activamente",
-            "deciding": "Decisión necesaria",
-            "stuck": "Sintiéndose atascado",
-            "parked": "En espera por ahora",
-            "done": "Resuelto"
-        },
-        "state": "Estado",
-        "groundingNote": "Nota de anclaje",
-        "whyThisState": "¿Por qué este estado?",
-        "timeline": "Línea de tiempo",
-        "newestFirst": "Más reciente primero",
-        "oldestFirst": "Más antiguo primero",
-        "noEntries": "Aún no hay entradas.",
-        "related": "Relacionado",
-        "addNotePlaceholder": "Añade una nueva nota a este hilo...",
-        "add": "Añadir",
-        "adding": "Añadiendo...",
-        "toast": {
-            "noteAdded": "Nota añadida y sintetizada.",
-            "noteAddedSimple": "Nota añadida.",
-            "noteFailed": "Error al añadir nota."
-        },
-        "dates": {
-            "today": "hoy",
-            "yesterday": "ayer",
-            "daysAgo": "hace {days}d"
-        }
-    },
-    "login": {
-        "tagline": "Tu compañero de pensamiento con IA. Vuelca tus pensamientos, obtén claridad.",
-        "continueWithGoogle": "Continuar con Google",
-        "footer": "Misma cuenta que rynk chat.",
-        "errors": {
-            "accountLinked": "Este correo ya está asociado con otra cuenta.",
-            "generic": "Algo salió mal. Inténtalo de nuevo."
-        }
-    },
-    "subscription": {
-        "title": "Suscripción",
-        "description": "Administra tu plan y límites de uso.",
-        "currentUsage": "Uso actual",
-        "unlimitedAccess": "Tienes acceso ilimitado.",
-        "usageOf": "Has utilizado {usage} de tus {limit} volcados mensuales.",
-        "dumps": "{usage} / {limit} volcados",
-        "free": {
-            "name": "Gratis",
-            "description": "Perfecto para empezar",
-            "price": "$0",
-            "perMonth": "/mes",
-            "features": {
-                "dumps": "50 Volcados / mes",
-                "ai": "Organización IA básica"
-            }
-        },
-        "standard": {
-            "name": "Estándar",
-            "description": "Para pensadores serios",
-            "price": "$5.99",
-            "perMonth": "/mes",
-            "current": "Actual",
-            "features": {
-                "dumps": "Volcados ilimitados",
-                "ai": "Modelos IA avanzados",
-                "support": "Soporte prioritario"
-            }
-        },
-        "currentPlan": "Plan actual",
-        "downgrade": "Degradar",
-        "manageSubscription": "Gestionar suscripción",
-        "upgradeToStandard": "Mejorar a Estándar",
-        "checkoutFailed": "Error al iniciar pago",
-        "error": "Ocurrió un error"
-    },
-    "language": {
-        "label": "Idioma",
-        "en": "English",
-        "es": "Español",
-        "fr": "Français",
-        "de": "Deutsch",
-        "pt": "Português",
-        "it": "Italiano",
-        "nl": "Nederlands",
-        "ru": "Русский",
-        "zh": "中文",
-        "ja": "日本語",
-        "ko": "한국어",
-        "ar": "العربية",
-    "he": "עברית",
-        "hi": "हिन्दी",
-        "bn": "বাংলা",
-        "tr": "Türkçe",
-        "vi": "Tiếng Việt",
-        "th": "ไทย",
-        "id": "Bahasa Indonesia",
-        "pl": "Polski",
-        "sv": "Svenska"
+  "common": {
+    "loading": "Cargando…",
+    "back": "← Tablero",
+    "close": "Cerrar",
+    "user": "Usuario"
+  },
+  "appShell": {
+    "newDump": "Nuevo Volcado",
+    "signIn": "Iniciar sesión",
+    "signOut": "Cerrar sesión",
+    "subscription": "Suscripción",
+    "settings": "Configuración",
+    "quickDump": "Volcado rápido"
+  },
+  "board": {
+    "states": {
+      "seed": "Explorando",
+      "active": "Activo",
+      "deciding": "Decidiendo",
+      "stuck": "Atascado",
+      "parked": "En pausa",
+      "done": "Resuelto"
     }
+  },
+  "dumpModal": {
+    "placeholder": "¿Qué tienes en mente?",
+    "submit": "Volcar",
+    "attach": "Adjuntar",
+    "voice": "Voz",
+    "saving": "Guardando…",
+    "done": "Listo",
+    "processing": {
+      "segmenting": "Segmentando tus pensamientos…",
+      "patterns": "Encontrando patrones…",
+      "connecting": "Conectando con ideas existentes…",
+      "synthesizing": "Sintetizando hilos…"
+    },
+    "toast": {
+      "workingOn": "Buen trabajo en {titles}",
+      "captured": "Pensamiento capturado de forma segura.",
+      "limitReached": "Límite gratuito alcanzado",
+      "limitDescription": "Has utilizado tus créditos de invitado. Inicia sesión para seguir volcando pensamientos.",
+      "failed": "Error al guardar el pensamiento. Inténtalo de nuevo."
+    }
+  },
+  "onboarding": {
+    "steps": {
+      "welcome": {
+        "title": "Bienvenido a Rynk Ideas",
+        "description": "IA sin ruido. Solo vuelca tus pensamientos y deja que la IA los organice en planes de acción."
+      },
+      "dump": {
+        "title": "Vuelca cualquier cosa",
+        "description": "Presiona el icono del lápiz o ⌘K en cualquier lugar para capturar un pensamiento. No te preocupes por la estructura."
+      },
+      "ai": {
+        "title": "Deja que la IA haga el trabajo",
+        "description": "Agruparemos tus pensamientos en hilos, encontraremos conexiones y te ayudaremos a hacerlos realidad."
+      }
+    },
+    "getStarted": "Comenzar",
+    "next": "Siguiente"
+  },
+  "thread": {
+    "notFound": "Hilo no encontrado",
+    "stateLabels": {
+      "seed": "Nueva idea para explorar",
+      "active": "Pensando activamente",
+      "deciding": "Decisión necesaria",
+      "stuck": "Sintiéndose atascado",
+      "parked": "En espera por ahora",
+      "done": "Resuelto"
+    },
+    "state": "Estado",
+    "groundingNote": "Nota de anclaje",
+    "whyThisState": "¿Por qué este estado?",
+    "timeline": "Línea de tiempo",
+    "newestFirst": "Más reciente primero",
+    "oldestFirst": "Más antiguo primero",
+    "noEntries": "Aún no hay entradas.",
+    "related": "Relacionado",
+    "addNotePlaceholder": "Añade una nueva nota a este hilo...",
+    "add": "Añadir",
+    "adding": "Añadiendo...",
+    "toast": {
+      "noteAdded": "Nota añadida y sintetizada.",
+      "noteAddedSimple": "Nota añadida.",
+      "noteFailed": "Error al añadir nota."
+    },
+    "dates": {
+      "today": "hoy",
+      "yesterday": "ayer",
+      "daysAgo": "hace {days}d"
+    }
+  },
+  "login": {
+    "tagline": "Tu compañero de pensamiento con IA. Vuelca tus pensamientos, obtén claridad.",
+    "continueWithGoogle": "Continuar con Google",
+    "footer": "Misma cuenta que <link>rynk chat</link>.",
+    "errors": {
+      "accountLinked": "Este correo ya está asociado con otra cuenta.",
+      "generic": "Algo salió mal. Inténtalo de nuevo."
+    }
+  },
+  "subscription": {
+    "title": "Suscripción",
+    "description": "Administra tu plan y límites de uso.",
+    "currentUsage": "Uso actual",
+    "unlimitedAccess": "Tienes acceso ilimitado.",
+    "usageOf": "Has utilizado {usage} de tus {limit} volcados mensuales.",
+    "dumps": "{usage} / {limit} volcados",
+    "free": {
+      "name": "Gratis",
+      "description": "Comienza a capturar y organizar tus pensamientos.",
+      "price": "$0",
+      "perMonth": "/mes",
+      "features": {
+        "dumps": "50 Volcados / mes",
+        "ai": "Organización IA básica"
+      }
+    },
+    "standard": {
+      "name": "Estándar",
+      "description": "El paquete completo. <link>Rynk Chat</link> e Ideas ilimitados.",
+      "price": "$5.99",
+      "perMonth": "/mes",
+      "current": "Actual",
+      "features": {
+        "dumps": "Volcados ilimitados",
+        "ai": "Modelos IA avanzados",
+        "support": "Soporte prioritario"
+      }
+    },
+    "currentPlan": "Plan actual",
+    "downgrade": "Degradar",
+    "manageSubscription": "Gestionar suscripción",
+    "upgradeToStandard": "Mejorar a Estándar",
+    "checkoutFailed": "Error al iniciar pago",
+    "error": "Ocurrió un error",
+    "ideas": {
+      "name": "Ideas",
+      "description": "Solo el tablero. Volcados और organización ilimitados.",
+      "price": "$2.99",
+      "billing": "Suscripción mensual solo para Rynk Ideas.",
+      "current": "Actual",
+      "features": {
+        "dumps": "Unlimited Dumps",
+        "ai": "AI-Powered Organization",
+        "ideasOnly": "Rynk Ideas only"
+      },
+      "includedInStandard": "Incluido en Estándar"
+    },
+    "upgradeToIdeas": "Mejorar a Ideas"
+  },
+  "language": {
+    "label": "Idioma",
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "it": "Italiano",
+    "nl": "Nederlands",
+    "ru": "Русский",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "ar": "العربية",
+    "he": "עברית",
+    "hi": "हिन्दी",
+    "bn": "বাংলা",
+    "tr": "Türkçe",
+    "vi": "Tiếng Việt",
+    "th": "ไทย",
+    "id": "Bahasa Indonesia",
+    "pl": "Polski",
+    "sv": "Svenska"
+  }
 }
