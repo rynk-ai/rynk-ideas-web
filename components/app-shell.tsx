@@ -82,15 +82,37 @@ export function AppShell({ children }: AppShellProps) {
         )}>
             {/* Top Navigation */}
             <header className="flex-none h-14 md:h-16 border-b border-border/40 bg-background/80 backdrop-blur-xl flex items-center px-4 md:px-8 justify-between sticky top-0 z-40">
-                {/* Brand */}
-                <a href="/" className="flex items-center gap-2 group" title="rynk ideas">
-                    <div className="max-w-6xl mx-auto">
+                <div className="flex items-center gap-6 md:gap-8">
+                    {/* Brand */}
+                    <a href="/" className="flex items-center gap-2 group" title="rynk ideas">
                         <h1 className="text-lg font-semibold tracking-tight">
                             <span className="gradient-text">rynk</span>{" "}
                             <span className="text-foreground/80">ideas</span>
                         </h1>
-                    </div>
-                </a>
+                    </a>
+
+                    {/* Nav Links */}
+                    <nav className="flex items-center gap-4 md:gap-5 text-sm font-medium">
+                        <a 
+                            href="/board" 
+                            className={cn(
+                                "text-muted-foreground hover:text-foreground transition-colors", 
+                                pathname === "/board" && "text-foreground"
+                            )}
+                        >
+                            Board
+                        </a>
+                        <a 
+                            href="/dumps" 
+                            className={cn(
+                                "text-muted-foreground hover:text-foreground transition-colors", 
+                                pathname === "/dumps" && "text-foreground"
+                            )}
+                        >
+                            Dumps
+                        </a>
+                    </nav>
+                </div>
 
                 <div className="flex items-center gap-3 md:gap-4">
                     {/* Language Switcher */}

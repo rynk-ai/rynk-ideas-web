@@ -99,21 +99,31 @@ export async function GET(req: NextRequest) {
         const db = getCloudflareContext().env.DB;
         const url = new URL(req.url);
         const limit = parseInt(url.searchParams.get("limit") || "50");
+        const search = url.searchParams.get("search") || "";
 
         // Fetch by userId (which covers both auth users and guests with placeholder IDs)
         // For guests, strictly speaking we could query by `ipHash` too, but `userId` convention works.
         // Actually, let's query by `userId` OR `ipHash` to be robust if we switch conventions, 
         // but for now `userId` is consistent.
 
-        const { results } = await db
-            .prepare(
-                `SELECT id, content, contentType, mediaUrls, createdAt, updatedAt
+        let query = `
+         SELECT id, content, contentType, mediaUrls, createdAt, updatedAt
          FROM dumps
          WHERE userId = ?
-         ORDER BY createdAt DESC
-         LIMIT ?`
-            )
-            .bind(userId, limit)
+        `;
+        let params: any[] = [userId];
+
+        if (search) {
+            query += ` AND content LIKE ?`;
+            params.push(`%${search}%`);
+        }
+
+        query += ` ORDER BY createdAt DESC LIMIT ?`;
+        params.push(limit);
+
+        const { results } = await db
+            .prepare(query)
+            .bind(...params)
             .all();
 
         return NextResponse.json({ dumps: results });

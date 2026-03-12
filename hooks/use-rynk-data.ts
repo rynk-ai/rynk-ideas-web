@@ -39,6 +39,46 @@ export function useThreads() {
     return { threads, loading, refresh: fetchThreads };
 }
 
+export interface Dump {
+    id: string;
+    content: string;
+    contentType: string;
+    mediaUrls: string | null;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export function useDumps(searchQuery?: string) {
+    const { data: session, status } = useSession();
+    const [dumps, setDumps] = useState<Dump[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    const fetchDumps = useCallback(async () => {
+        setLoading(true);
+        try {
+            const url = new URL("/api/dumps", window.location.origin);
+            if (searchQuery) {
+                url.searchParams.set("search", searchQuery);
+            }
+            const res = await fetch(url.toString());
+            if (res.ok) {
+                const data = await res.json();
+                setDumps(data.dumps || []);
+            }
+        } catch (error) {
+            console.error("Failed to fetch dumps:", error);
+        } finally {
+            setLoading(false);
+        }
+    }, [searchQuery]);
+
+    useEffect(() => {
+        fetchDumps();
+    }, [fetchDumps]);
+
+    return { dumps, loading, refresh: fetchDumps };
+}
+
 export function useSaveDump() {
     const saveDump = useCallback(async (content: string) => {
         const res = await fetch("/api/dumps", {

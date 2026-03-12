@@ -138,7 +138,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
             <div className="flex items-center justify-center h-[100dvh]">
                 <div className="text-center animate-fade-in">
                     <p className="text-muted-foreground text-sm mb-4">{t("notFound")}</p>
-                    <a href="/" className="text-sm text-primary hover:underline font-medium">{tc("back")}</a>
+                    <a href="/board" className="text-sm text-primary hover:underline font-medium">{tc("back")}</a>
                 </div>
             </div>
         );
@@ -150,7 +150,7 @@ export default function ThreadPage({ params }: { params: Promise<{ id: string }>
             <header className="flex-none px-4 md:px-6 py-4 border-b border-border/40 bg-background/80 backdrop-blur-md sticky top-0 z-10">
                 <div className="max-w-3xl mx-auto flex items-center justify-between">
                     <a
-                        href="/"
+                        href="/board"
                         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>

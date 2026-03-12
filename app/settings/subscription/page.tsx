@@ -41,10 +41,6 @@ function SubscriptionContent() {
         }
     }
 
-    const handleManageSubscription = () => {
-        window.open("https://rynk.io/settings", "_blank")
-    }
-
     if (loading) {
         return (
             <div className="flex h-full w-full items-center justify-center">
@@ -91,32 +87,34 @@ function SubscriptionContent() {
             </Card>
 
             {/* Plans Section */}
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className={isPro ? "grid gap-6 md:grid-cols-1 max-w-sm" : "grid gap-6 md:grid-cols-2 lg:grid-cols-3"}>
                 {/* Free Plan */}
-                <Card className={!isPro ? "border-primary" : ""}>
-                    <CardHeader>
-                        <CardTitle>{t("free.name")}</CardTitle>
-                        <CardDescription>{t("free.description")}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="grid gap-4">
-                        <div className="text-3xl font-bold">{t("free.price")}<span className="text-sm font-normal text-muted-foreground">{t("free.perMonth")}</span></div>
-                        <ul className="grid gap-2 text-sm">
-                            <li className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-primary" />
-                                {t("free.features.dumps")}
-                            </li>
-                            <li className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-primary" />
-                                {t("free.features.ai")}
-                            </li>
-                        </ul>
-                    </CardContent>
-                    <CardFooter>
-                        <Button className="w-full" variant="outline" disabled={!isPro}>
-                            {!isPro ? t("currentPlan") : t("downgrade")}
-                        </Button>
-                    </CardFooter>
-                </Card>
+                {!isPro && (
+                    <Card className="border-primary">
+                        <CardHeader>
+                            <CardTitle>{t("free.name")}</CardTitle>
+                            <CardDescription>{t("free.description")}</CardDescription>
+                        </CardHeader>
+                        <CardContent className="grid gap-4">
+                            <div className="text-3xl font-bold">{t("free.price")}<span className="text-sm font-normal text-muted-foreground">{t("free.perMonth")}</span></div>
+                            <ul className="grid gap-2 text-sm">
+                                <li className="flex items-center gap-2">
+                                    <Check className="h-4 w-4 text-primary" />
+                                    {t("free.features.dumps")}
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <Check className="h-4 w-4 text-primary" />
+                                    {t("free.features.ai")}
+                                </li>
+                            </ul>
+                        </CardContent>
+                        <CardFooter>
+                            <Button className="w-full" variant="outline" disabled>
+                                {t("currentPlan")}
+                            </Button>
+                        </CardFooter>
+                    </Card>
+                )}
 
                 {/* Standard Plan */}
                 <Card className={isPro ? "border-primary relative overflow-hidden" : "relative overflow-hidden"}>
@@ -130,7 +128,8 @@ function SubscriptionContent() {
                         <CardDescription>{t("standard.description")}</CardDescription>
                     </CardHeader>
                     <CardContent className="grid gap-4">
-                        <div className="text-3xl font-bold">{t("standard.price")}<span className="text-sm font-normal text-muted-foreground">{t("standard.perMonth")}</span></div>
+                        <div className="text-3xl font-bold">{t("standard.price")}</div>
+                        <p className="text-xs text-muted-foreground mt-[-10px]">One-time payment for 1 month access. No recurring charges.</p>
                         <ul className="grid gap-2 text-sm">
                             <li className="flex items-center gap-2">
                                 <Check className="h-4 w-4 text-primary" />
@@ -148,8 +147,8 @@ function SubscriptionContent() {
                     </CardContent>
                     <CardFooter>
                         {isPro ? (
-                            <Button className="w-full" variant="outline" onClick={handleManageSubscription}>
-                                {t("manageSubscription")}
+                            <Button className="w-full" variant="outline" disabled>
+                                {t("currentPlan")}
                             </Button>
                         ) : (
                             <Button
