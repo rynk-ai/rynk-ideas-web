@@ -30,12 +30,18 @@ export async function POST(req: NextRequest) {
             userId = `guest:${ipHash}`; // Placeholder userId for guests
         } else {
             // Authenticated Flow - Check Subscription Limits
-            // 1. Get user's subscription tier
-            const user = await db.prepare("SELECT subscriptionTier FROM users WHERE id = ?").bind(userId).first();
-            const tier = (user?.subscriptionTier as string) || "free";
+            // 1. Get user's subscription tier (both rynk-web and ideas-only)
+            const user = await db.prepare("SELECT subscriptionTier, ideasSubscriptionTier FROM users WHERE id = ?").bind(userId).first();
+            const webTier = (user?.subscriptionTier as string) || "free";
+            const ideasTier = (user?.ideasSubscriptionTier as string) || "free";
 
-            // 2. If free tier, check usage
-            if (tier === "free") {
+            // User has unlimited access if they have rynk-web pro OR ideas-only subscription
+            const hasWebPro = webTier === "standard" || webTier === "standard_plus" || webTier === "pro";
+            const hasIdeasPro = ideasTier === "ideas";
+            const hasUnlimited = hasWebPro || hasIdeasPro;
+
+            // 2. If free tier on both, check usage
+            if (!hasUnlimited) {
                 const now = new Date();
                 const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
 

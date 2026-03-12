@@ -20,7 +20,10 @@ CREATE TABLE IF NOT EXISTS users (
   polarSubscriptionId TEXT,
   subscriptionStatus TEXT DEFAULT 'none',
   creditsResetAt DATETIME,
-  carryoverCredits INTEGER DEFAULT 0
+  carryoverCredits INTEGER DEFAULT 0,
+  ideasSubscriptionTier TEXT DEFAULT 'free',
+  ideasSubscriptionStatus TEXT DEFAULT 'none',
+  ideasPolarSubscriptionId TEXT
 );
 
 CREATE TABLE IF NOT EXISTS accounts (

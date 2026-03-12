@@ -32,7 +32,9 @@ export function useSubscription() {
         fetchSubscription()
     }, [])
 
-    const isPro = subscription?.tier === 'standard' || subscription?.tier === 'standard_plus' || subscription?.tier === 'pro'
+    const hasWebPro = subscription?.tier === 'standard' || subscription?.tier === 'standard_plus' || subscription?.tier === 'pro'
+    const hasIdeasPro = subscription?.ideasTier === 'ideas'
+    const isPro = hasWebPro || hasIdeasPro
     const isFree = !isPro
 
     return {

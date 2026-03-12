@@ -20,7 +20,7 @@ function SubscriptionContent() {
     if (searchParams.get("success") === "true" && !loading) {
     }
 
-    const handleCheckout = async (tier: "standard" | "standard_plus") => {
+    const handleCheckout = async (tier: "standard" | "standard_plus" | "ideas") => {
         try {
             setCheckoutLoading(tier)
             const res = await fetch("/api/subscription/checkout", {
@@ -53,6 +53,10 @@ function SubscriptionContent() {
     const usage = subscription?.usage?.dumpCount || 0
     const limit = subscription?.usage?.limit || 50
     const percentage = limit === -1 ? 0 : Math.min((usage / limit) * 100, 100)
+
+    // Determine which subscription the user has
+    const hasWebPro = subscription?.tier === 'standard' || subscription?.tier === 'standard_plus' || subscription?.tier === 'pro'
+    const hasIdeasPro = subscription?.ideasTier === 'ideas'
 
     return (
         <div className="flex flex-col gap-8 p-6 md:p-10 max-w-5xl mx-auto">
@@ -116,9 +120,56 @@ function SubscriptionContent() {
                     </Card>
                 )}
 
-                {/* Standard Plan */}
-                <Card className={isPro ? "border-primary relative overflow-hidden" : "relative overflow-hidden"}>
-                    {isPro && (
+                {/* Ideas Plan ($3) */}
+                <Card className={hasIdeasPro ? "border-primary relative overflow-hidden" : "relative overflow-hidden"}>
+                    {hasIdeasPro && (
+                        <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-bl-lg">
+                            {t("ideas.current")}
+                        </div>
+                    )}
+                    <CardHeader>
+                        <CardTitle>{t("ideas.name")}</CardTitle>
+                        <CardDescription>{t("ideas.description")}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="grid gap-4">
+                        <div className="text-3xl font-bold">{t("ideas.price")}</div>
+                        <p className="text-xs text-muted-foreground mt-[-10px]">{t("ideas.billing")}</p>
+                        <ul className="grid gap-2 text-sm">
+                            <li className="flex items-center gap-2">
+                                <Check className="h-4 w-4 text-primary" />
+                                {t("ideas.features.dumps")}
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="h-4 w-4 text-primary" />
+                                {t("ideas.features.ai")}
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="h-4 w-4 text-primary" />
+                                {t("ideas.features.ideasOnly")}
+                            </li>
+                        </ul>
+                    </CardContent>
+                    <CardFooter>
+                        {(hasIdeasPro || hasWebPro) ? (
+                            <Button className="w-full" variant="outline" disabled>
+                                {hasIdeasPro ? t("currentPlan") : t("ideas.includedInStandard")}
+                            </Button>
+                        ) : (
+                            <Button
+                                className="w-full"
+                                onClick={() => handleCheckout("ideas")}
+                                disabled={!!checkoutLoading}
+                            >
+                                {checkoutLoading === "ideas" && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                {t("upgradeToIdeas")}
+                            </Button>
+                        )}
+                    </CardFooter>
+                </Card>
+
+                {/* Standard Plan ($6) */}
+                <Card className={hasWebPro ? "border-primary relative overflow-hidden" : "relative overflow-hidden"}>
+                    {hasWebPro && (
                         <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-bl-lg">
                             {t("standard.current")}
                         </div>
@@ -146,7 +197,7 @@ function SubscriptionContent() {
                         </ul>
                     </CardContent>
                     <CardFooter>
-                        {isPro ? (
+                        {hasWebPro ? (
                             <Button className="w-full" variant="outline" disabled>
                                 {t("currentPlan")}
                             </Button>

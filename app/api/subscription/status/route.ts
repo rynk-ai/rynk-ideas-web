@@ -19,7 +19,7 @@ export async function GET() {
         const db = getDB()
         const userId = session.user.id
 
-        // Fetch subscription info from database
+        // Fetch subscription info from database (including ideas-specific fields)
         const user = await db.prepare(`
       SELECT 
         subscriptionTier,
@@ -28,7 +28,10 @@ export async function GET() {
         carryoverCredits,
         creditsResetAt,
         polarCustomerId,
-        polarSubscriptionId
+        polarSubscriptionId,
+        ideasSubscriptionTier,
+        ideasSubscriptionStatus,
+        ideasPolarSubscriptionId
       FROM users 
       WHERE id = ?
     `).bind(userId).first()
@@ -38,9 +41,12 @@ export async function GET() {
         }
 
         // Determine limit based on tier
-        // Free: 50 dumps/month. Paid: Unlimited (-1)
-        const tier = (user.subscriptionTier as string) || 'free'
-        const limit = tier === 'free' ? 50 : -1
+        // User has unlimited access if they have rynk-web pro OR ideas-only subscription
+        const webTier = (user.subscriptionTier as string) || 'free'
+        const ideasTier = (user.ideasSubscriptionTier as string) || 'free'
+        const hasWebPro = webTier === 'standard' || webTier === 'standard_plus' || webTier === 'pro'
+        const hasIdeasPro = ideasTier === 'ideas'
+        const limit = (hasWebPro || hasIdeasPro) ? -1 : 50
 
         // Calculate usage for current month
         const now = new Date()
@@ -57,11 +63,14 @@ export async function GET() {
         const subscriptionStatus: SubscriptionStatus = {
             tier: (user.subscriptionTier as SubscriptionStatus['tier']) || 'free',
             status: (user.subscriptionStatus as SubscriptionStatus['status']) || 'none',
+            ideasTier: (user.ideasSubscriptionTier as SubscriptionStatus['ideasTier']) || 'free',
+            ideasStatus: (user.ideasSubscriptionStatus as SubscriptionStatus['ideasStatus']) || 'none',
             credits: (user.credits as number) || 0,
             carryoverCredits: (user.carryoverCredits as number) || 0,
             creditsResetAt: user.creditsResetAt as string | null,
             polarCustomerId: user.polarCustomerId as string | null,
             polarSubscriptionId: user.polarSubscriptionId as string | null,
+            ideasPolarSubscriptionId: user.ideasPolarSubscriptionId as string | null,
             usage: {
                 periodStart: startOfMonth,
                 dumpCount,

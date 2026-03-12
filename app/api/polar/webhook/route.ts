@@ -143,13 +143,8 @@ async function handleSubscriptionCreated(db: any, subscription: any) {
     const customerId = subscription.customerId;
     const productId = subscription.productId;
 
-    // Determine tier based on product ID
-    const tier = getTierFromProductId(productId);
-    const credits = tier === "standard" || tier === "standard_plus" ? 2500 : 20;
-
-    // Calculate next reset date (1 month from now)
-    const nextResetDate = new Date();
-    nextResetDate.setMonth(nextResetDate.getMonth() + 1);
+    // Check if this is an ideas-only subscription
+    const isIdeasSubscription = isIdeasProduct(productId);
 
     // Find or create user by customer email
     const customer = subscription.customer;
@@ -158,8 +153,45 @@ async function handleSubscriptionCreated(db: any, subscription: any) {
         .bind(customer.email)
         .first();
 
-    if (user) {
-        // Update existing user
+    if (!user) {
+        console.error(
+            "❌ [Polar Webhook] User not found for email:",
+            customer.email,
+        );
+        return;
+    }
+
+    if (isIdeasSubscription) {
+        // Ideas-only subscription — write to ideas-specific columns
+        await db
+            .prepare(
+                `
+      UPDATE users SET
+        ideasSubscriptionTier = 'ideas',
+        ideasSubscriptionStatus = 'active',
+        ideasPolarSubscriptionId = ?,
+        polarCustomerId = ?,
+        updatedAt = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `,
+            )
+            .bind(
+                subscription.id,
+                customerId,
+                user.id,
+            )
+            .run();
+
+        console.log("✅ [Polar Webhook] Activated Ideas subscription for user:", user.id);
+    } else {
+        // rynk-web subscription — write to standard columns (existing behavior)
+        const tier = getTierFromProductId(productId);
+        const credits = tier === "standard" || tier === "standard_plus" ? 2500 : 20;
+
+        // Calculate next reset date (1 month from now)
+        const nextResetDate = new Date();
+        nextResetDate.setMonth(nextResetDate.getMonth() + 1);
+
         await db
             .prepare(
                 `
@@ -185,11 +217,6 @@ async function handleSubscriptionCreated(db: any, subscription: any) {
             .run();
 
         console.log("✅ [Polar Webhook] Updated user subscription:", user.id, tier);
-    } else {
-        console.error(
-            "❌ [Polar Webhook] User not found for email:",
-            customer.email,
-        );
     }
 }
 
@@ -198,69 +225,143 @@ async function handleSubscriptionUpdated(db: any, subscription: any) {
     console.log("🔄 [Polar Webhook] Subscription updated:", subscription.id);
 
     const productId = subscription.productId;
-    const tier = getTierFromProductId(productId);
+    const isIdeasSubscription = isIdeasProduct(productId);
 
-    await db
-        .prepare(
-            `
-    UPDATE users SET
-      subscriptionTier = ?,
-      subscriptionStatus = ?,
-      updatedAt = CURRENT_TIMESTAMP
-    WHERE polarSubscriptionId = ?
-  `,
-        )
-        .bind(tier, subscription.status, subscription.id)
-        .run();
+    if (isIdeasSubscription) {
+        // Ideas subscription update
+        await db
+            .prepare(
+                `
+      UPDATE users SET
+        ideasSubscriptionTier = 'ideas',
+        ideasSubscriptionStatus = ?,
+        updatedAt = CURRENT_TIMESTAMP
+      WHERE ideasPolarSubscriptionId = ?
+    `,
+            )
+            .bind(subscription.status, subscription.id)
+            .run();
 
-    console.log("✅ [Polar Webhook] Updated subscription tier to:", tier);
+        console.log("✅ [Polar Webhook] Updated Ideas subscription status");
+    } else {
+        // rynk-web subscription update (existing behavior)
+        const tier = getTierFromProductId(productId);
+
+        await db
+            .prepare(
+                `
+      UPDATE users SET
+        subscriptionTier = ?,
+        subscriptionStatus = ?,
+        updatedAt = CURRENT_TIMESTAMP
+      WHERE polarSubscriptionId = ?
+    `,
+            )
+            .bind(tier, subscription.status, subscription.id)
+            .run();
+
+        console.log("✅ [Polar Webhook] Updated subscription tier to:", tier);
+    }
 }
 
 // Handle subscription cancellation (end of billing period)
 async function handleSubscriptionCanceled(db: any, subscription: any) {
     console.log("❌ [Polar Webhook] Subscription canceled:", subscription.id);
 
-    // Mark as canceled but don't downgrade yet - they keep access until period ends
-    await db
-        .prepare(
-            `
-    UPDATE users SET
-      subscriptionStatus = 'canceled',
-      updatedAt = CURRENT_TIMESTAMP
-    WHERE polarSubscriptionId = ?
-  `,
-        )
+    // Try ideas subscription first
+    const ideasUser = await db
+        .prepare("SELECT id FROM users WHERE ideasPolarSubscriptionId = ?")
         .bind(subscription.id)
-        .run();
+        .first();
 
-    console.log("✅ [Polar Webhook] Marked subscription as canceled");
+    if (ideasUser) {
+        await db
+            .prepare(
+                `
+      UPDATE users SET
+        ideasSubscriptionStatus = 'canceled',
+        updatedAt = CURRENT_TIMESTAMP
+      WHERE ideasPolarSubscriptionId = ?
+    `,
+            )
+            .bind(subscription.id)
+            .run();
+
+        console.log("✅ [Polar Webhook] Marked Ideas subscription as canceled");
+    } else {
+        // rynk-web subscription (existing behavior)
+        await db
+            .prepare(
+                `
+      UPDATE users SET
+        subscriptionStatus = 'canceled',
+        updatedAt = CURRENT_TIMESTAMP
+      WHERE polarSubscriptionId = ?
+    `,
+            )
+            .bind(subscription.id)
+            .run();
+
+        console.log("✅ [Polar Webhook] Marked subscription as canceled");
+    }
 }
 
 // Handle subscription revocation (immediate end)
 async function handleSubscriptionRevoked(db: any, subscription: any) {
     console.log("🚫 [Polar Webhook] Subscription revoked:", subscription.id);
 
-    // Immediately downgrade to free tier
-    await db
-        .prepare(
-            `
-    UPDATE users SET
-      subscriptionTier = 'free',
-      subscriptionStatus = 'none',
-      polarSubscriptionId = NULL,
-      credits = 20,
-      carryoverCredits = 0,
-      updatedAt = CURRENT_TIMESTAMP
-    WHERE polarSubscriptionId = ?
-  `,
-        )
+    // Try ideas subscription first
+    const ideasUser = await db
+        .prepare("SELECT id FROM users WHERE ideasPolarSubscriptionId = ?")
         .bind(subscription.id)
-        .run();
+        .first();
 
-    console.log("✅ [Polar Webhook] Revoked subscription, downgraded to free");
+    if (ideasUser) {
+        // Downgrade ideas subscription
+        await db
+            .prepare(
+                `
+      UPDATE users SET
+        ideasSubscriptionTier = 'free',
+        ideasSubscriptionStatus = 'none',
+        ideasPolarSubscriptionId = NULL,
+        updatedAt = CURRENT_TIMESTAMP
+      WHERE ideasPolarSubscriptionId = ?
+    `,
+            )
+            .bind(subscription.id)
+            .run();
+
+        console.log("✅ [Polar Webhook] Revoked Ideas subscription, downgraded to free");
+    } else {
+        // rynk-web subscription (existing behavior)
+        await db
+            .prepare(
+                `
+      UPDATE users SET
+        subscriptionTier = 'free',
+        subscriptionStatus = 'none',
+        polarSubscriptionId = NULL,
+        credits = 20,
+        carryoverCredits = 0,
+        updatedAt = CURRENT_TIMESTAMP
+      WHERE polarSubscriptionId = ?
+    `,
+            )
+            .bind(subscription.id)
+            .run();
+
+        console.log("✅ [Polar Webhook] Revoked subscription, downgraded to free");
+    }
 }
 
-// Map Polar.sh product IDs to subscription tiers
+// Check if a product ID is the Ideas-only product
+function isIdeasProduct(productId: string): boolean {
+    const ideasProductId = process.env.POLAR_IDEAS_PRODUCT_ID;
+    return !!ideasProductId && productId === ideasProductId;
+}
+
+// Map Polar.sh product IDs to subscription tiers (rynk-web tiers only)
 function getTierFromProductId(productId: string): string {
     const standardProductId = process.env.POLAR_STANDARD_PRODUCT_ID;
     const standardPlusProductId = process.env.POLAR_STANDARD_PLUS_PRODUCT_ID;

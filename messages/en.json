@@ -122,7 +122,7 @@
     },
     "standard": {
       "name": "Standard",
-      "description": "For serious thinkers",
+      "description": "Full access to Rynk Chat + Ideas",
       "price": "$5.99",
       "perMonth": "/mo",
       "current": "Current",
@@ -132,10 +132,24 @@
         "support": "Priority Support"
       }
     },
+    "ideas": {
+      "name": "Ideas",
+      "description": "Unlimited access to Rynk Ideas",
+      "price": "$2.99",
+      "billing": "Monthly subscription for Rynk Ideas only.",
+      "current": "Current",
+      "features": {
+        "dumps": "Unlimited Dumps",
+        "ai": "AI-Powered Organization",
+        "ideasOnly": "Rynk Ideas only"
+      },
+      "includedInStandard": "Included in Standard"
+    },
     "currentPlan": "Current Plan",
     "downgrade": "Downgrade",
     "manageSubscription": "Manage Subscription",
     "upgradeToStandard": "Upgrade to Standard",
+    "upgradeToIdeas": "Upgrade to Ideas",
     "checkoutFailed": "Failed to start checkout",
     "error": "An error occurred"
   },

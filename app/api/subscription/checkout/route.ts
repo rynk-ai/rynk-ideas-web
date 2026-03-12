@@ -19,7 +19,7 @@ const getDB = () => {
 };
 
 interface CheckoutRequest {
-    tier: "standard" | "standard_plus" | "extra";
+    tier: "standard" | "standard_plus" | "extra" | "ideas";
 }
 
 export async function POST(request: NextRequest) {
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
         const body = (await request.json()) as CheckoutRequest;
         const { tier } = body;
 
-        if (!tier || !["standard", "standard_plus", "extra"].includes(tier)) {
+        if (!tier || !["standard", "standard_plus", "extra", "ideas"].includes(tier)) {
             return NextResponse.json({ error: "Invalid tier" }, { status: 400 });
         }
 
@@ -99,7 +99,6 @@ async function getOrCreateCustomer(
     name?: string | null,
 ): Promise<string> {
     // Check if user already has a Polar customer ID
-    // Note: rynk-ideas uses auth() which uses D1 adapter, so users table structure is assumed consistent
     const user = await db
         .prepare("SELECT polarCustomerId FROM users WHERE id = ?")
         .bind(userId)
@@ -138,6 +137,8 @@ function getProductIdForTier(tier: string): string | null {
             return process.env.POLAR_STANDARD_PLUS_PRODUCT_ID || null;
         case "extra":
             return process.env.POLAR_EXTRA_CREDITS_PRODUCT_ID || null;
+        case "ideas":
+            return process.env.POLAR_IDEAS_PRODUCT_ID || null;
         default:
             return null;
     }
