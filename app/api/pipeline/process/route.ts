@@ -5,13 +5,16 @@ import { generateId } from "@/lib/utils";
 import { segmentDump, type ThreadContext } from "@/lib/services/segmenter";
 import { embedSegment, storeEmbedding } from "@/lib/services/embedder";
 import { clusterSegment } from "@/lib/services/clusterer";
-import { synthesizeThread, type TemporalContext } from "@/lib/services/synthesizer";
+import {
+  synthesizeThread,
+  type TemporalContext,
+} from "@/lib/services/synthesizer";
 import { discoverEdges } from "@/lib/services/edge-discoverer";
 import { getIpHash } from "@/lib/ip-limit";
 
 /**
  * POST /api/pipeline/process
- * 
+ *
  * Orchestrates the full context-aware pipeline:
  * 1. Fetch dump + existing threads (context)
  * 2. Segment with thread awareness
@@ -19,193 +22,214 @@ import { getIpHash } from "@/lib/ip-limit";
  * 4. Synthesize with temporal context
  */
 export async function POST(req: NextRequest) {
-    try {
-        const session = await auth();
-        let userId = session?.user?.id;
+  try {
+    const session = await auth();
+    let userId = session?.user?.id;
 
-        if (!userId) {
-            const ipHash = await getIpHash();
-            userId = `guest:${ipHash}`;
-        }
+    if (!userId) {
+      const ipHash = await getIpHash();
+      userId = `guest:${ipHash}`;
+    }
 
-        const { dumpId, threadId: targetThreadId, locale } = await req.json();
+    const { dumpId, threadId: targetThreadId, locale }: any = await req.json();
 
-        if (!dumpId) {
-            return NextResponse.json({ error: "dumpId is required" }, { status: 400 });
-        }
+    if (!dumpId) {
+      return NextResponse.json(
+        { error: "dumpId is required" },
+        { status: 400 },
+      );
+    }
 
-        const { env } = getCloudflareContext();
-        const db = env.DB;
-        const ai = env.AI;
-        const vectorize = env.VECTORIZE_INDEX;
+    const { env } = getCloudflareContext();
+    const db = env.DB;
+    const ai = env.AI;
+    const vectorize = env.VECTORIZE_INDEX;
 
-        // 1. Fetch the dump
-        const dump = await db
-            .prepare(`SELECT * FROM dumps WHERE id = ? AND userId = ?`)
-            .bind(dumpId, userId)
-            .first() as any;
+    // 1. Fetch the dump
+    const dump = (await db
+      .prepare(`SELECT * FROM dumps WHERE id = ? AND userId = ?`)
+      .bind(dumpId, userId)
+      .first()) as any;
 
-        if (!dump) {
-            return NextResponse.json({ error: "Dump not found" }, { status: 404 });
-        }
+    if (!dump) {
+      return NextResponse.json({ error: "Dump not found" }, { status: 404 });
+    }
 
-        // 2. Fetch existing threads for context-aware segmentation
-        let existingThreadsQuery = `SELECT id, title, summary, state, segmentCount
+    // 2. Fetch existing threads for context-aware segmentation
+    let existingThreadsQuery = `SELECT id, title, summary, state, segmentCount
          FROM idea_threads
          WHERE userId = ?
          ORDER BY lastActivityAt DESC
          LIMIT 20`;
-        let queryArgs = [userId];
+    let queryArgs = [userId];
 
-        if (targetThreadId) {
-            existingThreadsQuery = `SELECT id, title, summary, state, segmentCount
+    if (targetThreadId) {
+      existingThreadsQuery = `SELECT id, title, summary, state, segmentCount
          FROM idea_threads
          WHERE userId = ? AND id = ?`;
-            queryArgs = [userId, targetThreadId];
-        }
+      queryArgs = [userId, targetThreadId];
+    }
 
-        const { results: existingThreads } = await db
-            .prepare(existingThreadsQuery)
-            .bind(...queryArgs)
-            .all() as any;
+    const { results: existingThreads } = (await db
+      .prepare(existingThreadsQuery)
+      .bind(...queryArgs)
+      .all()) as any;
 
-        const threadContext: ThreadContext[] = (existingThreads || []).map((t: any) => ({
-            id: t.id,
-            title: t.title,
-            summary: t.summary,
-            state: t.state,
-            segmentCount: t.segmentCount,
-        }));
+    const threadContext: ThreadContext[] = (existingThreads || []).map(
+      (t: any) => ({
+        id: t.id,
+        title: t.title,
+        summary: t.summary,
+        state: t.state,
+        segmentCount: t.segmentCount,
+      }),
+    );
 
-        // 3. Segment the dump with thread awareness
-        const segments = await segmentDump(ai, dump.content, threadContext);
+    // 3. Segment the dump with thread awareness
+    const segments = await segmentDump(ai, dump.content, threadContext);
 
-        // 4. For each segment: insert → embed → cluster (with hint)
-        const results = [];
-        const affectedThreadIds = new Set<string>();
+    // 4. For each segment: insert → embed → cluster (with hint)
+    const results = [];
+    const affectedThreadIds = new Set<string>();
 
-        for (const seg of segments) {
-            // Insert segment into DB
-            const segmentId = generateId();
-            await db
-                .prepare(
-                    `INSERT INTO segments (id, dumpId, userId, content, segmentType, createdAt)
-           VALUES (?, ?, ?, ?, ?, datetime('now'))`
-                )
-                .bind(segmentId, dumpId, userId, seg.text, seg.type)
-                .run();
+    for (const seg of segments) {
+      // Insert segment into DB
+      const segmentId = generateId();
+      await db
+        .prepare(
+          `INSERT INTO segments (id, dumpId, userId, content, segmentType, createdAt)
+           VALUES (?, ?, ?, ?, ?, datetime('now'))`,
+        )
+        .bind(segmentId, dumpId, userId, seg.text, seg.type)
+        .run();
 
-            // Generate embedding
-            const vector = await embedSegment(ai, seg.text);
+      // Generate embedding
+      const vector = await embedSegment(ai, seg.text);
 
-            // Cluster: use thread hint from segmenter if available
-            let clusterResult;
-            if (targetThreadId) {
-                await db
-                    .prepare(`UPDATE segments SET threadId = ?, confidence = 1.0 WHERE id = ?`)
-                    .bind(targetThreadId, segmentId)
-                    .run();
+      // Cluster: use thread hint from segmenter if available
+      let clusterResult;
+      if (targetThreadId) {
+        await db
+          .prepare(
+            `UPDATE segments SET threadId = ?, confidence = 1.0 WHERE id = ?`,
+          )
+          .bind(targetThreadId, segmentId)
+          .run();
 
-                await db
-                    .prepare(
-                        `UPDATE idea_threads 
-               SET segmentCount = segmentCount + 1, 
-                   lastActivityAt = datetime('now'), 
+        await db
+          .prepare(
+            `UPDATE idea_threads
+               SET segmentCount = segmentCount + 1,
+                   lastActivityAt = datetime('now'),
                    updatedAt = datetime('now')
-               WHERE id = ?`
-                    )
-                    .bind(targetThreadId)
-                    .run();
+               WHERE id = ?`,
+          )
+          .bind(targetThreadId)
+          .run();
 
-                clusterResult = { threadId: targetThreadId, isNewThread: false };
-            } else {
-                clusterResult = await clusterSegment(
-                    db, vectorize, segmentId, vector, userId, seg.text,
-                    seg.existingThreadHint  // pass the hint
-                );
-            }
+        clusterResult = { threadId: targetThreadId, isNewThread: false };
+      } else {
+        clusterResult = await clusterSegment(
+          db,
+          vectorize,
+          segmentId,
+          vector,
+          userId,
+          seg.text,
+          seg.existingThreadHint, // pass the hint
+        );
+      }
 
-            // Store embedding with thread metadata
-            await storeEmbedding(vectorize, segmentId, vector, {
-                userId,
-                threadId: clusterResult.threadId,
-                segmentType: seg.type,
-                text: seg.text,
-            });
+      // Store embedding with thread metadata
+      await storeEmbedding(vectorize, segmentId, vector, {
+        userId,
+        threadId: clusterResult.threadId,
+        segmentType: seg.type,
+        text: seg.text,
+      });
 
-            // Mark segment as embedded
-            await db
-                .prepare(`UPDATE segments SET embeddingStored = 1 WHERE id = ?`)
-                .bind(segmentId)
-                .run();
+      // Mark segment as embedded
+      await db
+        .prepare(`UPDATE segments SET embeddingStored = 1 WHERE id = ?`)
+        .bind(segmentId)
+        .run();
 
-            affectedThreadIds.add(clusterResult.threadId);
-            results.push({ segmentId, ...clusterResult, text: seg.text });
-        }
+      affectedThreadIds.add(clusterResult.threadId);
+      results.push({ segmentId, ...clusterResult, text: seg.text });
+    }
 
-        // 5. Re-synthesize affected threads with temporal context
-        for (const threadId of affectedThreadIds) {
-            // Fetch all segments for this thread
-            const { results: threadSegments } = await db
-                .prepare(
-                    `SELECT s.content as text, s.segmentType as type, s.createdAt
+    // 5. Re-synthesize affected threads with temporal context
+    for (const threadId of affectedThreadIds) {
+      // Fetch all segments for this thread
+      const { results: threadSegments } = (await db
+        .prepare(
+          `SELECT s.content as text, s.segmentType as type, s.createdAt
            FROM segments s
            WHERE s.threadId = ?
-           ORDER BY s.createdAt ASC`
-                )
-                .bind(threadId)
-                .all() as any;
+           ORDER BY s.createdAt ASC`,
+        )
+        .bind(threadId)
+        .all()) as any;
 
-            if (!threadSegments || threadSegments.length === 0) continue;
+      if (!threadSegments || threadSegments.length === 0) continue;
 
-            // Compute temporal context from dumps that contributed to this thread
-            const temporal = await computeTemporalContext(db, threadId);
+      // Compute temporal context from dumps that contributed to this thread
+      const temporal = await computeTemporalContext(db, threadId);
 
-            // Synthesize with full context
-            const synthesis = await synthesizeThread(ai, threadSegments, temporal, locale);
+      // Synthesize with full context
+      const synthesis = await synthesizeThread(
+        ai,
+        threadSegments,
+        temporal,
+        locale,
+      );
 
-            // Store everything including grounding note + momentum
-            await db
-                .prepare(
-                    `UPDATE idea_threads 
+      // Store everything including grounding note + momentum
+      await db
+        .prepare(
+          `UPDATE idea_threads
            SET title = ?, summary = ?, state = ?, stateReason = ?,
                realityScore = ?, groundingNote = ?, momentum = ?,
                updatedAt = datetime('now')
-           WHERE id = ?`
-                )
-                .bind(
-                    synthesis.title,
-                    synthesis.summary,
-                    synthesis.state,
-                    synthesis.stateReason,
-                    synthesis.realityScore,
-                    synthesis.groundingNote,
-                    synthesis.momentum,
-                    threadId
-                )
-                .run();
+           WHERE id = ?`,
+        )
+        .bind(
+          synthesis.title,
+          synthesis.summary,
+          synthesis.state,
+          synthesis.stateReason,
+          synthesis.realityScore,
+          synthesis.groundingNote,
+          synthesis.momentum,
+          threadId,
+        )
+        .run();
 
-            // 5. Discover edges to other threads
-            await discoverEdges(
-                ai, vectorize, db,
-                threadId, userId,
-                synthesis.title, synthesis.summary
-            );
-        }
-
-        return NextResponse.json({
-            success: true,
-            segmentsProcessed: segments.length,
-            threadsAffected: affectedThreadIds.size,
-            results,
-        });
-    } catch (error) {
-        console.error("Pipeline processing failed:", error);
-        return NextResponse.json(
-            { error: "Pipeline processing failed", details: String(error) },
-            { status: 500 }
-        );
+      // 5. Discover edges to other threads
+      await discoverEdges(
+        ai,
+        vectorize,
+        db,
+        threadId,
+        userId,
+        synthesis.title,
+        synthesis.summary,
+      );
     }
+
+    return NextResponse.json({
+      success: true,
+      segmentsProcessed: segments.length,
+      threadsAffected: affectedThreadIds.size,
+      results,
+    });
+  } catch (error) {
+    console.error("Pipeline processing failed:", error);
+    return NextResponse.json(
+      { error: "Pipeline processing failed", details: String(error) },
+      { status: 500 },
+    );
+  }
 }
 
 /**
@@ -214,50 +238,50 @@ export async function POST(req: NextRequest) {
  * - Recent vs older activity for momentum detection
  */
 async function computeTemporalContext(
-    db: any,
-    threadId: string
+  db: any,
+  threadId: string,
 ): Promise<TemporalContext> {
-    // Get dump dates for segments in this thread
-    const { results: dumpDates } = await db
-        .prepare(
-            `SELECT DISTINCT d.createdAt
+  // Get dump dates for segments in this thread
+  const { results: dumpDates } = (await db
+    .prepare(
+      `SELECT DISTINCT d.createdAt
        FROM segments s
        JOIN dumps d ON s.dumpId = d.id
        WHERE s.threadId = ?
-       ORDER BY d.createdAt ASC`
-        )
-        .bind(threadId)
-        .all() as any;
+       ORDER BY d.createdAt ASC`,
+    )
+    .bind(threadId)
+    .all()) as any;
 
-    const dates = (dumpDates || []).map((r: any) => new Date(r.createdAt));
+  const dates = (dumpDates || []).map((r: any) => new Date(r.createdAt));
 
-    if (dates.length === 0) {
-        return {
-            totalDumps: 0,
-            firstMentioned: new Date().toISOString(),
-            lastMentioned: new Date().toISOString(),
-            daysSinceLastMention: 0,
-            recentDumpCount: 0,
-            olderDumpCount: 0,
-        };
-    }
-
-    const now = new Date();
-    const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-    const lastDate = dates[dates.length - 1];
-    const daysSince = Math.floor(
-        (now.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24)
-    );
-
-    const recentDumpCount = dates.filter((d: Date) => d >= sevenDaysAgo).length;
-    const olderDumpCount = dates.filter((d: Date) => d < sevenDaysAgo).length;
-
+  if (dates.length === 0) {
     return {
-        totalDumps: dates.length,
-        firstMentioned: dates[0].toISOString(),
-        lastMentioned: lastDate.toISOString(),
-        daysSinceLastMention: daysSince,
-        recentDumpCount,
-        olderDumpCount,
+      totalDumps: 0,
+      firstMentioned: new Date().toISOString(),
+      lastMentioned: new Date().toISOString(),
+      daysSinceLastMention: 0,
+      recentDumpCount: 0,
+      olderDumpCount: 0,
     };
+  }
+
+  const now = new Date();
+  const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+  const lastDate = dates[dates.length - 1];
+  const daysSince = Math.floor(
+    (now.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24),
+  );
+
+  const recentDumpCount = dates.filter((d: Date) => d >= sevenDaysAgo).length;
+  const olderDumpCount = dates.filter((d: Date) => d < sevenDaysAgo).length;
+
+  return {
+    totalDumps: dates.length,
+    firstMentioned: dates[0].toISOString(),
+    lastMentioned: lastDate.toISOString(),
+    daysSinceLastMention: daysSince,
+    recentDumpCount,
+    olderDumpCount,
+  };
 }
